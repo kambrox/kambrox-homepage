@@ -68,6 +68,7 @@
       --container-gutter-desktop: 24px;
       --container-gutter-tablet: 16px;
       --container-gutter-phone: 12px;
+      --detail-render-scale: 0.75;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -1073,7 +1074,107 @@
     }
 
     @media (min-width: 981px) {
-      .page { min-width: 1180px; }
+      body {
+        overflow-x: hidden;
+      }
+      .page {
+        min-width: 0;
+        width: 100%;
+        zoom: 1;
+      }
+      .detail-header-inner {
+        width: min(960px, calc(100% - 36px));
+        min-height: 56px;
+        grid-template-columns: minmax(90px, 1fr) auto minmax(90px, 1fr);
+        gap: 14px;
+      }
+      .detail-brand-logo {
+        width: clamp(132px, 16.5vw, 219px);
+        max-height: 36px;
+      }
+      .icon-button {
+        min-width: 33px;
+        height: 33px;
+      }
+      .icon-button svg {
+        width: 16px;
+        height: 16px;
+      }
+      .back-button {
+        padding: 0 11px 0 9px;
+      }
+      .back-button span {
+        font-size: 11px;
+      }
+      .product-hero {
+        grid-template-columns: minmax(520px, 1fr) 1px minmax(439px, .92fr);
+        min-height: 668px;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+      .visual-pane {
+        --gallery-w: clamp(465px, 32vw, 559px);
+        padding: 45px 32px 0 0;
+      }
+      .buy-pane {
+        top: 56px;
+        min-height: 668px;
+        padding: 54px 0 32px 32px;
+        overflow: visible;
+      }
+      .buy-inner {
+        width: 100%;
+        max-width: 407px;
+      }
+      .gallery-nav {
+        width: 33px;
+        height: 44px;
+      }
+      .gallery-nav::before {
+        width: 11px;
+        height: 11px;
+        border-width: 3px;
+      }
+      .photo-count {
+        right: 16px;
+        bottom: 17px;
+        min-width: 46px;
+        height: 26px;
+        font-size: 14px;
+      }
+      .thumb-row {
+        gap: 6px;
+        margin-top: 12px;
+      }
+      .thumb-nav {
+        width: 26px;
+        height: 32px;
+      }
+      .thumb {
+        width: 41px;
+        height: 41px;
+      }
+      .thumb.is-active {
+        width: 44px;
+        height: 44px;
+      }
+      .tab-list {
+        max-width: 885px;
+      }
+      .tab {
+        height: 44px;
+        font-size: 12px;
+      }
+      .tab-panel {
+        max-width: 795px;
+        margin: 32px auto 72px;
+      }
+      .detail-image-stack {
+        width: min(650px, calc(100vw - 36px));
+      }
+      .site-footer-inner {
+        width: min(885px, calc(100vw - clamp(40px, 10vw, 156px)));
+      }
     }
   </style>
 </head>

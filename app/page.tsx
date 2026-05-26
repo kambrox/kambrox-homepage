@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const flow = [
   {
     label: "병원 진단 및 데이터",
@@ -176,9 +178,13 @@ export default function HomePage() {
           </div>
         </footer>
       </main>
-      <button className="purchase-floating" type="button" aria-label="상품 구매하기">
-        상품 구매하기
-      </button>
+      <Link
+        className="purchase-floating"
+        href="/product-detail"
+        aria-label="수소치료기 구매하기"
+      >
+        수소치료기 구매하기
+      </Link>
     </>
   );
 }
