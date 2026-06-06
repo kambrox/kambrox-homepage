@@ -240,6 +240,14 @@ export default function ProductDetailPage() {
                 <div className="delivery-detail">
                   <p>주문 후 세부일정은 유선으로 고객과 상담 후 다음절차 진행됩니다.</p>
                   <p>유선 연락은 평일, 업무시간 기준 익일 내로 진행됩니다.</p>
+                  <div className="policy-note" aria-label="배송 및 취소 환불 안내">
+                    <p>
+                      <strong>배송기간</strong> 결제 확인 후 평균 2~5영업일 이내 출고되며, 도서산간 지역은 1~2일 더 소요될 수 있습니다.
+                    </p>
+                    <p>
+                      <strong>취소/환불</strong> 출고 전 주문은 상담을 통해 취소 가능하며, 수령 후 7일 이내 미사용 상품은 교환·환불 접수가 가능합니다.
+                    </p>
+                  </div>
                 </div>
               </div>
 

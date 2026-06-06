@@ -428,6 +428,29 @@
   letter-spacing: -0.4px;
 }
 
+.policy-note {
+  display: grid;
+  gap: 7px;
+  margin-top: 3px;
+  padding: 12px 13px;
+  border: 1px solid #edf0f2;
+  border-radius: 8px;
+  background: #fafbfc;
+  color: #535b66;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.35px;
+}
+.policy-note p {
+  margin: 0;
+}
+.policy-note strong {
+  display: inline-block;
+  margin-right: 6px;
+  color: #222;
+  font-weight: 800;
+}
+
 .option-head {
   margin-top: 1px;
   margin-bottom: 11px;
@@ -976,6 +999,10 @@
     font-size: 15px;
     gap: 7px;
     line-height: 1.48;
+  }
+  .policy-note {
+    padding: 11px 12px;
+    font-size: 13.5px;
   }
   .select {
     height: 54px;
