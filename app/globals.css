@@ -127,6 +127,7 @@ a {
 .global-nav a[aria-current="page"],
 .mobile-menu-panel a[aria-current="page"] {
   background: oklch(100% 0 0 / 0.92);
+  box-shadow: 0 1px 3px oklch(25% 0.04 80 / 0.16);
   color: var(--green);
 }
 
