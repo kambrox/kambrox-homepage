@@ -117,6 +117,13 @@ a {
   transform: translateY(-1px);
 }
 
+.global-nav a:focus-visible,
+.mobile-menu-panel a:focus-visible,
+.header-cta:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px oklch(64% 0.12 154 / 0.26);
+}
+
 .global-nav a[aria-current="page"],
 .mobile-menu-panel a[aria-current="page"] {
   background: oklch(100% 0 0 / 0.92);
