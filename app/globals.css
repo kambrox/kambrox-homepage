@@ -57,7 +57,7 @@ a {
   border-radius: 999px;
   box-shadow: 0 16px 42px oklch(25% 0.04 80 / 0.08);
   display: grid;
-  gap: 18px;
+  gap: 28px;
   grid-template-columns: auto minmax(0, 1fr) auto;
   margin-inline: auto;
   min-height: 68px;
