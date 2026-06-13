@@ -18,3 +18,8 @@ pnpm-debug.log*
 
 .od-skills/
 .vercel
+
+# OMC 작업 도구 상태/아티팩트
+.omc/
+public/.omc/
+*.artifact.json
