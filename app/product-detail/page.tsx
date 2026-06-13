@@ -36,6 +36,13 @@ const companyInfo: [string, string][] = [
   ["사업자 등록번호", "364-87-03182"]
 ];
 
+const detailNav = [
+  { label: "홈", href: "/" },
+  { label: "아카데미", href: "/#academy" },
+  { label: "수소치료기", href: "/product-detail", current: true },
+  { label: "건기식", href: "/#supplements" }
+];
+
 const BUY_NOTICE = "대표번호 02-6956-1133\n로 연락주시면 결제 및 배송상담을 함께\n도움드리겠습니다.";
 const CART_NOTICE = "아직 장바구니를 지원하지 않습니다. 구매하기 버튼을 이용해 주세요.";
 
@@ -134,6 +141,32 @@ export default function ProductDetailPage() {
                 alt="KAMBROX"
               />
             </Link>
+
+            <nav className="global-nav" aria-label="주요 메뉴">
+              {detailNav.map((item) => (
+                <Link key={item.label} href={item.href} aria-current={item.current ? "page" : undefined}>
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+
+            <details className="mobile-menu">
+              <summary aria-label="메뉴 열기">
+                <span className="sr-only">메뉴 열기</span>
+                <span className="hamburger-lines" aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+              </summary>
+              <nav className="mobile-menu-panel" aria-label="모바일 주요 메뉴">
+                {detailNav.map((item) => (
+                  <Link key={item.label} href={item.href} aria-current={item.current ? "page" : undefined}>
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+            </details>
 
             <nav className="detail-actions" aria-label="상품상세 홈 바로가기">
               <Link className="icon-button" href="/" aria-label="홈">

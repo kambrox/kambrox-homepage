@@ -96,6 +96,15 @@
       min-height: 100vh;
       background: #fff;
     }
+    .sr-only {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
     .detail-header {
       position: sticky;
       top: 0;
@@ -109,7 +118,7 @@
       min-height: 74px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr);
+      grid-template-columns: auto auto minmax(0, 1fr) auto;
       align-items: center;
       gap: 18px;
     }
@@ -126,6 +135,117 @@
       max-height: 48px;
       height: auto;
       object-fit: contain;
+    }
+    .global-nav {
+      justify-self: center;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      min-width: 0;
+      padding: 4px;
+      border: 1px solid rgba(34, 42, 53, .08);
+      border-radius: 999px;
+      background: rgba(246, 248, 244, .72);
+    }
+    .global-nav a,
+    .mobile-menu-panel a {
+      border-radius: 999px;
+      color: #27352f;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-decoration: none;
+      transition:
+        background var(--motion-fast) var(--ease-standard),
+        color var(--motion-fast) var(--ease-standard),
+        transform var(--motion-fast) var(--ease-standard);
+      white-space: nowrap;
+    }
+    .global-nav a {
+      padding: 10px 14px;
+    }
+    .global-nav a:hover {
+      transform: translateY(-1px);
+      background: color-mix(in oklab, var(--green), white 92%);
+      color: var(--green-dark);
+    }
+    .global-nav a[aria-current="page"],
+    .mobile-menu-panel a[aria-current="page"] {
+      background: color-mix(in oklab, var(--green), white 90%);
+      color: var(--green-dark);
+    }
+    .mobile-menu {
+      display: none;
+      justify-self: end;
+      position: relative;
+    }
+    .mobile-menu summary {
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid rgba(34, 42, 53, .1);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--green-dark);
+      cursor: pointer;
+      user-select: none;
+    }
+    .mobile-menu summary::-webkit-details-marker {
+      display: none;
+    }
+    .mobile-menu summary:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 153, 255, .22);
+    }
+    .hamburger-lines {
+      width: 18px;
+      display: grid;
+      gap: 4px;
+    }
+    .hamburger-lines i {
+      width: 18px;
+      height: 2px;
+      display: block;
+      border-radius: 999px;
+      background: currentColor;
+      transform-origin: center;
+      transition:
+        opacity var(--motion-fast) var(--ease-standard),
+        transform var(--motion-fast) var(--ease-standard);
+    }
+    .mobile-menu[open] .hamburger-lines i:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .mobile-menu[open] .hamburger-lines i:nth-child(2) {
+      opacity: 0;
+    }
+    .mobile-menu[open] .hamburger-lines i:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+    .mobile-menu-panel {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      width: min(280px, calc(100vw - 24px));
+      display: grid;
+      gap: 6px;
+      padding: 8px;
+      border: 1px solid rgba(34, 42, 53, .1);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .98);
+      box-shadow: 0 18px 44px rgba(17, 24, 39, .16);
+    }
+    .mobile-menu-panel a {
+      display: block;
+      min-height: 46px;
+      padding: 13px 14px;
+    }
+    .mobile-menu-panel a:hover {
+      background: color-mix(in oklab, var(--green), white 92%);
+      color: var(--green-dark);
     }
     .icon-button svg {
       width: 21px;
@@ -906,8 +1026,17 @@
         width: 100%;
         min-height: 62px;
         padding: 0 12px;
-        grid-template-columns: 48px minmax(0, 1fr) auto;
+        grid-template-columns: 42px minmax(0, 1fr) auto;
         gap: 10px;
+      }
+      .global-nav {
+        display: none;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .detail-actions {
+        display: none;
       }
       .detail-brand-logo {
         width: clamp(154px, 44vw, 216px);
@@ -1115,7 +1244,7 @@
       .detail-header-inner {
         width: min(960px, calc(100% - 36px));
         min-height: 56px;
-        grid-template-columns: minmax(90px, 1fr) auto minmax(90px, 1fr);
+        grid-template-columns: auto auto minmax(0, 1fr) auto;
         gap: 14px;
       }
       .detail-brand-logo {
@@ -1206,6 +1335,14 @@
         width: min(885px, calc(100vw - clamp(40px, 10vw, 156px)));
       }
     }
+
+    @media (max-width: 480px) {
+      .mobile-menu summary {
+        width: 42px;
+        height: 42px;
+        padding: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1222,6 +1359,26 @@
         <a class="detail-brand" href="index.html" aria-label="KAMBROX 홈으로 이동">
           <img class="detail-brand-logo" src="mplc24vr-logo-transparent.png" alt="KAMBROX" />
         </a>
+
+        <nav class="global-nav" aria-label="주요 메뉴">
+          <a href="index.html">홈</a>
+          <a href="index.html#academy">아카데미</a>
+          <a href="product-detail.html" aria-current="page">수소치료기</a>
+          <a href="index.html#supplements">건기식</a>
+        </nav>
+
+        <details class="mobile-menu">
+          <summary aria-label="메뉴 열기">
+            <span class="sr-only">메뉴 열기</span>
+            <span class="hamburger-lines" aria-hidden="true"><i></i><i></i><i></i></span>
+          </summary>
+          <nav class="mobile-menu-panel" aria-label="모바일 주요 메뉴">
+            <a href="index.html">홈</a>
+            <a href="index.html#academy">아카데미</a>
+            <a href="product-detail.html" aria-current="page">수소치료기</a>
+            <a href="index.html#supplements">건기식</a>
+          </nav>
+        </details>
 
         <nav class="detail-actions" aria-label="상품상세 홈 바로가기">
           <a class="icon-button" href="index.html" aria-label="홈">

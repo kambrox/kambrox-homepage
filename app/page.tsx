@@ -86,10 +86,53 @@ const companyInfo = [
   ["사업자 등록번호", "364-87-03182"]
 ];
 
+const mainNav = [
+  { label: "홈", href: "#home", current: true },
+  { label: "아카데미", href: "#academy" },
+  { label: "수소치료기", href: "/product-detail" },
+  { label: "건기식", href: "#supplements" }
+];
+
 export default function HomePage() {
   return (
     <>
-      <main className="hero-shell">
+      <header className="site-header" aria-label="KAMBROX 주요 메뉴">
+        <Link className="site-header-brand" href="#home" aria-label="KAMBROX 홈">
+          <img
+            className="site-header-logo"
+            src="/images/mplc24vr-logo-transparent.png"
+            alt="KAMBROX"
+          />
+        </Link>
+        <nav className="global-nav" aria-label="주요 메뉴">
+          {mainNav.map((item) => (
+            <Link key={item.label} href={item.href} aria-current={item.current ? "page" : undefined}>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <Link className="header-cta" href="/product-detail">
+          구매하기
+        </Link>
+        <details className="mobile-menu">
+          <summary aria-label="메뉴 열기">
+            <span className="sr-only">메뉴 열기</span>
+            <span className="hamburger-lines" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </span>
+          </summary>
+          <nav className="mobile-menu-panel" aria-label="모바일 주요 메뉴">
+            {mainNav.map((item) => (
+              <Link key={item.label} href={item.href} aria-current={item.current ? "page" : undefined}>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </details>
+      </header>
+      <main className="hero-shell" id="home">
         <div className="hero-stage">
           <section className="hero" aria-label="KAMBROX hero">
             <div className="hero-copy">
@@ -141,8 +184,13 @@ export default function HomePage() {
             </div>
           </section>
         </div>
-        {recoveryVisuals.map((visual) => (
-          <section className="recovery-visual" aria-label={visual.label} key={visual.src}>
+        {recoveryVisuals.map((visual, index) => (
+          <section
+            className="recovery-visual"
+            id={index === 0 ? "academy" : index === recoveryVisuals.length - 1 ? "supplements" : undefined}
+            aria-label={visual.label}
+            key={visual.src}
+          >
             <div className="recovery-visual-frame">
               <img
                 className="recovery-visual-image"
