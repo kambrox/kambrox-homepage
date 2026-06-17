@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>캠브록스 아카데미 | 아카데미 소개 및 모집</title>
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --paper: rgba(255,255,255,0.72);
+      --paper-strong: rgba(255,255,255,0.9);
+      --ink: #1f1a17;
+      --muted: #6e6258;
+      --line: rgba(69, 53, 40, 0.12);
+      --brand: #7c4f2e;
+      --brand-strong: #5f3518;
+      --accent: #c18f62;
+      --green: #5f7a63;
+      --shadow: 0 22px 60px rgba(72, 52, 35, 0.10);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(193,143,98,0.20), transparent 28%),
+        radial-gradient(circle at top right, rgba(95,122,99,0.14), transparent 24%),
+        linear-gradient(180deg, #f8f4ee 0%, #f3ede4 42%, #f6f2ea 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: rgba(248, 244, 238, 0.72);
+      border-bottom: 1px solid rgba(69,53,40,0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 78px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand small {
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .brand strong {
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 14px;
+      padding: 10px 0;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .button:hover { transform: translateY(-1px); }
+    .button.primary {
+      background: linear-gradient(135deg, var(--brand), var(--brand-strong));
+      color: #fff;
+      box-shadow: 0 14px 30px rgba(95, 53, 24, 0.24);
+    }
+
+    .button.secondary {
+      background: rgba(255,255,255,0.72);
+      border-color: rgba(95,53,24,0.12);
+      color: var(--brand-strong);
+    }
+
+    .hero {
+      padding: 72px 0 34px;
+    }
+
+    .hero-shell {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy, .hero-panel, .section-card, .faq-item, .curriculum-card, .quote-card, .recruit-table, .cta-band {
+      background: var(--paper);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+    }
+
+    .hero-copy {
+      border-radius: 36px;
+      padding: 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 620px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: rgba(124, 79, 46, 0.08);
+      border: 1px solid rgba(124, 79, 46, 0.10);
+      color: var(--brand-strong);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      width: fit-content;
+    }
+
+    h1, h2, h3 { margin: 0; letter-spacing: -0.03em; line-height: 1.12; }
+    h1 { font-size: clamp(42px, 6vw, 74px); max-width: 9.5ch; }
+    h2 { font-size: clamp(30px, 3.3vw, 48px); }
+    h3 { font-size: 22px; }
+
+    .hero-lead {
+      margin-top: 26px;
+      max-width: 640px;
+      font-size: clamp(18px, 2vw, 22px);
+      color: #322823;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .hero-point {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.54);
+      border: 1px solid rgba(95,53,24,0.08);
+    }
+
+    .hero-point strong { display: block; font-size: 16px; margin-bottom: 6px; }
+    .hero-point p { margin: 0; font-size: 14px; color: var(--muted); }
+
+    .hero-signature {
+      margin-top: 30px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(69,53,40,0.10);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+    }
+
+    .sig-badge {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(124,79,46,0.92), rgba(193,143,98,0.88));
+      color: #fff;
+      font-weight: 800;
+      font-size: 20px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+    }
+
+    .hero-panel {
+      border-radius: 32px;
+      padding: 24px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 18px;
+      min-height: 620px;
+    }
+
+    .hero-panel-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .status-pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(95,122,99,0.12);
+      color: var(--green);
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .program-preview {
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(249,245,240,0.78));
+      border-radius: 26px;
+      padding: 24px;
+      border: 1px solid rgba(69,53,40,0.08);
+      display: grid;
+      gap: 20px;
+    }
+
+    .program-preview .label {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .program-preview .headline {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(69,53,40,0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 34px;
+      color: var(--brand-strong);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    .journey-card {
+      padding: 22px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(122, 93, 69, 0.92), rgba(83, 57, 37, 0.94));
+      color: rgba(255,255,255,0.92);
+      display: grid;
+      gap: 14px;
+    }
+
+    .journey-flow {
+      display: grid;
+      gap: 10px;
+    }
+
+    .journey-step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-top: 1px solid rgba(255,255,255,0.14);
+    }
+    .journey-step:first-child { border-top: 0; padding-top: 0; }
+    .journey-index {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.16);
+      font-size: 13px;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    section {
+      padding: 26px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 26px;
+      max-width: 760px;
+    }
+
+    .section-heading p,
+    .section-card p,
+    .curriculum-card p,
+    .faq-item p,
+    .quote-card p,
+    .muted {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .grid-3, .grid-2 {
+      display: grid;
+      gap: 18px;
+    }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .section-card, .curriculum-card, .faq-item, .quote-card {
+      border-radius: 28px;
+      padding: 28px;
+    }
+
+    .section-card .kicker {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      font-size: 12px;
+      border-radius: 999px;
+      background: rgba(95,122,99,0.10);
+      color: var(--green);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .quote-card {
+      background: linear-gradient(180deg, rgba(124,79,46,0.94), rgba(86,51,28,0.94));
+      color: rgba(255,255,255,0.96);
+    }
+
+    .quote-card p { color: rgba(255,255,255,0.80); }
+    .quote-mark { font-size: 72px; line-height: 0.8; opacity: 0.38; }
+
+    .curriculum-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .curriculum-card ul, .target-list, .faq-list, .value-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .curriculum-card li,
+    .target-list li,
+    .value-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-top: 10px;
+      color: #3a2e28;
+    }
+
+    .curriculum-card li::before,
+    .target-list li::before,
+    .value-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(193,143,98,0.16);
+    }
+
+    .target-list li + li,
+    .value-list li + li { margin-top: 14px; }
+
+    .split-feature {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+    }
+
+    .recruit-table {
+      border-radius: 32px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    th, td {
+      padding: 18px 22px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      width: 28%;
+      background: rgba(124,79,46,0.06);
+      color: var(--brand-strong);
+      font-weight: 700;
+    }
+
+    tr:last-child th, tr:last-child td { border-bottom: 0; }
+
+    .cta-band {
+      border-radius: 34px;
+      padding: 38px;
+      display: grid;
+      grid-template-columns: 1.1fr auto;
+      gap: 18px;
+      align-items: center;
+      background:
+        radial-gradient(circle at right top, rgba(193,143,98,0.24), transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,0.88), rgba(250,246,241,0.78));
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .faq-item strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #322823;
+    }
+
+    footer {
+      padding: 28px 0 60px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-shell {
+      border-top: 1px solid rgba(69,53,40,0.10);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-shell,
+      .split-feature,
+      .cta-band,
+      .grid-3,
+      .grid-2,
+      .curriculum-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .hero-panel { min-height: auto; }
+      .cta-actions { justify-content: flex-start; }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner { align-items: flex-start; padding: 14px 0; }
+      .nav { gap: 12px; }
+      .hero { padding-top: 44px; }
+      .hero-copy, .hero-panel, .section-card, .curriculum-card, .quote-card, .faq-item, .cta-band { padding: 22px; border-radius: 24px; }
+      .hero-points, .stats-grid { grid-template-columns: 1fr; }
+      .hero-signature { align-items: flex-start; }
+      .button { width: 100%; }
+      .hero-actions .button, .cta-actions .button { width: 100%; }
+      table, tbody, tr, th, td { display: block; width: 100%; }
+      th, td { padding: 14px 16px; }
+      th { border-bottom: 0; padding-bottom: 6px; }
+      td { padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <small>KAMBROX Academy</small>
+        <strong>캠브록스 아카데미</strong>
+      </div>
+      <nav class="nav" aria-label="페이지 바로가기">
+        <a href="#why">왜 아카데미인가</a>
+        <a href="#curriculum">커리큘럼</a>
+        <a href="#benefits">수강 가치</a>
+        <a href="#recruit">모집 안내</a>
+        <a class="button secondary" href="#apply">설명회 신청</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-shell">
+        <div class="hero-copy">
+          <div>
+            <span class="eyebrow">아카데미 소개 및 모집</span>
+            <h1>암 전문상담약사로의 도약, 캠브록스 아카데미</h1>
+            <p class="hero-lead">
+              캠브록스와 문창식 원장님의 통합 암 치료 관점과 임상 경험을 바탕으로,
+              약사가 암 환자와 보호자를 더 깊이 이해하고 상담할 수 있도록 설계된 전문 교육 프로그램입니다.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#apply">설명회 신청하기</a>
+              <a class="button secondary" href="#recruit">모집 안내 보기</a>
+            </div>
+            <div class="hero-points">
+              <div class="hero-point">
+                <strong>회복 중심 상담</strong>
+                <p>치료를 넘어 회복과 일상 복귀까지 함께 이해하는 상담 프레임</p>
+              </div>
+              <div class="hero-point">
+                <strong>실무 적용형 커리큘럼</strong>
+                <p>종양학, 영양, 운동, 설문·검사 해석, 상담 흐름까지 연결</p>
+              </div>
+              <div class="hero-point">
+                <strong>네트워크 확장성</strong>
+                <p>향후 캠브록스 서비스와 전문 약국 네트워크 참여 기반</p>
+              </div>
+            </div>
+          </div>
+          <div class="hero-signature">
+            <div class="sig-badge">Academy</div>
+            <div>
+              <strong style="display:block; color:var(--ink); margin-bottom:4px;">약국의 새로운 역할은, 더 깊은 상담에서 시작됩니다.</strong>
+              <span>암 전문상담약사 · 회복 중심 실무 · 프리미엄 상담 역량</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="아카데미 핵심 정보">
+          <div class="hero-panel-top">
+            <span>Program Preview</span>
+            <span class="status-pill">모집 예정</span>
+          </div>
+
+          <div class="program-preview">
+            <span class="label">Academy Summary</span>
+            <div class="headline">암 환자 회복 상담 역량을 약국 현장에 연결하는 8주 전문 과정</div>
+            <p class="muted">종양학적 이해, 통합의학적 관점, 생활관리, 실무 적용, 향후 캠브록스 지원 프로그램 연계까지 고려한 구조입니다.</p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat">
+              <strong>8주</strong>
+              <span>기본 과정 기준의 전문 커리큘럼</span>
+            </div>
+            <div class="stat">
+              <strong>50시간+</strong>
+              <span>강의·사례·적용 관점을 포함한 학습 시간</span>
+            </div>
+            <div class="stat">
+              <strong>20년+</strong>
+              <span>문창식 원장 중심의 임상 철학과 방향성</span>
+            </div>
+            <div class="stat">
+              <strong>∞</strong>
+              <span>설명회·후속 프로그램·네트워크 확장 가능성</span>
+            </div>
+          </div>
+
+          <div class="journey-card">
+            <strong style="font-size:18px;">교육 이후의 연결 구조</strong>
+            <div class="journey-flow">
+              <div class="journey-step">
+                <div class="journey-index">1</div>
+                <div><strong>지식 습득</strong><br><span>종양학, 면역, 영양, 회복 관리 관점의 체계화</span></div>
+              </div>
+              <div class="journey-step">
+                <div class="journey-index">2</div>
+                <div><strong>상담 구조화</strong><br><span>환자·보호자 상담 흐름과 실제 응대 역량 강화</span></div>
+              </div>
+              <div class="journey-step">
+                <div class="journey-index">3</div>
+                <div><strong>프로그램 연계</strong><br><span>설문·검사·환자 상태 기반 보조 도구와 확장</span></div>
+              </div>
+              <div class="journey-step">
+                <div class="journey-index">4</div>
+                <div><strong>네트워크 참여</strong><br><span>캠브록스 생태계와 전문 약국 포지셔닝 기반 마련</span></div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="why">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Why Now</span>
+          <h2>왜 지금, 암 전문상담약사인가</h2>
+          <p>암 환자와 보호자는 약국에서 더 깊고 실질적인 상담을 기대합니다. 하지만 암은 종양학, 면역, 영양, 운동, 치료 부작용 관리, 생활요법까지 연결된 복합 영역입니다. 캠브록스 아카데미는 약사가 회복 여정을 함께 이해하는 상담 파트너로 성장하도록 돕습니다.</p>
+        </div>
+        <div class="grid-3">
+          <article class="section-card">
+            <span class="kicker">01 전문성</span>
+            <h3>근거 기반 암 이해와 상담 역량 강화</h3>
+            <p>막연한 건강상담이 아니라, 암 환자의 상태와 치료 맥락을 체계적으로 읽고 설명하는 프레임을 제안합니다.</p>
+          </article>
+          <article class="section-card">
+            <span class="kicker">02 실무성</span>
+            <h3>환자 사례와 현장 적용 중심</h3>
+            <p>설문, 검사, 치료 이력, 생활관리, 회복 흐름을 어떻게 상담에 도움이될지 실제 현장 언어로 풀어냅니다.</p>
+          </article>
+          <article class="section-card">
+            <span class="kicker">03 확장성</span>
+            <h3>서비스와 네트워크로 이어지는 기반</h3>
+            <p>교육에서 끝나지 않고, 향후 캠브록스 상담 지원 시스템과 전문 약국 네트워크 참여 가능성을 함께 열어둡니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container split-feature">
+        <article class="quote-card">
+          <div class="quote-mark">“</div>
+          <h2 style="font-size: clamp(28px, 3.8vw, 44px); margin-top: 8px;">치료를 넘어, 회복과 일상 복귀까지</h2>
+          <p style="margin-top: 18px;">문창식 원장의 강의는 암을 단순히 병변이나 치료 행위만으로 보지 않습니다. 치료 과정에서의 변화, 회복의 속도, 영양과 운동, 생활관리, 부작용 대응, 환자와 보호자의 심리적 부담까지 함께 바라보는 관점에서 출발합니다.</p>
+        </article>
+        <article class="section-card">
+          <span class="kicker">Academy </span>
+          <h3>캠브록스 아카데미란?</h3>
+          <p style="margin-top: 14px;">캠브록스 아카데미는 암 환자 상담에 필요한 종양학적 이해, 통합의학적 관점, 영양·운동·생활관리, 상담 실무, 환자 상태 분석 관점을 종합적으로 다루는 전문 교육 프로그램입니다.</p>
+          <p style="margin-top: 14px;">단순한 정보 전달이 아니라, 약사가 실제 현장에서 환자와 보호자를 더 깊이 이해하고 상담할 수 있도록 돕는 실전형 아카데미로 설계되었습니다.</p>
+          <ul class="value-list" style="margin-top: 18px;">
+            <li>약 8주 과정 기준의 전문 커리큘럼</li>
+            <li>약 50시간 내외의 강의·사례·적용형 구성</li>
+            <li>심화 교육 및 네트워크 연계로 확장 가능한 구조</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">강사 소개</span>
+          <h2>문창식 원장님</h2>
+          <img
+            src="../../image_cache/img_80d4e9bb6feb.jpeg"
+            alt="문창식 원장님 사진"
+            style="margin-top: 20px; width: min(100%, 420px); border-radius: 24px; box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,0.55); object-fit: cover;"
+          />
+          <p style="margin-top: 20px;">문창식 원장님은 나으람의원 대표 전문의로, 전남대학교 의과대학을 졸업하셨습니다. 일반외과 전문의, 보완대체의학인정의, 한국 임상 호메오퍼시 의사회 고문이며 아우토겐 이완요법 촉진자 자격 보유하고 있습니다. 현재 임상통합의학암학회 회장, 임상통합의학 암아카데미원장, 대한 암치료 병원 협의회 회장, 암알지 방송국 대표, 공주 대학교 통합 의료관광 대학원 교수, 채원 자연통합병원 암센터 원장으로 근무하셨습니다. 저서로는 『최고의 전문의들은 왜 통합기능의학에 주목할까』, 『나만의 항암음식을 찾아줍니다』, 『암과 싸워서 이기는 방법』, 『하네만 리비지트』(공저)가 있습니다.</p>
+        </div>
+        <div class="grid-2">
+          <article class="section-card">
+            <span class="kicker">Clinical Philosophy</span>
+            <h3>암특화 약 20년 이상의 전문성과 노하우</h3>
+            <ul class="target-list" style="margin-top: 16px;">
+              <li>통합의학적 암치료와 맞춤형 회복 지원 관점</li>
+              <li>암중점치료, 후성 유전학적 치료, 치료 지원 시스템에 대한 전문성</li>
+              <li>영양·운동·생활관리까지 아우르는 회복 중심 프레임</li>
+              <li>환자와 보호자의 불안과 질문을 함께 이해하는 동행형 접근</li>
+            </ul>
+          </article>
+          <article class="section-card">
+            <span class="kicker">Educational Promise</span>
+            <h3>약사님 특화 아카데미</h3>
+            <ul class="target-list" style="margin-top: 16px;">
+              <li>실제 임상에서 나온 문제의식을 약사 현장으로 번역</li>
+              <li>회복 중심 상담 역량을 위한 관점·언어·구조 제공</li>
+              <li>환자 상태 기반 이해를 돕는 검사·설문·상담 흐름 연결</li>
+              <li>향후 캠브록스 프로그램과 연동한 지원 제공</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="curriculum">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Curriculum</span>
+          <h2>무엇을 배우게 되나요?</h2>
+          <p>캠브록스 아카데미는 암 환자 상담에 필요한 이론적 이해와 회복 관리 관점, 그리고 실제 상담 적용 역량을 균형 있게 다룹니다. 주차별 일정표를 그대로 나열하기보다, 홈페이지에서는 핵심 주제군 중심으로 정리해 보여주는 방식이 가장 설득력 있습니다.</p>
+        </div>
+        <div class="curriculum-grid">
+          <article class="curriculum-card">
+            <span class="kicker">학습 01</span>
+            <h3>암과 통합의학의 이해</h3>
+            <ul style="margin-top: 16px;">
+              <li>통합의학 개요</li>
+              <li>종양학 개론</li>
+              <li>암과 미토콘드리아</li>
+              <li>암 관련 호르몬</li>
+            </ul>
+          </article>
+          <article class="curriculum-card">
+            <span class="kicker">학습 02</span>
+            <h3>면역 · 영양 · 대사</h3>
+            <ul style="margin-top: 16px;">
+              <li>면역 개요와 암 면역</li>
+              <li>암 영양과 종양 미세환경</li>
+              <li>후성유전과 유전변이</li>
+              <li>식물영양소와 기능성 접근</li>
+            </ul>
+          </article>
+          <article class="curriculum-card">
+            <span class="kicker">학습 03</span>
+            <h3>장 · 해독 · 맞춤 치료 이해</h3>
+            <ul style="margin-top: 16px;">
+              <li>해독과 대사 관점</li>
+              <li>장과 마이크로바이옴</li>
+              <li>장기별 항암 치료</li>
+              <li>회복을 위한 개별화 접근</li>
+            </ul>
+          </article>
+          <article class="curriculum-card">
+            <span class="kicker">학습 04</span>
+            <h3>치료와 부작용 관리</h3>
+            <ul style="margin-top: 16px;">
+              <li>항암치료와 방사선치료 이해</li>
+              <li>항암 부작용과 대응</li>
+              <li>Mind-body therapy</li>
+              <li>회복기 환자 관리 관점</li>
+            </ul>
+          </article>
+          <article class="curriculum-card">
+            <span class="kicker">학습 05</span>
+            <h3>생활요법과 회복관리</h3>
+            <ul style="margin-top: 16px;">
+              <li>운동과 암 회복</li>
+              <li>림프부종 및 통증 관리</li>
+              <li>생체리듬과 생활관리</li>
+              <li>Nutraceutical supplements</li>
+            </ul>
+          </article>
+          <article class="curriculum-card">
+            <span class="kicker">학습 06</span>
+            <h3>실무 적용</h3>
+            <ul style="margin-top: 16px;">
+              <li>검사 데이터 분석</li>
+              <li>암환자 설문지 작성 및 분석</li>
+              <li>의무기록 리뷰</li>
+              <li>의료기기 및 치료 보조 이해</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Benefits</span>
+          <h2>수강을 통해 얻게 되는 것들</h2>
+          <p>캠브록스 아카데미는 단순히 “배웠다”는 느낌보다, 실제 약국에서 환자와 보호자를 상대하는 방식이 달라지도록 설계됩니다. 현장의 가장 가까이 그리고 자주 환자와 마주할 약사님들에 대한 지원이 캠브록스 주요 가치 중 한축 입니다.</p>
+        </div>
+        <div class="grid-2">
+          <article class="section-card">
+            <span class="kicker">01</span>
+            <h3>암 상담의 구조화</h3>
+            <p style="margin-top: 12px;">막연한 설명이 아니라 환자의 상태와 회복 단계에 맞춰 상담의 흐름을 설계하는 프레임을 갖출 수 있습니다.</p>
+          </article>
+          <article class="section-card">
+            <span class="kicker">02</span>
+            <h3>환자와 보호자 응대 역량 강화</h3>
+            <p style="margin-top: 12px;">실제 현장에서 자주 마주치는 질문과 불안을 보다 깊이 있고 신뢰감 있게 다룰 수 있게합니다.</p>
+          </article>
+          <article class="section-card">
+            <span class="kicker">03</span>
+            <h3>약국의 차별화 포지셔닝</h3>
+            <p style="margin-top: 12px;">일반 복약상담을 넘어, 암 전문상담약사라는 새로운 전문성과 고부가가치 상담 영역을 구축할 수 있습니다.</p>
+          </article>
+          <article class="section-card">
+            <span class="kicker">04</span>
+            <h3>향후 연계 가능한 내외부 시스템들</h3>
+            <p style="margin-top: 12px;">행정편의, 내부 캠브록스 시스템, 외부 제휴사, 아카데미, 설명회, 자료공유, 네트워크 참여 기회와 자연스럽게 연결되는 기반을 마련합니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container split-feature">
+        <article class="section-card">
+          <span class="kicker">체계적 관리와 지원</span>
+          <h3>교육에서 끝나지 않도록</h3>
+          <p style="margin-top: 14px;">캠브록스는 아카데미를 통해 전문성을 높이는 데서 그치지 않고, 향후 환자 정보 수집, 설문, 검사 결과 해석, 상담 보조 흐름을 지원하는 프로그램과의 연계를 통해 약사의 상담 역량이 실제 현장에서 이어질 수 있도록 준비하고 있습니다.</p>
+          <ul class="value-list" style="margin-top: 18px;">
+            <li>환자 정보 수집과 상태 이해</li>
+            <li>설문 기반 회복 맥락 정리</li>
+            <li>검사·상담 내용의 구조화</li>
+            <li>상담관리 솔루션 지원</li>
+          </ul>
+        </article>
+        <article class="section-card">
+          <span class="kicker">맞춤 지원</span>
+          <h3>이런 약사님께 추천드립니다</h3>
+          <ul class="target-list" style="margin-top: 16px;">
+            <li>암 환자 및 보호자 상담 역량을 높이고 싶은 약사님</li>
+            <li>약국의 전문성과 차별화를 고민하고 있는 약사님</li>
+            <li>통합의학적 관점과 회복 중심 상담에 관심 있는 약사님</li>
+            <li>향후 캠브록스 서비스 및 네트워크 참여에 관심 있는 약사님</li>
+            <li>고부가가치 상담 영역을 만들고 싶은 약사님</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="recruit">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Recruitment</span>
+          <h2>모집 안내</h2>
+          <p>각 교육회차는 회차 강의의 집중도 유지를 위해 진행 중 신청 및 참가가 불가합니다. 각 회차의 교육은 해당 회차의 강사님과 수강생님들의 상황에 맞춰 내용과 순서가 변동이 있을 수 있습니다.</p>
+        </div>
+        <div class="recruit-table">
+          <table>
+            <tbody>
+              <tr>
+                <th>모집 대상</th>
+                <td>약사님</td>
+              </tr>
+              <tr>
+                <th>교육 형태</th>
+                <td>오프라인</td>
+              </tr>
+              <tr>
+                <th>교육 기간</th>
+                <td>8주 과정</td>
+              </tr>
+              <tr>
+                <th>교육 내용</th>
+                <td>암 상담 이론, 회복 관리, 실무 적용 중심 맞춤 교육</td>
+              </tr>
+              <tr>
+                <th>신청 방법</th>
+                <td>신청 폼 제출 후 순차 안내</td>
+              </tr>
+              <tr>
+                <th>모집 인원</th>
+                <td>각 회차별 모집 공고 내 안내</td>
+              </tr>
+              <tr>
+                <th>문의 채널</th>
+                <td>캠브록스 홈페이지 또는 신청폼</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="apply">
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <span class="eyebrow">Apply & Updates</span>
+            <h2 style="margin-top: 16px;">사전알림 및 신청알림을 가장 먼저 받아보세요</h2>
+            <p style="margin-top: 14px; max-width: 760px; color: var(--muted);">문창식 원장님의 강의자료, 아카데미 개설 소식, 설명회 일정, 그리고 캠브록스 런칭 정보와 우선 기회를 가장 먼저 받아보실 수 있습니다.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="button primary" href="#">사전알림 신청하기</a>
+            <a class="button secondary" href="#">교육 신청하기</a>
+            <a class="button secondary" href="#">문의하기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">FAQ</span>
+          <h2>자주 묻는 질문</h2>
+          <p>자주 요청받는 문의, 답변 입니다.</p>
+        </div>
+        <div class="faq-list">
+          <article class="faq-item">
+            <strong>Q. 암 환자 상담 경험이 없어도 신청할 수 있나요?</strong>
+            <p>네. 본 과정은 암 상담 역량을 체계적으로 이해하고 확장하고자 하는 약사를 위한 프로그램으로, 기존 경험이 많지 않아도 참여하실 수 있습니다.</p>
+          </article>
+          <article class="faq-item">
+            <strong>Q. 교육은 어떤 방식으로 진행되나요?</strong>
+            <p>운영 방식은 기수별로 다를 수 있으며, 오프라인, 온라인 으로 안내될 예정입니다.</p>
+          </article>
+          <article class="faq-item">
+            <strong>Q. 수강 후 별도의 연계 프로그램이 있나요?</strong>
+            <p>캠브록스는 향후 상담 지원 프로그램, 설명회, 네트워크 연계 등 다양한 확장 가능성을 준비하고 있습니다. 자세한 내용은 모집 안내 시 함께 공지됩니다.</p>
+          </article>
+          <article class="faq-item">
+            <strong>Q. 설명회만 먼저 신청할 수 있나요?</strong>
+            <p>네. 모집 신청 전 설명회 또는 알림 신청만 먼저 하실 수 있습니다.</p>
+          </article>
+          <article class="faq-item">
+            <strong>Q. 전체 커리큘럼을 더 자세히 볼 수 있나요?</strong>
+            <p>알림 발송되는 모집 시점에 보다 상세한 커리큘럼과 운영안이 함께 안내될 예정입니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-shell">
+      <div>
+        <strong style="display:block; color: var(--ink); margin-bottom: 6px;">캠브록스 아카데미</strong>
+        <span>암 환자의 회복 여정에 더 깊이 기여하는 약국, 그리고 그 변화를 준비하는 약사를 위한 교육</span>
+      </div>
+      <div>문창식 원장님 · KAMBROX Academy</div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -66,14 +66,18 @@
         border-radius: 999px;
         box-shadow: 0 16px 42px oklch(25% 0.04 80 / 0.08);
         display: grid;
-        gap: 18px;
+        gap: 24px;
         grid-template-columns: auto minmax(0, 1fr) auto;
-        left: 50%;
+        margin-inline: auto;
         min-height: 68px;
-        padding: 10px 12px 10px 22px;
+        padding: 10px 14px 10px 24px;
         position: sticky;
         top: 18px;
-        transform: translateX(-50%);
+        transition:
+          background-color 220ms ease,
+          border-color 220ms ease,
+          box-shadow 220ms ease,
+          backdrop-filter 220ms ease;
         width: min(1180px, calc(100vw - 36px));
         z-index: 60;
       }
@@ -88,18 +92,24 @@
       .site-header-logo {
         display: block;
         height: auto;
+        opacity: 0;
+        transition: opacity 220ms ease;
         width: clamp(150px, 14vw, 216px);
+      }
+
+      .site-header.logo-visible .site-header-logo {
+        opacity: 1;
       }
 
       .global-nav {
         align-items: center;
-        background: oklch(100% 0 0 / 0.42);
-        border: 1px solid oklch(82% 0.016 76 / 0.48);
+        background: transparent;
+        border: 0;
         border-radius: 999px;
         display: inline-flex;
-        gap: 2px;
+        gap: 4px;
         justify-self: center;
-        padding: 4px;
+        padding: 0;
       }
 
       .global-nav a,
@@ -118,7 +128,7 @@
       }
 
       .global-nav a {
-        padding: 10px 14px;
+        padding: 12px 16px;
       }
 
       .global-nav a:hover {
@@ -129,7 +139,7 @@
 
       .global-nav a[aria-current="page"],
       .mobile-menu-panel a[aria-current="page"] {
-        background: oklch(100% 0 0 / 0.92);
+        background: oklch(100% 0 0 / 0.74);
         color: var(--green);
       }
 
@@ -161,17 +171,21 @@
 
       .mobile-menu summary {
         align-items: center;
-        background: var(--green);
-        border: 1px solid oklch(67% 0.08 78 / 0.72);
+        background: oklch(100% 0 0 / 0.76);
+        border: 1px solid oklch(74% 0.024 76 / 0.42);
         border-radius: 999px;
-        color: oklch(96% 0.014 82);
+        color: var(--green);
         cursor: pointer;
         display: inline-flex;
-        height: 46px;
+        height: 48px;
         justify-content: center;
         padding: 0;
         user-select: none;
-        width: 46px;
+        width: 48px;
+      }
+
+      .mobile-menu summary:hover {
+        background: oklch(100% 0 0 / 0.94);
       }
 
       .mobile-menu summary::-webkit-details-marker {
@@ -216,27 +230,42 @@
       .mobile-menu-panel {
         background: oklch(99% 0.006 76 / 0.98);
         border: 1px solid oklch(74% 0.024 76 / 0.38);
-        border-radius: 24px;
+        border-radius: 22px;
         box-shadow: 0 18px 44px oklch(20% 0.04 80 / 0.18);
         display: grid;
-        gap: 6px;
-        min-width: 228px;
-        padding: 8px;
+        gap: 4px;
+        min-width: 252px;
+        padding: 10px;
         position: absolute;
         right: 0;
         top: calc(100% + 12px);
       }
 
       .mobile-menu-panel a {
-        display: block;
-        font-size: 15px;
-        min-height: 46px;
-        padding: 13px 14px;
+        align-items: center;
+        display: flex;
+        font-size: 16px;
+        justify-content: space-between;
+        min-height: 50px;
+        padding: 15px 16px;
       }
 
       .mobile-menu-panel a:hover {
         background: oklch(93.5% 0.018 76);
         color: var(--green);
+      }
+
+      .mobile-menu-panel .mobile-menu-cta {
+        background: var(--green);
+        box-shadow: 0 10px 24px oklch(25% 0.04 80 / 0.16);
+        color: oklch(96% 0.014 82);
+        justify-content: center;
+        margin-top: 4px;
+      }
+
+      .mobile-menu-panel .mobile-menu-cta:hover {
+        background: oklch(39% 0.092 154);
+        color: oklch(96% 0.014 82);
       }
 
       .hero-shell {
@@ -598,62 +627,6 @@
         word-break: keep-all;
       }
 
-      .purchase-floating {
-        align-items: center;
-        appearance: none;
-        background: oklch(34% 0.072 154);
-        border: 1px solid oklch(67% 0.08 78 / 0.86);
-        border-radius: 999px;
-        bottom: calc(env(safe-area-inset-bottom) + clamp(18px, 2vw, 28px));
-        box-shadow: none;
-        color: oklch(95% 0.018 82);
-        cursor: pointer;
-        display: inline-flex;
-        font-family: var(--font-body);
-        font-size: clamp(17px, 1.16vw, 19px);
-        font-weight: 760;
-        gap: 15px;
-        justify-content: center;
-        letter-spacing: 0;
-        line-height: 1;
-        min-height: 72px;
-        padding: 0 36px 0 34px;
-        position: fixed;
-        right: clamp(18px, 3vw, 42px);
-        text-decoration: none;
-        transition:
-          background-color 160ms ease,
-          border-color 180ms ease;
-        z-index: 50;
-      }
-
-      .purchase-floating::after {
-        content: "↗";
-        color: var(--gold);
-        display: grid;
-        font-size: 17px;
-        height: 28px;
-        line-height: 1;
-        margin-left: 2px;
-        place-items: center;
-        transform: translateY(-1px);
-        width: 22px;
-      }
-
-      .purchase-floating:hover {
-        background: oklch(38% 0.078 154);
-        border-color: oklch(73% 0.09 82 / 0.9);
-      }
-
-      .purchase-floating:active {
-        background: oklch(30% 0.062 154);
-      }
-
-      .purchase-floating:focus-visible {
-        outline: 3px solid oklch(72% 0.095 82 / 0.48);
-        outline-offset: 4px;
-      }
-
       @media (min-width: 1181px) {
         body {
           min-width: 0;
@@ -756,16 +729,28 @@
 
       @media (max-width: 680px) {
         .site-header {
-          gap: 14px;
+          background: transparent;
+          backdrop-filter: none;
+          border-color: transparent;
+          box-shadow: none;
+          gap: 12px;
           grid-template-columns: minmax(0, 1fr) auto;
-          min-height: 60px;
-          padding: 8px 9px 8px 16px;
-          top: 10px;
-          width: calc(100vw - 24px);
+          min-height: 62px;
+          padding: 8px 8px 8px 16px;
+          top: max(10px, env(safe-area-inset-top));
+          width: calc(100vw - 28px);
+        }
+
+        .site-header.logo-visible {
+          background: oklch(96% 0.014 76 / 0.86);
+          backdrop-filter: blur(18px);
+          border-color: oklch(74% 0.024 76 / 0.3);
+          box-shadow: 0 16px 42px oklch(25% 0.04 80 / 0.08);
         }
 
         .site-header-logo {
-          width: clamp(136px, 43vw, 172px);
+          max-width: 100%;
+          width: clamp(126px, 38vw, 166px);
         }
 
         .global-nav,
@@ -777,13 +762,10 @@
           display: block;
         }
 
-        .purchase-floating {
-          bottom: calc(env(safe-area-inset-bottom) + 14px);
-          left: 16px;
-          min-height: 68px;
-          padding: 0 26px;
-          right: 16px;
-          width: auto;
+        .mobile-menu-panel {
+          max-width: calc(100vw - 28px);
+          min-width: 0;
+          width: min(292px, calc(100vw - 28px));
         }
 
         .recovery-visual {
@@ -871,11 +853,11 @@
       </a>
       <nav class="global-nav" aria-label="주요 메뉴">
         <a href="#home" aria-current="page">홈</a>
-        <a href="#academy">아카데미</a>
-        <a href="product-detail.html">수소치료기</a>
-        <a href="#supplements">건기식</a>
+        <a href="academy.html">아카데미</a>
+        <a href="product1-detail.html">수소치료기</a>
+        <a href="product2-detail.html">건강식</a>
       </nav>
-      <a class="header-cta" href="product-detail.html">구매하기</a>
+      <a class="header-cta" href="product1-detail.html">수소치료기 구매하기</a>
       <details class="mobile-menu">
         <summary aria-label="메뉴 열기">
           <span class="sr-only">메뉴 열기</span>
@@ -883,9 +865,10 @@
         </summary>
         <nav class="mobile-menu-panel" aria-label="모바일 주요 메뉴">
           <a href="#home" aria-current="page">홈</a>
-          <a href="#academy">아카데미</a>
-          <a href="product-detail.html">수소치료기</a>
-          <a href="#supplements">건기식</a>
+          <a href="academy.html">아카데미</a>
+          <a href="product1-detail.html">수소치료기</a>
+          <a href="product2-detail.html">건강식</a>
+          <a class="mobile-menu-cta" href="product1-detail.html">수소치료기 구매하기</a>
         </nav>
       </details>
     </header>
@@ -1062,6 +1045,18 @@
         </div>
       </footer>
     </main>
-        <a class="purchase-floating" href="product-detail.html" aria-label="수소치료기 구매하기" data-od-id="path-1">수소치료기 구매하기</a>
+    <script>
+      (() => {
+        const header = document.querySelector('.site-header');
+        if (!header) return;
+
+        const revealLogo = () => {
+          header.classList.toggle('logo-visible', window.scrollY >= 300);
+        };
+
+        revealLogo();
+        window.addEventListener('scroll', revealLogo, { passive: true });
+      })();
+    </script>
   </body>
 </html>

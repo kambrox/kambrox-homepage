@@ -1,0 +1,2015 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="mpmrw6xh-favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="mpmrw6xh-favicon.png" />
+  <meta name="apple-mobile-web-app-title" content="KAMBROX" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#244536" />
+  <title>캠브록스 아카데미 | KAMBROX</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-warm: var(--surface);
+      --fg: #242424;
+      --fg-2: #111111;
+      --muted: #898989;
+      --meta: var(--muted);
+      --border: rgba(34, 42, 53, 0.08);
+      --border-soft: rgba(34, 42, 53, 0.05);
+      --accent: #0099ff;
+      --accent-on: #ffffff;
+      --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+      --accent-active: color-mix(in oklab, var(--accent), black 14%);
+      --green: oklch(36% 0.087 154);
+      --green-dark: oklch(28% 0.07 154);
+      --gold: oklch(66% 0.095 78);
+      --success: #16a34a;
+      --warn: #eab308;
+      --danger: #dc2626;
+      --font-display: "Cal Sans", "Inter", -apple-system, "Segoe UI", Arial, sans-serif;
+      --font-body: "Inter", -apple-system, "Segoe UI", Arial, sans-serif;
+      --font-mono: "Roboto Mono", ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
+      --text-xs: 12px;
+      --text-sm: 14px;
+      --text-base: 16px;
+      --text-lg: 20px;
+      --text-xl: 24px;
+      --text-2xl: 32px;
+      --text-3xl: 48px;
+      --text-4xl: 64px;
+      --leading-body: 1.5;
+      --leading-tight: 1.1;
+      --tracking-display: 0;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-12: 48px;
+      --section-y-desktop: 96px;
+      --section-y-tablet: 64px;
+      --section-y-phone: 48px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --elev-flat: none;
+      --elev-ring: 0 0 0 1px var(--border);
+      --elev-raised:
+        0 1px 5px -4px rgba(19, 19, 22, 0.7),
+        0 0 0 1px rgba(34, 42, 53, 0.08),
+        0 4px 8px rgba(34, 42, 53, 0.05);
+      --focus-ring: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 70%);
+      --motion-fast: 150ms;
+      --motion-base: 200ms;
+      --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+      --container-max: 1200px;
+      --container-gutter-desktop: 24px;
+      --container-gutter-tablet: 16px;
+      --container-gutter-phone: 12px;
+      --detail-render-scale: 0.75;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #111111;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      line-height: 1.35;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, select { font: inherit; }
+    button { cursor: pointer; }
+    h1, h2, p { margin: 0; }
+    .num { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums; }
+    .page {
+      min-height: 100vh;
+      background: #fff;
+    }
+    .sr-only {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+    .detail-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid rgba(34, 42, 53, .08);
+      backdrop-filter: blur(18px);
+    }
+    .detail-header-inner {
+      width: min(1280px, calc(100% - 48px));
+      min-height: 74px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 18px;
+    }
+    .detail-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      text-decoration: none;
+    }
+    .detail-brand-logo {
+      display: block;
+      width: clamp(176px, 22vw, 292px);
+      max-height: 48px;
+      height: auto;
+      object-fit: contain;
+    }
+    .global-nav {
+      justify-self: center;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+    }
+    .global-nav a,
+    .mobile-menu-panel a {
+      border-radius: 999px;
+      color: #27352f;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-decoration: none;
+      transition:
+        background var(--motion-fast) var(--ease-standard),
+        color var(--motion-fast) var(--ease-standard),
+        transform var(--motion-fast) var(--ease-standard);
+      white-space: nowrap;
+    }
+    .global-nav a {
+      padding: 12px 16px;
+    }
+    .global-nav a:hover {
+      transform: translateY(-1px);
+      background: color-mix(in oklab, var(--green), white 92%);
+      color: var(--green-dark);
+    }
+    .global-nav a[aria-current="page"],
+    .mobile-menu-panel a[aria-current="page"] {
+      background: color-mix(in oklab, var(--green), white 90%);
+      color: var(--green-dark);
+    }
+    .mobile-menu {
+      display: none;
+      justify-self: end;
+      position: relative;
+    }
+    .mobile-menu summary {
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid rgba(34, 42, 53, .12);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--green-dark);
+      cursor: pointer;
+      user-select: none;
+    }
+    .mobile-menu summary:hover {
+      background: color-mix(in oklab, var(--green), white 94%);
+    }
+    .mobile-menu summary::-webkit-details-marker {
+      display: none;
+    }
+    .mobile-menu summary:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 153, 255, .22);
+    }
+    .hamburger-lines {
+      width: 18px;
+      display: grid;
+      gap: 4px;
+    }
+    .hamburger-lines i {
+      width: 18px;
+      height: 2px;
+      display: block;
+      border-radius: 999px;
+      background: currentColor;
+      transform-origin: center;
+      transition:
+        opacity var(--motion-fast) var(--ease-standard),
+        transform var(--motion-fast) var(--ease-standard);
+    }
+    .mobile-menu[open] .hamburger-lines i:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .mobile-menu[open] .hamburger-lines i:nth-child(2) {
+      opacity: 0;
+    }
+    .mobile-menu[open] .hamburger-lines i:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+    .mobile-menu-panel {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      width: min(292px, calc(100vw - 24px));
+      display: grid;
+      gap: 4px;
+      padding: 10px;
+      border: 1px solid rgba(34, 42, 53, .1);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .98);
+      box-shadow: 0 18px 44px rgba(17, 24, 39, .16);
+    }
+    .mobile-menu-panel a {
+      display: block;
+      min-height: 50px;
+      padding: 15px 16px;
+      font-size: 16px;
+    }
+    .mobile-menu-panel a:hover {
+      background: color-mix(in oklab, var(--green), white 92%);
+      color: var(--green-dark);
+    }
+    .icon-button svg {
+      width: 21px;
+      height: 21px;
+      display: block;
+    }
+    .detail-actions {
+      justify-self: end;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .icon-button {
+      min-width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid rgba(34, 42, 53, .1);
+      border-radius: 999px;
+      background: #fff;
+      color: #1d2f28;
+      text-decoration: none;
+      transition:
+        transform var(--motion-fast) var(--ease-standard),
+        border-color var(--motion-fast) var(--ease-standard),
+        background var(--motion-fast) var(--ease-standard),
+        color var(--motion-fast) var(--ease-standard);
+    }
+    .icon-button:hover {
+      transform: translateY(-1px);
+      border-color: color-mix(in oklab, var(--green), transparent 55%);
+      background: color-mix(in oklab, var(--green), white 92%);
+      color: var(--green-dark);
+    }
+    .icon-button:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+    .back-button {
+      justify-self: start;
+      padding: 0 15px 0 12px;
+      font-weight: 700;
+      color: var(--green-dark);
+    }
+    .back-button span {
+      font-size: 14px;
+      line-height: 1;
+    }
+    .product-hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(720px, 1fr) 1px minmax(560px, 1fr);
+      min-height: 890px;
+    }
+    .visual-pane {
+      --gallery-w: clamp(620px, 43vw, 745px);
+      display: grid;
+      justify-content: end;
+      align-content: start;
+      padding: 60px 72px 0 0;
+    }
+    .main-photo {
+      position: relative;
+      width: var(--gallery-w);
+      aspect-ratio: 745 / 744;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: #fff;
+    }
+    .main-photo img {
+      width: 92%;
+      height: 92%;
+      object-fit: contain;
+      display: block;
+      user-select: none;
+    }
+    .main-photo img.slide-from-right {
+      animation: gallerySlideFromRight 260ms cubic-bezier(.2, 0, 0, 1);
+    }
+    .main-photo img.slide-from-left {
+      animation: gallerySlideFromLeft 260ms cubic-bezier(.2, 0, 0, 1);
+    }
+    @keyframes gallerySlideFromRight {
+      from { opacity: .72; transform: translateX(42px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes gallerySlideFromLeft {
+      from { opacity: .72; transform: translateX(-42px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .gallery-nav {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      width: 44px;
+      height: 58px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, .9);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .12), 0 3px 12px rgba(0, 0, 0, .12);
+      color: #111;
+      font-size: 0;
+      line-height: 0;
+      overflow: hidden;
+    }
+    .gallery-nav::before,
+    .thumb-nav::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 14px;
+      height: 14px;
+      border-top: 4px solid currentColor;
+      border-right: 4px solid currentColor;
+      transform: translate(-58%, -50%) rotate(45deg);
+      transform-origin: center;
+    }
+    .gallery-nav.prev::before,
+    .thumb-nav[data-gallery-prev]::before {
+      transform: translate(-42%, -50%) rotate(225deg);
+    }
+    .gallery-nav.prev { left: 14px; }
+    .gallery-nav.next { right: 14px; }
+    .gallery-nav:hover {
+      background: #fff;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .25), 0 4px 14px rgba(0, 0, 0, .16);
+    }
+    .photo-count {
+      position: absolute;
+      right: 21px;
+      bottom: 22px;
+      min-width: 61px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, .38);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: .1px;
+    }
+    .thumb-row {
+      width: var(--gallery-w);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .thumb-nav {
+      position: relative;
+      width: 34px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      background: transparent;
+      color: #777;
+      font-size: 0;
+      line-height: 0;
+    }
+    .thumb-nav::before {
+      width: 10px;
+      height: 10px;
+      border-width: 3px;
+    }
+    .thumb {
+      width: 54px;
+      height: 54px;
+      border: 1px solid #dadde1;
+      border-radius: 4px;
+      padding: 0;
+      overflow: hidden;
+      background: #fff;
+    }
+    .thumb.is-active {
+      width: 58px;
+      height: 58px;
+      border: 2px solid #111;
+    }
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .split-line { background: #eef1f4; }
+    .buy-pane {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      min-height: 890px;
+      padding: 72px 0 42px 56px;
+      overflow: hidden;
+    }
+    .buy-inner {
+      width: min(594px, calc(100vw - 32px));
+    }
+    .title {
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: -.7px;
+      font-weight: 800;
+      color: #060606;
+      white-space: nowrap;
+    }
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      color: #333;
+      font-size: 16px;
+      line-height: 1;
+    }
+    .rating-star {
+      color: #ff3b30;
+      font-size: 20px;
+      line-height: 1;
+      transform: translateY(-1px);
+    }
+    .rating strong { font-size: 18px; font-weight: 800; }
+    .rating .bar { width: 1px; height: 17px; background: #d3d7dc; }
+    .price {
+      margin-top: 24px;
+      color: #d90429;
+      font-size: 29px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -.8px;
+    }
+    .price small {
+      margin-left: 2px;
+      font-size: 17px;
+      font-weight: 900;
+      vertical-align: 4px;
+    }
+    .shipping-summary {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 25px;
+      color: #3a3a3a;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .truck {
+      width: 19px;
+      height: 16px;
+      color: #777;
+    }
+    .rule {
+      height: 1px;
+      background: #e7ebef;
+      margin: 28px 0 27px;
+    }
+    .info-row {
+      display: grid;
+      grid-template-columns: 66px 1fr;
+      gap: 8px;
+      align-items: start;
+      margin-bottom: 25px;
+    }
+    .label {
+      color: #666;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -.3px;
+    }
+    .point-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #7446f2;
+      font-size: 16px;
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -.4px;
+    }
+    .drop-square {
+      width: 18px;
+      height: 18px;
+      display: inline-grid;
+      place-items: center;
+      margin-left: 3px;
+      border: 1px solid #d3d5da;
+      border-radius: 5px;
+      color: #222;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .membership-card {
+      margin-top: 13px;
+      padding: 15px 12px 13px;
+      border-radius: 8px;
+      background: #eeebff;
+    }
+    .membership-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: #6b39f4;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -.3px;
+    }
+    .membership-left {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+    }
+    .npay {
+      display: inline-flex;
+      align-items: center;
+      height: 17px;
+      overflow: hidden;
+      border-radius: 1px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 17px;
+      white-space: nowrap;
+    }
+    .npay span:first-child { background: #03c75a; padding: 0 6px; }
+    .npay span:last-child { background: #3297ff; padding: 0 5px; }
+    .info-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 15px;
+      height: 15px;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      font-size: 11px;
+    }
+    .membership-cta {
+      width: 100%;
+      height: 28px;
+      margin-top: 12px;
+      border: 0;
+      border-radius: 3px;
+      background: #6b39f4;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: -.3px;
+    }
+    .benefits {
+      display: grid;
+      gap: 9px;
+      color: #3d3d3d;
+      font-size: 15.5px;
+      line-height: 1.25;
+      font-weight: 500;
+      letter-spacing: -.45px;
+    }
+    .benefits a,
+    .delivery-detail a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .chev { color: #777; font-size: 24px; line-height: 0; vertical-align: -2px; }
+    .delivery-detail {
+      display: grid;
+      gap: 9px;
+      color: #383838;
+      font-size: 15.5px;
+      line-height: 1.45;
+      font-weight: 500;
+      letter-spacing: -.4px;
+    }
+    .delivery-detail .muted { color: #777; }
+    .policy-note {
+      display: grid;
+      gap: 7px;
+      margin-top: 3px;
+      padding: 12px 13px;
+      border: 1px solid #edf0f2;
+      border-radius: 8px;
+      background: #fafbfc;
+      color: #535b66;
+      font-size: 14px;
+      line-height: 1.5;
+      letter-spacing: -.35px;
+    }
+    .policy-note p { margin: 0; }
+    .policy-note strong {
+      display: inline-block;
+      margin-right: 6px;
+      color: #222;
+      font-weight: 800;
+    }
+    .option-head {
+      margin-top: 1px;
+      margin-bottom: 11px;
+      color: #111;
+      font-size: 16px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -.5px;
+    }
+    .required { color: #ff2727; }
+    .select-wrap {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .select {
+      width: 100%;
+      height: 44px;
+      padding: 0 48px 0 16px;
+      border: 1px solid #d5dce2;
+      border-radius: 7px;
+      background: #fff;
+      color: #111;
+      font-size: 15.5px;
+      font-weight: 600;
+      letter-spacing: -.45px;
+      appearance: none;
+    }
+    .select-wrap::after {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 16px;
+      width: 13px;
+      height: 13px;
+      border-right: 2px solid #222;
+      border-bottom: 2px solid #222;
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+    .selected {
+      display: none;
+      margin-top: -5px;
+      margin-bottom: 15px;
+      padding: 13px 14px;
+      border-radius: 7px;
+      background: #f7f8fa;
+      box-shadow: inset 0 0 0 1px #eceff2;
+    }
+    .selected.show { display: block; }
+    .selected-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: #222;
+      font-size: 14px;
+      font-weight: 650;
+      letter-spacing: -.3px;
+    }
+    .qty-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+    }
+    .qty {
+      display: inline-flex;
+      align-items: center;
+      height: 34px;
+      overflow: hidden;
+      border: 1px solid #d5dce2;
+      border-radius: 4px;
+      background: #fff;
+    }
+    .qty button {
+      width: 34px;
+      height: 32px;
+      border: 0;
+      background: #fff;
+      color: #222;
+      font-size: 20px;
+      line-height: 1;
+    }
+    .qty output {
+      width: 40px;
+      text-align: center;
+      color: #111;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .delete-option {
+      border: 0;
+      background: transparent;
+      color: #777;
+      font-size: 13px;
+    }
+    .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin: 13px 0 12px;
+      color: #111;
+      font-size: 15px;
+      font-weight: 750;
+    }
+    .total strong {
+      color: #d90429;
+      font-size: 22px;
+      font-weight: 900;
+    }
+    .primary-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: 18px;
+    }
+    .btn {
+      height: 48px;
+      border-radius: 7px;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -.4px;
+      transition: opacity var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-gift {
+      border: 1px solid #03c75a;
+      background: #fff;
+      color: #111;
+    }
+    .btn-buy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #303030;
+      background: #3a3a3a;
+      color: #fff;
+    }
+    .secondary-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 7px;
+    }
+    .secondary-actions button {
+      height: 48px;
+      border: 1px solid #d5dce2;
+      border-radius: 7px;
+      background: #fff;
+      color: #111;
+      font-size: 15.5px;
+      font-weight: 900;
+      letter-spacing: -.4px;
+    }
+    .detail-tabs {
+      display: block;
+      border-top: 1px solid #e7ebef;
+      background: #fff;
+    }
+    .tab-list {
+      position: sticky;
+      top: 0;
+      z-index: 6;
+      display: flex;
+      justify-content: center;
+      max-width: 1180px;
+      margin: 0 auto;
+      background: #fff;
+      border-inline: 1px solid #edf0f2;
+    }
+    .tab {
+      width: min(295px, 33.333%);
+      height: 58px;
+      border: 0;
+      border-right: 1px solid #edf0f2;
+      background: #fff;
+      color: #777;
+      font-size: 15px;
+      font-weight: 800;
+    }
+    .tab:first-child { border-left: 1px solid #edf0f2; }
+    .tab.active { color: #111; box-shadow: inset 0 -3px 0 #111; }
+    .tab-panel {
+      display: none;
+      max-width: 1060px;
+      margin: 42px auto 96px;
+      padding: 0 0 28px;
+    }
+    .tab-panel.active { display: block; }
+    .tab-panel h2 {
+      margin-bottom: 10px;
+      font-size: 28px;
+      line-height: 1.2;
+      letter-spacing: -.6px;
+    }
+    .tab-panel p {
+      color: #666;
+      font-size: 16px;
+    }
+    .empty-state {
+      display: grid;
+      place-items: center;
+      min-height: 280px;
+      padding: 64px 24px;
+      color: #8a8a8a;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      background: #fff;
+      border-top: 1px solid #eeeeee;
+      border-bottom: 1px solid #eeeeee;
+    }
+    .detail-image-stack {
+      display: grid;
+      gap: 0;
+      width: min(1060px, calc(100vw - 48px));
+      margin: 0 auto;
+      background: #fff;
+    }
+    .detail-image-stack img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .site-footer {
+      background:
+        linear-gradient(135deg, oklch(18% 0.045 158) 0%, oklch(25% 0.066 154) 54%, oklch(17% 0.04 150) 100%);
+      color: oklch(94% 0.012 88);
+      margin: 0;
+      overflow: hidden;
+      padding: clamp(56px, 6vw, 92px) 0;
+      position: relative;
+      width: 100%;
+      z-index: 1;
+    }
+    .site-footer::before {
+      background-image:
+        linear-gradient(90deg, oklch(100% 0 0 / 0.035) 1px, transparent 1px),
+        linear-gradient(0deg, oklch(100% 0 0 / 0.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+      content: "";
+      inset: 0;
+      opacity: 0.16;
+      pointer-events: none;
+      position: absolute;
+    }
+    .site-footer::after {
+      background: linear-gradient(180deg, transparent 0%, oklch(12% 0.03 150 / 0.24) 100%);
+      content: "";
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+    .site-footer-inner {
+      align-items: start;
+      display: grid;
+      gap: clamp(36px, 6vw, 86px);
+      grid-template-columns: minmax(0, 1.04fr) minmax(380px, 0.96fr);
+      margin: 0 auto;
+      position: relative;
+      width: min(1180px, calc(100vw - clamp(40px, 10vw, 156px)));
+      z-index: 1;
+    }
+    .footer-title {
+      color: oklch(96% 0.01 86 / 0.92);
+      font-size: clamp(32px, 3.7vw, 58px);
+      font-weight: 650;
+      letter-spacing: -0.045em;
+      line-height: 1.18;
+      margin: 0;
+      max-width: 620px;
+      text-wrap: balance;
+      word-break: keep-all;
+    }
+    .footer-contact {
+      border-left: 1px solid oklch(85% 0.035 92 / 0.24);
+      justify-self: end;
+      padding-left: clamp(32px, 4.2vw, 58px);
+      width: min(460px, 100%);
+    }
+    .footer-company-name {
+      color: var(--gold);
+      font-size: clamp(15px, 1.15vw, 18px);
+      font-weight: 750;
+      letter-spacing: -0.01em;
+      margin: 0 0 20px;
+    }
+    .footer-company-info {
+      color: oklch(96% 0.008 88 / 0.86);
+      display: grid;
+      gap: 0;
+      font-size: clamp(13px, 0.95vw, 14px);
+      line-height: 1.62;
+      margin: 0;
+    }
+    .footer-company-info div {
+      border-top: 1px solid oklch(85% 0.035 92 / 0.18);
+      display: grid;
+      gap: 18px;
+      grid-template-columns: 96px minmax(0, 1fr);
+      padding: 12px 0;
+    }
+    .footer-company-info div:last-child {
+      border-bottom: 1px solid oklch(85% 0.035 92 / 0.18);
+    }
+    .footer-company-info dt {
+      color: oklch(96% 0.008 88 / 0.58);
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: 0.04em;
+    }
+    .footer-company-info dd {
+      margin: 0;
+      word-break: keep-all;
+    }
+    .mobile-sticky { display: none; }
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, .38);
+    }
+    .modal-backdrop.show { display: flex; }
+    .notice-modal {
+      width: min(430px, 100%);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, .22), 0 0 0 1px rgba(34, 42, 53, .12);
+      padding: 28px 24px 22px;
+      text-align: center;
+    }
+    .notice-modal p {
+      margin: 0;
+      color: #111;
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 750;
+      letter-spacing: -.45px;
+      white-space: pre-line;
+    }
+    .modal-confirm {
+      width: 100%;
+      height: 48px;
+      margin-top: 22px;
+      border: 0;
+      border-radius: 7px;
+      background: #303030;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -.3px;
+    }
+    button:focus-visible, select:focus-visible, a:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 153, 255, .3);
+    }
+
+    @media (max-width: 1320px) {
+      .product-hero {
+        grid-template-columns: minmax(560px, 1fr) 1px minmax(500px, .92fr);
+      }
+      .visual-pane {
+        --gallery-w: clamp(560px, 45vw, 620px);
+        padding-right: 36px;
+      }
+      .buy-pane { padding-left: 36px; }
+      .title { white-space: normal; }
+    }
+
+    @media (max-width: 980px) {
+      .detail-header-inner {
+        width: 100%;
+        min-height: 66px;
+        padding: 0 14px;
+        grid-template-columns: 44px minmax(0, 1fr) 48px;
+        gap: 12px;
+      }
+      .global-nav {
+        display: none;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .detail-actions {
+        display: none;
+      }
+      .detail-brand-logo {
+        width: clamp(142px, 38vw, 196px);
+        max-height: 38px;
+      }
+      .icon-button {
+        min-width: 42px;
+        height: 42px;
+      }
+      .back-button {
+        width: 42px;
+        padding: 0;
+      }
+      .back-button span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .detail-actions {
+        gap: 6px;
+      }
+      .product-hero {
+        display: block;
+        min-height: 0;
+      }
+      .visual-pane {
+        --gallery-w: 100%;
+        display: block;
+        padding: 0;
+      }
+      .main-photo {
+        width: 100%;
+        height: min(360px, 94vw);
+        aspect-ratio: auto;
+      }
+      .main-photo img {
+        width: 92%;
+        height: 92%;
+      }
+      .gallery-nav {
+        width: 38px;
+        height: 50px;
+        font-size: 0;
+        line-height: 0;
+      }
+      .gallery-nav.prev { left: 10px; }
+      .gallery-nav.next { right: 10px; }
+      .photo-count {
+        right: 14px;
+        bottom: 12px;
+        min-width: 56px;
+        height: 32px;
+        font-size: 16px;
+      }
+      .thumb-row {
+        width: 100%;
+        justify-content: center;
+        gap: 8px;
+        margin: 0;
+        padding: 10px 16px 12px;
+        overflow-x: auto;
+      }
+      .thumb-nav { flex: 0 0 auto; }
+      .thumb {
+        flex: 0 0 auto;
+        width: 50px;
+        height: 50px;
+        background-size: 1634px 890px;
+      }
+      .thumb.is-active {
+        width: 54px;
+        height: 54px;
+      }
+      .split-line { display: none; }
+      .buy-pane {
+        position: static;
+        min-height: 0;
+        padding: 20px 16px 154px;
+        overflow: visible;
+      }
+      .buy-inner { width: 100%; }
+      .title {
+        font-size: 23px;
+        line-height: 1.28;
+        letter-spacing: -.8px;
+      }
+      .rating { margin-top: 16px; font-size: 15px; }
+      .price {
+        margin-top: 22px;
+        font-size: 36px;
+      }
+      .price small { font-size: 20px; vertical-align: 5px; }
+      .shipping-summary { margin-top: 20px; }
+      .rule { margin: 21px 0; }
+      .info-row {
+        grid-template-columns: 56px 1fr;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .point-line,
+      .membership-top,
+      .benefits,
+      .delivery-detail { font-size: 15px; }
+      .delivery-detail {
+        gap: 7px;
+        line-height: 1.48;
+      }
+      .policy-note {
+        padding: 11px 12px;
+        font-size: 13.5px;
+      }
+      .membership-card {
+        padding: 14px 12px;
+        border-radius: 10px;
+      }
+      .membership-top { display: grid; grid-template-columns: 1fr auto; }
+      .membership-left { align-items: flex-start; }
+      .select { height: 54px; font-size: 16px; }
+      .option-head { margin-top: 30px; }
+      .select-wrap::after { top: 19px; }
+      .primary-actions,
+      .secondary-actions { display: none; }
+      .total { margin-bottom: 0; }
+      .detail-tabs { display: block; }
+      .tab-list {
+        justify-content: stretch;
+        border-inline: 0;
+      }
+      .tab {
+        width: 33.333%;
+        font-size: 14px;
+      }
+      .tab:first-child { border-left: 0; }
+      .tab-panel {
+        margin: 28px 16px 118px;
+        padding: 0 0 18px;
+        max-width: none;
+      }
+      .detail-image-stack {
+        width: 100%;
+        margin-inline: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .site-footer {
+        padding: 48px 0 118px;
+      }
+      .site-footer-inner {
+        grid-template-columns: 1fr;
+        width: calc(100vw - 40px);
+      }
+      .footer-title {
+        font-size: clamp(25px, 7vw, 34px);
+      }
+      .footer-contact {
+        border-left: 0;
+        border-top: 1px solid oklch(85% 0.035 92 / 0.22);
+        justify-self: stretch;
+        padding-left: 0;
+        padding-top: 30px;
+        width: 100%;
+      }
+      .footer-company-info div {
+        grid-template-columns: 1fr;
+        gap: 2px;
+        padding: 10px 0;
+      }
+      .footer-company-info dd {
+        overflow-wrap: anywhere;
+      }
+      .mobile-sticky {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 20;
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 8px;
+        padding: 10px 12px max(10px, env(safe-area-inset-bottom));
+        background: #fff;
+        box-shadow: 0 -1px 0 #e7ebef, 0 -10px 24px rgba(0, 0, 0, .08);
+      }
+      .mobile-sticky .btn {
+        height: 54px;
+        font-size: 16px;
+      }
+    }
+
+    @media (min-width: 981px) {
+      body {
+        overflow-x: hidden;
+      }
+      .page {
+        min-width: 0;
+        width: 100%;
+        zoom: 1;
+      }
+      .detail-header-inner {
+        width: min(960px, calc(100% - 36px));
+        min-height: 56px;
+        grid-template-columns: auto auto minmax(0, 1fr) auto;
+        gap: 14px;
+      }
+      .detail-brand-logo {
+        width: clamp(132px, 16.5vw, 219px);
+        max-height: 36px;
+      }
+      .icon-button {
+        min-width: 33px;
+        height: 33px;
+      }
+      .icon-button svg {
+        width: 16px;
+        height: 16px;
+      }
+      .back-button {
+        padding: 0 11px 0 9px;
+      }
+      .back-button span {
+        font-size: 11px;
+      }
+      .product-hero {
+        grid-template-columns: minmax(520px, 1fr) 1px minmax(439px, .92fr);
+        min-height: 668px;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+      .visual-pane {
+        --gallery-w: clamp(465px, 32vw, 559px);
+        padding: 45px 32px 0 0;
+      }
+      .buy-pane {
+        top: 56px;
+        min-height: 668px;
+        padding: 54px 0 32px 32px;
+        overflow: visible;
+      }
+      .buy-inner {
+        width: 100%;
+        max-width: 407px;
+      }
+      .gallery-nav {
+        width: 33px;
+        height: 44px;
+      }
+      .gallery-nav::before {
+        width: 11px;
+        height: 11px;
+        border-width: 3px;
+      }
+      .photo-count {
+        right: 16px;
+        bottom: 17px;
+        min-width: 46px;
+        height: 26px;
+        font-size: 14px;
+      }
+      .thumb-row {
+        gap: 6px;
+        margin-top: 12px;
+      }
+      .thumb-nav {
+        width: 26px;
+        height: 32px;
+      }
+      .thumb {
+        width: 41px;
+        height: 41px;
+      }
+      .thumb.is-active {
+        width: 44px;
+        height: 44px;
+      }
+      .tab-list {
+        max-width: 885px;
+      }
+      .tab {
+        height: 44px;
+        font-size: 12px;
+      }
+      .tab-panel {
+        max-width: 795px;
+        margin: 32px auto 72px;
+      }
+      .detail-image-stack {
+        width: min(650px, calc(100vw - 36px));
+      }
+      .site-footer-inner {
+        width: min(885px, calc(100vw - clamp(40px, 10vw, 156px)));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .mobile-menu summary {
+        width: 48px;
+        height: 48px;
+        padding: 0;
+      }
+    }
+/* ACADEMY-CONTENT-BEGIN */
+.academy-content {
+  --paper: rgba(255,255,255,0.72);
+  --paper-strong: rgba(255,255,255,0.9);
+  --ink: #1f1a17;
+  --muted: #6e6258;
+  --line: rgba(69, 53, 40, 0.12);
+  --brand: #7c4f2e;
+  --brand-strong: #5f3518;
+  --accent: #c18f62;
+  --green: #5f7a63;
+  --shadow: 0 22px 60px rgba(72, 52, 35, 0.10);
+  --max: 1180px;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(193,143,98,0.20), transparent 28%),
+    radial-gradient(circle at top right, rgba(95,122,99,0.14), transparent 24%),
+    linear-gradient(180deg, #f8f4ee 0%, #f3ede4 42%, #f6f2ea 100%);
+  line-height: 1.6;
+  padding: 72px 0 34px;
+}
+.academy-content img { max-width: 100%; display: block; }
+.academy-content .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+.academy-content section { padding: 26px 0; }
+.academy-content section:first-child { padding-top: 0; }
+.academy-content .hero-shell { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: stretch; }
+.academy-content .hero-copy,
+.academy-content .hero-panel,
+.academy-content .section-card,
+.academy-content .faq-item,
+.academy-content .curriculum-card,
+.academy-content .quote-card,
+.academy-content .recruit-table,
+.academy-content .cta-band {
+  background: var(--paper);
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+}
+.academy-content .hero-copy { border-radius: 36px; padding: 42px; display: flex; flex-direction: column; justify-content: space-between; min-height: 620px; }
+.academy-content .eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: rgba(124, 79, 46, 0.08); border: 1px solid rgba(124, 79, 46, 0.10); color: var(--brand-strong); border-radius: 999px; font-size: 13px; font-weight: 700; width: fit-content; }
+.academy-content h1,
+.academy-content h2,
+.academy-content h3 { margin: 0; letter-spacing: -0.03em; line-height: 1.12; color: var(--ink); }
+.academy-content h1 { font-size: clamp(42px, 6vw, 74px); max-width: 9.5ch; }
+.academy-content h2 { font-size: clamp(30px, 3.3vw, 48px); }
+.academy-content h3 { font-size: 22px; }
+.academy-content .hero-lead { margin-top: 26px; max-width: 640px; font-size: clamp(18px, 2vw, 22px); color: #322823; line-height: 1.7; }
+.academy-content .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+.academy-content .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 20px; border-radius: 999px; font-weight: 700; border: 1px solid transparent; transition: transform .2s ease, background .2s ease, border-color .2s ease; }
+.academy-content .button:hover { transform: translateY(-1px); }
+.academy-content .button.primary { background: linear-gradient(135deg, var(--brand), var(--brand-strong)); color: #fff; box-shadow: 0 14px 30px rgba(95, 53, 24, 0.24); }
+.academy-content .button.secondary { background: rgba(255,255,255,0.72); border-color: rgba(95,53,24,0.12); color: var(--brand-strong); }
+.academy-content .hero-points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 34px; }
+.academy-content .hero-point { padding: 16px; border-radius: 18px; background: rgba(255,255,255,0.54); border: 1px solid rgba(95,53,24,0.08); }
+.academy-content .hero-point strong { display: block; font-size: 16px; margin-bottom: 6px; }
+.academy-content .hero-point p { margin: 0; font-size: 14px; color: var(--muted); }
+.academy-content .hero-signature { margin-top: 30px; padding-top: 24px; border-top: 1px solid rgba(69,53,40,0.10); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; color: var(--muted); }
+.academy-content .sig-badge { width: 60px; height: 60px; border-radius: 18px; display: grid; place-items: center; background: linear-gradient(135deg, rgba(124,79,46,0.92), rgba(193,143,98,0.88)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.25); overflow: hidden; }
+.academy-content .sig-badge img { width: 78%; height: 78%; object-fit: contain; display: block; filter: brightness(0) invert(1); }
+.academy-content .hero-panel { border-radius: 32px; padding: 24px; display: grid; grid-template-rows: auto auto 1fr auto; gap: 18px; min-height: 620px; }
+.academy-content .hero-panel-top { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; }
+.academy-content .status-pill { padding: 8px 12px; border-radius: 999px; background: rgba(95,122,99,0.12); color: var(--green); font-weight: 700; text-transform: none; letter-spacing: 0; }
+.academy-content .program-preview { background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(249,245,240,0.78)); border-radius: 26px; padding: 24px; border: 1px solid rgba(69,53,40,0.08); display: grid; gap: 20px; }
+.academy-content .program-preview .label { color: var(--muted); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; }
+.academy-content .program-preview .headline { font-size: 28px; font-weight: 800; line-height: 1.2; }
+.academy-content .stats-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.academy-content .stat { padding: 18px; border-radius: 20px; background: rgba(255,255,255,0.72); border: 1px solid rgba(69,53,40,0.08); }
+.academy-content .stat strong { display: block; font-size: 34px; color: var(--brand-strong); line-height: 1; margin-bottom: 8px; }
+.academy-content .stat span { color: var(--muted); font-size: 14px; }
+.academy-content .journey-card { padding: 22px; border-radius: 24px; background: linear-gradient(180deg, rgba(122, 93, 69, 0.92), rgba(83, 57, 37, 0.94)); color: rgba(255,255,255,0.92); display: grid; gap: 14px; }
+.academy-content .journey-flow { display: grid; gap: 10px; }
+.academy-content .journey-step { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.14); }
+.academy-content .journey-step:first-child { border-top: 0; padding-top: 0; }
+.academy-content .journey-index { width: 28px; height: 28px; border-radius: 999px; display: grid; place-items: center; background: rgba(255,255,255,0.16); font-size: 13px; font-weight: 700; flex: 0 0 auto; }
+.academy-content .section-heading { display: flex; flex-direction: column; gap: 14px; margin-bottom: 26px; max-width: 760px; }
+.academy-content .section-heading p,
+.academy-content .section-card p,
+.academy-content .curriculum-card p,
+.academy-content .faq-item p,
+.academy-content .quote-card p,
+.academy-content .muted { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.75; }
+.academy-content .grid-3,
+.academy-content .grid-2 { display: grid; gap: 18px; }
+.academy-content .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.academy-content .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.academy-content .section-card,
+.academy-content .curriculum-card,
+.academy-content .faq-item,
+.academy-content .quote-card { border-radius: 28px; padding: 28px; }
+.academy-content .section-card .kicker,
+.academy-content .curriculum-card .kicker { display: inline-flex; margin-bottom: 14px; padding: 8px 12px; font-size: 12px; border-radius: 999px; background: rgba(95,122,99,0.10); color: var(--green); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+.academy-content .quote-card { background: linear-gradient(180deg, rgba(124,79,46,0.94), rgba(86,51,28,0.94)); color: rgba(255,255,255,0.96); }
+.academy-content .quote-card h2 { color: rgba(255,255,255,0.96); }
+.academy-content .quote-card p { color: rgba(255,255,255,0.80); }
+.academy-content .quote-mark { font-size: 72px; line-height: 0.8; opacity: 0.38; }
+.academy-content .curriculum-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.academy-content .curriculum-card ul,
+.academy-content .target-list,
+.academy-content .faq-list,
+.academy-content .value-list { margin: 0; padding: 0; list-style: none; }
+.academy-content .curriculum-card li,
+.academy-content .target-list li,
+.academy-content .value-list li { position: relative; padding-left: 20px; margin-top: 10px; color: #3a2e28; }
+.academy-content .curriculum-card li::before,
+.academy-content .target-list li::before,
+.academy-content .value-list li::before { content: ""; position: absolute; left: 0; top: 12px; width: 8px; height: 8px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 0 5px rgba(193,143,98,0.16); }
+.academy-content .target-list li + li,
+.academy-content .value-list li + li { margin-top: 14px; }
+.academy-content .split-feature { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 18px; }
+.academy-content .instructor-photo-card { position: relative; overflow: hidden; margin-top: 20px; width: min(100%, 420px); min-height: 280px; aspect-ratio: 4 / 3; border-radius: 24px; border: 1px solid rgba(255,255,255,0.6); box-shadow: var(--shadow); background: #3a2e28; color: #fff; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 28px; }
+.academy-content .instructor-photo-card::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(20,13,9,0.02) 36%, rgba(20,13,9,0.78) 100%); }
+.academy-content .instructor-photo-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 16%; }
+.academy-content .instructor-photo-card span,
+.academy-content .instructor-photo-card strong { position: relative; z-index: 2; }
+.academy-content .instructor-photo-card span { font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.86; }
+.academy-content .instructor-photo-card strong { font-size: 24px; line-height: 1.25; text-shadow: 0 1px 18px rgba(0,0,0,0.24); }
+.academy-content .recruit-table { border-radius: 32px; overflow: hidden; }
+.academy-content table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.academy-content th,
+.academy-content td { padding: 18px 22px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+.academy-content th { width: 28%; background: rgba(124,79,46,0.06); color: var(--brand-strong); font-weight: 700; }
+.academy-content tr:last-child th,
+.academy-content tr:last-child td { border-bottom: 0; }
+.academy-content .cta-band { border-radius: 34px; padding: 38px; display: grid; grid-template-columns: 1.1fr auto; gap: 18px; align-items: center; background: radial-gradient(circle at right top, rgba(193,143,98,0.24), transparent 24%), linear-gradient(180deg, rgba(255,255,255,0.88), rgba(250,246,241,0.78)); }
+.academy-content .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+.academy-content .faq-list { display: grid; gap: 16px; }
+.academy-content .faq-item strong { display: block; margin-bottom: 10px; font-size: 18px; color: #322823; }
+@media (max-width: 1100px) {
+  .academy-content .hero-shell,
+  .academy-content .split-feature,
+  .academy-content .cta-band,
+  .academy-content .grid-3,
+  .academy-content .grid-2,
+  .academy-content .curriculum-grid { grid-template-columns: 1fr; }
+  .academy-content .hero-copy,
+  .academy-content .hero-panel { min-height: auto; }
+  .academy-content .cta-actions { justify-content: flex-start; }
+}
+@media (max-width: 760px) {
+  .academy-content { padding: 44px 0 26px; }
+  .academy-content .hero-copy,
+  .academy-content .hero-panel,
+  .academy-content .section-card,
+  .academy-content .curriculum-card,
+  .academy-content .quote-card,
+  .academy-content .faq-item,
+  .academy-content .cta-band { padding: 22px; border-radius: 24px; }
+  .academy-content .hero-points,
+  .academy-content .stats-grid { grid-template-columns: 1fr; }
+  .academy-content .hero-signature { align-items: flex-start; }
+  .academy-content .button,
+  .academy-content .hero-actions .button,
+  .academy-content .cta-actions .button { width: 100%; }
+  .academy-content table,
+  .academy-content tbody,
+  .academy-content tr,
+  .academy-content th,
+  .academy-content td { display: block; width: 100%; }
+  .academy-content th,
+  .academy-content td { padding: 14px 16px; }
+  .academy-content th { border-bottom: 0; padding-bottom: 6px; }
+  .academy-content td { padding-top: 0; }
+}
+/* ACADEMY-CONTENT-END */
+
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="detail-header" data-od-id="product-header">
+      <div class="detail-header-inner">
+        <button class="icon-button back-button" type="button" data-back-button aria-label="뒤로가기">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>뒤로</span>
+        </button>
+
+        <a class="detail-brand" href="index.html" aria-label="KAMBROX 홈으로 이동">
+          <img class="detail-brand-logo" src="mplc24vr-logo-transparent.png" alt="KAMBROX" />
+        </a>
+
+        <nav class="global-nav" aria-label="주요 메뉴">
+          <a href="index.html">홈</a>
+          <a href="academy.html" aria-current="page">아카데미</a>
+          <a href="product1-detail.html">수소치료기</a>
+          <a href="product2-detail.html">건강식</a>
+        </nav>
+
+        <details class="mobile-menu">
+          <summary aria-label="메뉴 열기">
+            <span class="sr-only">메뉴 열기</span>
+            <span class="hamburger-lines" aria-hidden="true"><i></i><i></i><i></i></span>
+          </summary>
+          <nav class="mobile-menu-panel" aria-label="모바일 주요 메뉴">
+            <a href="index.html">홈</a>
+            <a href="academy.html" aria-current="page">아카데미</a>
+            <a href="product1-detail.html">수소치료기</a>
+            <a href="product2-detail.html">건강식</a>
+          </nav>
+        </details>
+
+        <nav class="detail-actions" aria-label="상품상세 홈 바로가기">
+          <a class="icon-button" href="index.html" aria-label="홈">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 10.7 12 4l8 6.7V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-9.3Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </nav>
+      </div>
+    </header>
+    <div class="academy-content" data-od-id="academy-content">
+      <section class="hero">
+            <div class="container hero-shell">
+              <div class="hero-copy">
+                <div>
+                  <span class="eyebrow">아카데미 소개 및 모집</span>
+                  <h1>암 전문상담약사로의 도약, 캠브록스 아카데미</h1>
+                  <p class="hero-lead">
+                    캠브록스와 문창식 원장님의 통합 암 치료 관점과 임상 경험을 바탕으로,
+                    약사가 암 환자와 보호자를 더 깊이 이해하고 상담할 수 있도록 설계된 전문 교육 프로그램입니다.
+                  </p>
+                  <div class="hero-actions">
+                    <a class="button primary" href="https://docs.google.com/forms/d/e/1FAIpQLSePvODV3pCTIfC7ow3J2idTTdCRT-jtTkFfZzBHZmM3QVSa7A/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">설명회 신청하기</a>
+                    <a class="button secondary" href="#recruit">모집 안내 보기</a>
+                  </div>
+                  <div class="hero-points">
+                    <div class="hero-point">
+                      <strong>회복 중심 상담</strong>
+                      <p>치료를 넘어 회복과 일상 복귀까지 함께 이해하는 상담 프레임</p>
+                    </div>
+                    <div class="hero-point">
+                      <strong>실무 적용형 커리큘럼</strong>
+                      <p>종양학, 영양, 운동, 설문·검사 해석, 상담 흐름까지 연결</p>
+                    </div>
+                    <div class="hero-point">
+                      <strong>네트워크 확장성</strong>
+                      <p>향후 캠브록스 서비스와 전문 약국 네트워크 참여 기반</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero-signature">
+                  <div class="sig-badge">
+                    <img src="mplc24vr-logo-transparent.png" alt="KAMBROX" />
+                  </div>
+                  <div>
+                    <strong style="display:block; color:var(--ink); margin-bottom:4px;">약국의 새로운 역할은, 더 깊은 상담에서 시작됩니다.</strong>
+                    <span>암 전문상담약사 · 회복 중심 실무 · 프리미엄 상담 역량</span>
+                  </div>
+                </div>
+              </div>
+      
+              <aside class="hero-panel" aria-label="아카데미 핵심 정보">
+                <div class="hero-panel-top">
+                  <span>Program Preview</span>
+                  <span class="status-pill">모집 예정</span>
+                </div>
+      
+                <div class="program-preview">
+                  <span class="label">Academy Summary</span>
+                  <div class="headline">암 환자 회복 상담 역량을 약국 현장에 연결하는 8주 전문 과정</div>
+                  <p class="muted">종양학적 이해, 통합의학적 관점, 생활관리, 실무 적용, 향후 캠브록스 지원 프로그램 연계까지 고려한 구조입니다.</p>
+                </div>
+      
+                <div class="stats-grid">
+                  <div class="stat">
+                    <strong>8주</strong>
+                    <span>기본 과정 기준의 전문 커리큘럼</span>
+                  </div>
+                  <div class="stat">
+                    <strong>50시간+</strong>
+                    <span>강의·사례·적용 관점을 포함한 학습 시간</span>
+                  </div>
+                  <div class="stat">
+                    <strong>20년+</strong>
+                    <span>문창식 원장 중심의 임상 철학과 방향성</span>
+                  </div>
+                  <div class="stat">
+                    <strong>∞</strong>
+                    <span>설명회·후속 프로그램·네트워크 확장 가능성</span>
+                  </div>
+                </div>
+      
+                <div class="journey-card">
+                  <strong style="font-size:18px;">교육 이후의 연결 구조</strong>
+                  <div class="journey-flow">
+                    <div class="journey-step">
+                      <div class="journey-index">1</div>
+                      <div><strong>지식 습득</strong><br><span>종양학, 면역, 영양, 회복 관리 관점의 체계화</span></div>
+                    </div>
+                    <div class="journey-step">
+                      <div class="journey-index">2</div>
+                      <div><strong>상담 구조화</strong><br><span>환자·보호자 상담 흐름과 실제 응대 역량 강화</span></div>
+                    </div>
+                    <div class="journey-step">
+                      <div class="journey-index">3</div>
+                      <div><strong>프로그램 연계</strong><br><span>설문·검사·환자 상태 기반 보조 도구와 확장</span></div>
+                    </div>
+                    <div class="journey-step">
+                      <div class="journey-index">4</div>
+                      <div><strong>네트워크 참여</strong><br><span>캠브록스 생태계와 전문 약국 포지셔닝 기반 마련</span></div>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </section>
+      
+          <section id="why">
+            <div class="container">
+              <div class="section-heading">
+                <span class="eyebrow">Why Now</span>
+                <h2>왜 지금, 암 전문상담약사인가</h2>
+                <p>암 환자와 보호자는 약국에서 더 깊고 실질적인 상담을 기대합니다. 하지만 암은 종양학, 면역, 영양, 운동, 치료 부작용 관리, 생활요법까지 연결된 복합 영역입니다. 캠브록스 아카데미는 약사가 회복 여정을 함께 이해하는 상담 파트너로 성장하도록 돕습니다.</p>
+              </div>
+              <div class="grid-3">
+                <article class="section-card">
+                  <span class="kicker">01 전문성</span>
+                  <h3>근거 기반 암 이해와 상담 역량 강화</h3>
+                  <p>막연한 건강상담이 아니라, 암 환자의 상태와 치료 맥락을 체계적으로 읽고 설명하는 프레임을 제안합니다.</p>
+                </article>
+                <article class="section-card">
+                  <span class="kicker">02 실무성</span>
+                  <h3>환자 사례와 현장 적용 중심</h3>
+                  <p>설문, 검사, 치료 이력, 생활관리, 회복 흐름을 어떻게 상담에 도움이될지 실제 현장 언어로 풀어냅니다.</p>
+                </article>
+                <article class="section-card">
+                  <span class="kicker">03 확장성</span>
+                  <h3>서비스와 네트워크로 이어지는 기반</h3>
+                  <p>교육에서 끝나지 않고, 향후 캠브록스 상담 지원 시스템과 전문 약국 네트워크 참여 가능성을 함께 열어둡니다.</p>
+                </article>
+              </div>
+            </div>
+          </section>
+      
+          <section>
+            <div class="container split-feature">
+              <article class="quote-card">
+                <div class="quote-mark">“</div>
+                <h2 style="font-size: clamp(28px, 3.8vw, 44px); margin-top: 8px;">치료를 넘어, 회복과 일상 복귀까지</h2>
+                <p style="margin-top: 18px;">문창식 원장의 강의는 암을 단순히 병변이나 치료 행위만으로 보지 않습니다. 치료 과정에서의 변화, 회복의 속도, 영양과 운동, 생활관리, 부작용 대응, 환자와 보호자의 심리적 부담까지 함께 바라보는 관점에서 출발합니다.</p>
+              </article>
+              <article class="section-card">
+                <span class="kicker">Academy </span>
+                <h3>캠브록스 아카데미란?</h3>
+                <p style="margin-top: 14px;">캠브록스 아카데미는 암 환자 상담에 필요한 종양학적 이해, 통합의학적 관점, 영양·운동·생활관리, 상담 실무, 환자 상태 분석 관점을 종합적으로 다루는 전문 교육 프로그램입니다.</p>
+                <p style="margin-top: 14px;">단순한 정보 전달이 아니라, 약사가 실제 현장에서 환자와 보호자를 더 깊이 이해하고 상담할 수 있도록 돕는 실전형 아카데미로 설계되었습니다.</p>
+                <ul class="value-list" style="margin-top: 18px;">
+                  <li>약 8주 과정 기준의 전문 커리큘럼</li>
+                  <li>약 50시간 내외의 강의·사례·적용형 구성</li>
+                  <li>심화 교육 및 네트워크 연계로 확장 가능한 구조</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+      
+          <section>
+            <div class="container">
+              <div class="section-heading">
+                <span class="eyebrow">강사 소개</span>
+                <h2>문창식 원장님</h2>
+                <div class="instructor-photo-card" aria-label="문창식 원장님 프로필 이미지 영역">
+                  <img src="mqiolljm-photo_2026-06-15_20.25.25.jpeg" alt="문창식 원장님 프로필 사진" loading="lazy">
+                  <span>문창식 원장</span>
+                </div>
+                <p style="margin-top: 20px;">문창식 원장님은 나으람의원 대표 전문의로, 전남대학교 의과대학을 졸업하셨습니다. 일반외과 전문의, 보완대체의학인정의, 한국 임상 호메오퍼시 의사회 고문이며 아우토겐 이완요법 촉진자 자격 보유하고 있습니다. 현재 임상통합의학암학회 회장, 임상통합의학 암아카데미원장, 대한 암치료 병원 협의회 회장, 암알지 방송국 대표, 공주 대학교 통합 의료관광 대학원 교수, 채원 자연통합병원 암센터 원장으로 근무하셨습니다. 저서로는 『최고의 전문의들은 왜 통합기능의학에 주목할까』, 『나만의 항암음식을 찾아줍니다』, 『암과 싸워서 이기는 방법』, 『하네만 리비지트』(공저)가 있습니다.</p>
+              </div>
+              <div class="grid-2">
+                <article class="section-card">
+                  <span class="kicker">Clinical Philosophy</span>
+                  <h3>암특화 약 20년 이상의 전문성과 노하우</h3>
+                  <ul class="target-list" style="margin-top: 16px;">
+                    <li>통합의학적 암치료와 맞춤형 회복 지원 관점</li>
+                    <li>암중점치료, 후성 유전학적 치료, 치료 지원 시스템에 대한 전문성</li>
+                    <li>영양·운동·생활관리까지 아우르는 회복 중심 프레임</li>
+                    <li>환자와 보호자의 불안과 질문을 함께 이해하는 동행형 접근</li>
+                  </ul>
+                </article>
+                <article class="section-card">
+                  <span class="kicker">Educational Promise</span>
+                  <h3>약사님 특화 아카데미</h3>
+                  <ul class="target-list" style="margin-top: 16px;">
+                    <li>실제 임상에서 나온 문제의식을 약사 현장으로 번역</li>
+                    <li>회복 중심 상담 역량을 위한 관점·언어·구조 제공</li>
+                    <li>환자 상태 기반 이해를 돕는 검사·설문·상담 흐름 연결</li>
+                    <li>향후 캠브록스 프로그램과 연동한 지원 제공</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </section>
+      
+          <section id="curriculum">
+            <div class="container">
+              <div class="section-heading">
+                <span class="eyebrow">Curriculum</span>
+                <h2>무엇을 배우게 되나요?</h2>
+                <p>캠브록스 아카데미는 암 환자 상담에 필요한 이론적 이해와 회복 관리 관점, 그리고 실제 상담 적용 역량을 균형 있게 다룹니다. 주차별 일정표를 그대로 나열하기보다, 홈페이지에서는 핵심 주제군 중심으로 정리해 보여주는 방식이 가장 설득력 있습니다.</p>
+              </div>
+              <div class="curriculum-grid">
+                <article class="curriculum-card">
+                  <span class="kicker">학습 01</span>
+                  <h3>암과 통합의학의 이해</h3>
+                  <ul style="margin-top: 16px;">
+                    <li>통합의학 개요</li>
+                    <li>종양학 개론</li>
+                    <li>암과 미토콘드리아</li>
+                    <li>암 관련 호르몬</li>
+                  </ul>
+                </article>
+                <article class="curriculum-card">
+                  <span class="kicker">학습 02</span>
+                  <h3>면역 · 영양 · 대사</h3>
+                  <ul style="margin-top: 16px;">
+                    <li>면역 개요와 암 면역</li>
+                    <li>암 영양과 종양 미세환경</li>
+                    <li>후성유전과 유전변이</li>
+                    <li>식물영양소와 기능성 접근</li>
+                  </ul>
+                </article>
+                <article class="curriculum-card">
+                  <span class="kicker">학습 03</span>
+                  <h3>장 · 해독 · 맞춤 치료 이해</h3>
+                  <ul style="margin-top: 16px;">
+                    <li>해독과 대사 관점</li>
+                    <li>장과 마이크로바이옴</li>
+                    <li>장기별 항암 치료</li>
+                    <li>회복을 위한 개별화 접근</li>
+                  </ul>
+                </article>
+                <article class="curriculum-card">
+                  <span class="kicker">학습 04</span>
+                  <h3>치료와 부작용 관리</h3>
+                  <ul style="margin-top: 16px;">
+                    <li>항암치료와 방사선치료 이해</li>
+                    <li>항암 부작용과 대응</li>
+                    <li>Mind-body therapy</li>
+                    <li>회복기 환자 관리 관점</li>
+                  </ul>
+                </article>
+                <article class="curriculum-card">
+                  <span class="kicker">학습 05</span>
+                  <h3>생활요법과 회복관리</h3>
+                  <ul style="margin-top: 16px;">
+                    <li>운동과 암 회복</li>
+                    <li>림프부종 및 통증 관리</li>
+                    <li>생체리듬과 생활관리</li>
+                    <li>Nutraceutical supplements</li>
+                  </ul>
+                </article>
+                <article class="curriculum-card">
+                  <span class="kicker">학습 06</span>
+                  <h3>실무 적용</h3>
+                  <ul style="margin-top: 16px;">
+                    <li>검사 데이터 분석</li>
+                    <li>암환자 설문지 작성 및 분석</li>
+                    <li>의무기록 리뷰</li>
+                    <li>의료기기 및 치료 보조 이해</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </section>
+      
+          <section id="benefits">
+            <div class="container">
+              <div class="section-heading">
+                <span class="eyebrow">Benefits</span>
+                <h2>수강을 통해 얻게 되는 것들</h2>
+                <p>캠브록스 아카데미는 단순히 “배웠다”는 느낌보다, 실제 약국에서 환자와 보호자를 상대하는 방식이 달라지도록 설계됩니다. 현장의 가장 가까이 그리고 자주 환자와 마주할 약사님들에 대한 지원이 캠브록스 주요 가치 중 한축 입니다.</p>
+              </div>
+              <div class="grid-2">
+                <article class="section-card">
+                  <span class="kicker">01</span>
+                  <h3>암 상담의 구조화</h3>
+                  <p style="margin-top: 12px;">막연한 설명이 아니라 환자의 상태와 회복 단계에 맞춰 상담의 흐름을 설계하는 프레임을 갖출 수 있습니다.</p>
+                </article>
+                <article class="section-card">
+                  <span class="kicker">02</span>
+                  <h3>환자와 보호자 응대 역량 강화</h3>
+                  <p style="margin-top: 12px;">실제 현장에서 자주 마주치는 질문과 불안을 보다 깊이 있고 신뢰감 있게 다룰 수 있게합니다.</p>
+                </article>
+                <article class="section-card">
+                  <span class="kicker">03</span>
+                  <h3>약국의 차별화 포지셔닝</h3>
+                  <p style="margin-top: 12px;">일반 복약상담을 넘어, 암 전문상담약사라는 새로운 전문성과 고부가가치 상담 영역을 구축할 수 있습니다.</p>
+                </article>
+                <article class="section-card">
+                  <span class="kicker">04</span>
+                  <h3>향후 연계 가능한 내외부 시스템들</h3>
+                  <p style="margin-top: 12px;">행정편의, 내부 캠브록스 시스템, 외부 제휴사, 아카데미, 설명회, 자료공유, 네트워크 참여 기회와 자연스럽게 연결되는 기반을 마련합니다.</p>
+                </article>
+              </div>
+            </div>
+          </section>
+      
+          <section>
+            <div class="container split-feature">
+              <article class="section-card">
+                <span class="kicker">체계적 관리와 지원</span>
+                <h3>교육에서 끝나지 않도록</h3>
+                <p style="margin-top: 14px;">캠브록스는 아카데미를 통해 전문성을 높이는 데서 그치지 않고, 향후 환자 정보 수집, 설문, 검사 결과 해석, 상담 보조 흐름을 지원하는 프로그램과의 연계를 통해 약사의 상담 역량이 실제 현장에서 이어질 수 있도록 준비하고 있습니다.</p>
+                <ul class="value-list" style="margin-top: 18px;">
+                  <li>환자 정보 수집과 상태 이해</li>
+                  <li>설문 기반 회복 맥락 정리</li>
+                  <li>검사·상담 내용의 구조화</li>
+                  <li>상담관리 솔루션 지원</li>
+                </ul>
+              </article>
+              <article class="section-card">
+                <span class="kicker">맞춤 지원</span>
+                <h3>이런 약사님께 추천드립니다</h3>
+                <ul class="target-list" style="margin-top: 16px;">
+                  <li>암 환자 및 보호자 상담 역량을 높이고 싶은 약사님</li>
+                  <li>약국의 전문성과 차별화를 고민하고 있는 약사님</li>
+                  <li>통합의학적 관점과 회복 중심 상담에 관심 있는 약사님</li>
+                  <li>향후 캠브록스 서비스 및 네트워크 참여에 관심 있는 약사님</li>
+                  <li>고부가가치 상담 영역을 만들고 싶은 약사님</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+      
+          <section id="recruit">
+            <div class="container">
+              <div class="section-heading">
+                <span class="eyebrow">Recruitment</span>
+                <h2>모집 안내</h2>
+                <p>각 교육회차는 회차 강의의 집중도 유지를 위해 진행 중 신청 및 참가가 불가합니다. 각 회차의 교육은 해당 회차의 강사님과 수강생님들의 상황에 맞춰 내용과 순서가 변동이 있을 수 있습니다.</p>
+              </div>
+              <div class="recruit-table">
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>모집 대상</th>
+                      <td>약사님</td>
+                    </tr>
+                    <tr>
+                      <th>교육 형태</th>
+                      <td>오프라인</td>
+                    </tr>
+                    <tr>
+                      <th>교육 기간</th>
+                      <td>8주 과정</td>
+                    </tr>
+                    <tr>
+                      <th>교육 내용</th>
+                      <td>암 상담 이론, 회복 관리, 실무 적용 중심 맞춤 교육</td>
+                    </tr>
+                    <tr>
+                      <th>신청 방법</th>
+                      <td>신청 폼 제출 후 순차 안내</td>
+                    </tr>
+                    <tr>
+                      <th>모집 인원</th>
+                      <td>각 회차별 모집 공고 내 안내</td>
+                    </tr>
+                    <tr>
+                      <th>문의 채널</th>
+                      <td>캠브록스 홈페이지 또는 신청폼</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+      
+          <section id="apply">
+            <div class="container">
+              <div class="cta-band">
+                <div>
+                  <span class="eyebrow">Apply & Updates</span>
+                  <h2 style="margin-top: 16px;">사전알림 및 신청알림을 가장 먼저 받아보세요</h2>
+                  <p style="margin-top: 14px; max-width: 760px; color: var(--muted);">문창식 원장님의 강의자료, 아카데미 개설 소식, 설명회 일정, 그리고 캠브록스 런칭 정보와 우선 기회를 가장 먼저 받아보실 수 있습니다.</p>
+                </div>
+                <div class="cta-actions">
+                  <a class="button primary" href="#">사전알림 신청하기</a>
+                  <a class="button secondary" href="#">교육 신청하기</a>
+                  <a class="button secondary" href="#">문의하기</a>
+                </div>
+              </div>
+            </div>
+          </section>
+      
+          <section>
+            <div class="container">
+              <div class="section-heading">
+                <span class="eyebrow">FAQ</span>
+                <h2>자주 묻는 질문</h2>
+                <p>자주 요청받는 문의, 답변 입니다.</p>
+              </div>
+              <div class="faq-list">
+                <article class="faq-item">
+                  <strong>Q. 암 환자 상담 경험이 없어도 신청할 수 있나요?</strong>
+                  <p>네. 본 과정은 암 상담 역량을 체계적으로 이해하고 확장하고자 하는 약사를 위한 프로그램으로, 기존 경험이 많지 않아도 참여하실 수 있습니다.</p>
+                </article>
+                <article class="faq-item">
+                  <strong>Q. 교육은 어떤 방식으로 진행되나요?</strong>
+                  <p>운영 방식은 기수별로 다를 수 있으며, 오프라인, 온라인 으로 안내될 예정입니다.</p>
+                </article>
+                <article class="faq-item">
+                  <strong>Q. 수강 후 별도의 연계 프로그램이 있나요?</strong>
+                  <p>캠브록스는 향후 상담 지원 프로그램, 설명회, 네트워크 연계 등 다양한 확장 가능성을 준비하고 있습니다. 자세한 내용은 모집 안내 시 함께 공지됩니다.</p>
+                </article>
+                <article class="faq-item">
+                  <strong>Q. 설명회만 먼저 신청할 수 있나요?</strong>
+                  <p>네. 모집 신청 전 설명회 또는 알림 신청만 먼저 하실 수 있습니다.</p>
+                </article>
+                <article class="faq-item">
+                  <strong>Q. 전체 커리큘럼을 더 자세히 볼 수 있나요?</strong>
+                  <p>알림 발송되는 모집 시점에 보다 상세한 커리큘럼과 운영안이 함께 안내될 예정입니다.</p>
+                </article>
+              </div>
+            </div>
+          </section>
+    </div>
+
+<footer class="site-footer" aria-label="KAMBROX partnership footer">
+      <div class="site-footer-inner">
+        <div class="footer-message">
+          <p class="footer-title">
+            KAMBROX는 회복의 새로운 표준을<br />
+            만들어갑니다.
+          </p>
+        </div>
+
+        <div class="footer-contact" aria-label="회사 정보">
+          <p class="footer-company-name">주식회사 캠브록스 ( KAMBROX Corp.)</p>
+          <dl class="footer-company-info">
+            <div>
+              <dt>대표자</dt>
+              <dd>문명훈</dd>
+            </div>
+            <div>
+              <dt>주소</dt>
+              <dd>서울시 은평구 통일로71길 2-1, 4층 16호(대조동, 대조빌딩)</dd>
+            </div>
+            <div>
+              <dt>대표번호</dt>
+              <dd>02-6956-1133</dd>
+            </div>
+            <div>
+              <dt>사업자 등록번호</dt>
+              <dd>364-87-03182</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const backButton = document.querySelector('[data-back-button]');
+    function goBackToShop() {
+      const hasSameOriginReferrer = document.referrer && window.location.host && document.referrer.includes(window.location.host);
+      if (hasSameOriginReferrer && window.history.length > 1) {
+        window.history.back();
+        return;
+      }
+      window.location.href = 'index.html';
+    }
+    backButton?.addEventListener('click', goBackToShop);
+  </script>
+</body>
+</html>

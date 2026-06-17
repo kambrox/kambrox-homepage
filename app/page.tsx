@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const flow = [
@@ -88,15 +91,28 @@ const companyInfo = [
 
 const mainNav = [
   { label: "홈", href: "#home", current: true },
-  { label: "아카데미", href: "#academy" },
-  { label: "수소치료기", href: "/product-detail" },
-  { label: "건기식", href: "#supplements" }
+  { label: "아카데미", href: "/academy" },
+  { label: "수소치료기", href: "/product1-detail" },
+  { label: "건강식", href: "/product2-detail" }
 ];
 
 export default function HomePage() {
+  const [isLogoVisible, setIsLogoVisible] = useState(false);
+
+  useEffect(() => {
+    const syncHeader = () => {
+      setIsLogoVisible(window.scrollY >= 300);
+    };
+
+    syncHeader();
+    window.addEventListener("scroll", syncHeader, { passive: true });
+
+    return () => window.removeEventListener("scroll", syncHeader);
+  }, []);
+
   return (
     <>
-      <header className="site-header" aria-label="KAMBROX 주요 메뉴">
+      <header className={`site-header${isLogoVisible ? " logo-visible" : ""}`} aria-label="KAMBROX 주요 메뉴">
         <Link className="site-header-brand" href="#home" aria-label="KAMBROX 홈">
           <img
             className="site-header-logo"
@@ -111,8 +127,8 @@ export default function HomePage() {
             </Link>
           ))}
         </nav>
-        <Link className="header-cta" href="/product-detail">
-          구매하기
+        <Link className="header-cta" href="/product1-detail">
+          수소치료기 구매하기
         </Link>
         <details className="mobile-menu">
           <summary aria-label="메뉴 열기">
@@ -129,6 +145,9 @@ export default function HomePage() {
                 {item.label}
               </Link>
             ))}
+            <Link className="mobile-menu-cta" href="/product1-detail">
+              수소치료기 구매하기
+            </Link>
           </nav>
         </details>
       </header>
@@ -226,13 +245,6 @@ export default function HomePage() {
           </div>
         </footer>
       </main>
-      <Link
-        className="purchase-floating"
-        href="/product-detail"
-        aria-label="수소치료기 구매하기"
-      >
-        수소치료기 구매하기
-      </Link>
     </>
   );
 }
