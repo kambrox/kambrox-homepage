@@ -1372,7 +1372,8 @@
 .academy-content .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
 .academy-content section { padding: 26px 0; }
 .academy-content section:first-child { padding-top: 0; }
-.academy-content .hero-shell { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: stretch; }
+.academy-content .hero { display: block; width: auto; height: auto; aspect-ratio: auto; position: relative; }
+.academy-content .hero-shell { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: stretch; min-height: 0; overflow: visible; position: relative; }
 .academy-content .hero-copy,
 .academy-content .hero-panel,
 .academy-content .section-card,
@@ -1386,12 +1387,18 @@
   box-shadow: var(--shadow);
   backdrop-filter: blur(20px);
 }
-.academy-content .hero-copy { border-radius: 36px; padding: 42px; display: flex; flex-direction: column; justify-content: space-between; min-height: 620px; }
+.academy-content .hero-copy { align-self: stretch; width: auto; border-radius: 36px; padding: 42px; display: flex; flex-direction: column; justify-content: space-between; min-height: 620px; }
 .academy-content .eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: rgba(124, 79, 46, 0.08); border: 1px solid rgba(124, 79, 46, 0.10); color: var(--brand-strong); border-radius: 999px; font-size: 13px; font-weight: 700; width: fit-content; }
 .academy-content h1,
 .academy-content h2,
 .academy-content h3 { margin: 0; letter-spacing: -0.03em; line-height: 1.12; color: var(--ink); }
-.academy-content h1 { font-size: clamp(42px, 6vw, 74px); max-width: 9.5ch; }
+.academy-content h1 { font-size: clamp(42px, 5.2vw, 74px); max-width: 11.8ch; text-wrap: balance; }
+.academy-content .hero-title-desktop,
+.academy-content .hero-title-mobile,
+.academy-content .hero-title-line { display: block; }
+.academy-content .hero-title-line { white-space: nowrap; }
+.academy-content .hero-title-line:first-child { padding-top: 24px; }
+.academy-content .hero-title-mobile { display: none; }
 .academy-content h2 { font-size: clamp(30px, 3.3vw, 48px); }
 .academy-content h3 { font-size: 22px; }
 .academy-content .hero-lead { margin-top: 26px; max-width: 640px; font-size: clamp(18px, 2vw, 22px); color: #322823; line-height: 1.7; }
@@ -1484,10 +1491,14 @@
   .academy-content .curriculum-grid { grid-template-columns: 1fr; }
   .academy-content .hero-copy,
   .academy-content .hero-panel { min-height: auto; }
+  .academy-content h1 { max-width: 12.6ch; }
   .academy-content .cta-actions { justify-content: flex-start; }
 }
 @media (max-width: 760px) {
   .academy-content { padding: 44px 0 26px; }
+  .academy-content h1 { font-size: clamp(38px, 10.4vw, 50px); line-height: 1.05; max-width: 100%; }
+  .academy-content .hero-title-desktop { display: none; }
+  .academy-content .hero-title-mobile { display: block; }
   .academy-content .hero-copy,
   .academy-content .hero-panel,
   .academy-content .section-card,
@@ -1565,7 +1576,18 @@
               <div class="hero-copy">
                 <div>
                   <span class="eyebrow">아카데미 소개 및 모집</span>
-                  <h1>암 전문상담약사로의 도약, 캠브록스 아카데미</h1>
+                  <h1 data-od-id="path-0-1-0-0-0-0-1" aria-label="암 전문상담약사로의 도약, 캠브록스 아카데미">
+                    <span class="hero-title-desktop" aria-hidden="true">
+                      <span class="hero-title-line">암 전문상담</span>
+                      <span class="hero-title-line">약사로의 도약,</span>
+                      <span class="hero-title-line">캠브록스 아카데미</span>
+                    </span>
+                    <span class="hero-title-mobile" aria-hidden="true">
+                      <span class="hero-title-line">암 전문상담</span>
+                      <span class="hero-title-line">약사로의 도약,</span>
+                      <span class="hero-title-line">캠브록스 아카데미</span>
+                    </span>
+                  </h1>
                   <p class="hero-lead">
                     캠브록스와 문창식 원장님의 통합 암 치료 관점과 임상 경험을 바탕으로,
                     약사가 암 환자와 보호자를 더 깊이 이해하고 상담할 수 있도록 설계된 전문 교육 프로그램입니다.
