@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#244536">
     <title>KAMBROX</title>
     <style>
-      @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;800&display=swap");
 
       :root {
         --bg: oklch(93.5% 0.018 76);
@@ -20,7 +20,7 @@
         --gold: oklch(66% 0.095 78);
         --bronze: oklch(58% 0.047 62);
         --guide: oklch(74% 0.024 76 / 0.45);
-        --font-body: "Pretendard", sans-serif;
+        --font-body: "Noto Serif KR", serif;
       }
 
       * {
@@ -577,7 +577,7 @@
 
       .recovery-problem-title {
         color: oklch(24% 0.016 170);
-        font-family: "Noto Serif KR", "Iowan Old Style", "Charter", serif;
+        font-family: var(--font-body);
         font-size: clamp(38px, 4.15vw, 78px);
         font-weight: 500;
         letter-spacing: -0.035em;
@@ -748,7 +748,7 @@
 
       .advantage-title {
         color: oklch(24% 0.039 158);
-        font-family: "Noto Serif KR", "Iowan Old Style", "Charter", serif;
+        font-family: var(--font-body);
         font-size: clamp(39px, 3.72vw, 72px);
         font-weight: 500;
         letter-spacing: -0.04em;
@@ -796,27 +796,6 @@
         width: 100%;
       }
 
-      .advantage-number {
-        align-items: center;
-        background: oklch(27% 0.062 158);
-        border-radius: 999px;
-        box-shadow: 0 14px 26px oklch(24% 0.05 150 / 0.18);
-        color: oklch(98% 0.01 90);
-        display: inline-flex;
-        font-family: "Inter", "Pretendard", sans-serif;
-        font-size: clamp(16px, 1.1vw, 22px);
-        font-weight: 700;
-        height: clamp(48px, 3.4vw, 64px);
-        justify-content: center;
-        left: 50%;
-        letter-spacing: 0.02em;
-        position: absolute;
-        top: 100%;
-        transform: translate(-50%, -50%);
-        width: clamp(48px, 3.4vw, 64px);
-      }
-
-      .advantage-card:nth-child(even) .advantage-number,
       .advantage-card:nth-child(even) .advantage-rule {
         background: oklch(62% 0.086 74);
       }
@@ -950,6 +929,155 @@
         color: oklch(36% 0.009 78);
         content: "•";
         margin-right: clamp(24px, 2.8vw, 44px);
+      }
+
+      .provider-platform-section {
+        background:
+          radial-gradient(circle at 6% 92%, oklch(35% 0.064 155 / 0.18), transparent 18%),
+          linear-gradient(108deg, oklch(98% 0.012 85) 0%, oklch(95% 0.013 82) 46%, oklch(86% 0.01 84) 100%);
+        margin: 0 calc(50% - 50vw);
+        overflow: hidden;
+        padding: clamp(72px, 8vw, 132px) clamp(18px, 4vw, 72px);
+        position: relative;
+        width: 100vw;
+      }
+
+      .provider-platform-section::before {
+        background: oklch(32% 0.064 155 / 0.22);
+        border-radius: 999px;
+        bottom: -96px;
+        content: "";
+        filter: blur(28px);
+        height: 260px;
+        left: -88px;
+        opacity: 0.55;
+        position: absolute;
+        width: 260px;
+      }
+
+      .provider-platform-inner {
+        align-items: center;
+        display: grid;
+        gap: clamp(36px, 5vw, 86px);
+        grid-template-columns: minmax(320px, 0.78fr) minmax(620px, 1.42fr);
+        margin: 0 auto;
+        max-width: 1600px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .provider-platform-copy {
+        display: grid;
+        gap: clamp(26px, 3vw, 42px);
+      }
+
+      .provider-kicker {
+        color: oklch(36% 0.012 86 / 0.72);
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .provider-title {
+        color: oklch(32% 0.072 152);
+        font-size: clamp(34px, 3.3vw, 62px);
+        font-weight: 650;
+        letter-spacing: -0.02em;
+        line-height: 1.28;
+        margin: 0;
+      }
+
+      .provider-copy {
+        color: oklch(30% 0.014 84 / 0.72);
+        font-size: clamp(17px, 1.18vw, 22px);
+        line-height: 1.72;
+        margin: 0;
+        max-width: 480px;
+      }
+
+      .provider-feature-list {
+        display: grid;
+        gap: 28px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .provider-feature-item {
+        align-items: start;
+        display: grid;
+        gap: 18px;
+        grid-template-columns: 68px 1fr;
+      }
+
+      .provider-feature-icon {
+        background: oklch(32% 0.072 152);
+        border-radius: 999px;
+        box-shadow: 0 16px 30px oklch(32% 0.072 152 / 0.18);
+        color: oklch(100% 0 0);
+        display: grid;
+        height: 58px;
+        place-items: center;
+        width: 58px;
+      }
+
+      .provider-feature-item:nth-child(even) .provider-feature-icon {
+        background: oklch(62% 0.088 73);
+      }
+
+      .provider-feature-icon svg {
+        height: 31px;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.7;
+        width: 31px;
+      }
+
+      .provider-feature-title {
+        color: oklch(32% 0.072 152);
+        display: block;
+        font-size: clamp(17px, 1.1vw, 21px);
+        font-weight: 700;
+        line-height: 1.35;
+        margin: 0 0 8px;
+      }
+
+      .provider-feature-item:nth-child(even) .provider-feature-title {
+        color: oklch(56% 0.086 72);
+      }
+
+      .provider-feature-copy {
+        color: oklch(31% 0.014 86 / 0.7);
+        display: block;
+        font-size: clamp(14px, 0.94vw, 17px);
+        line-height: 1.65;
+        margin: 0;
+      }
+
+      .provider-dashboard-shell {
+        min-width: 0;
+        position: relative;
+      }
+
+      .provider-dashboard-shell::before {
+        background: oklch(28% 0.032 154 / 0.18);
+        border-radius: 42px;
+        content: "";
+        filter: blur(34px);
+        inset: 4% 2% -4% 8%;
+        opacity: 0.46;
+        position: absolute;
+      }
+
+      .provider-dashboard-image {
+        border-radius: clamp(28px, 3vw, 48px);
+        box-shadow: 0 28px 70px oklch(30% 0.012 86 / 0.2);
+        display: block;
+        margin-left: auto;
+        position: relative;
+        width: min(100%, 1130px);
       }
 
       .site-footer {
@@ -1192,6 +1320,22 @@
           grid-column: 1 / -1;
           justify-content: flex-start;
         }
+
+        .provider-platform-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .provider-platform-copy {
+          max-width: 780px;
+        }
+
+        .provider-feature-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .provider-dashboard-image {
+          width: 100%;
+        }
       }
 
       @media (max-width: 680px) {
@@ -1273,6 +1417,52 @@
         .advantage-keywords li + li::before {
           content: "";
           margin: 0;
+        }
+
+        .provider-platform-section {
+          padding: 58px 18px 64px;
+        }
+
+        .provider-platform-copy {
+          gap: 24px;
+        }
+
+        .provider-title br,
+        .provider-copy br,
+        .provider-feature-copy br {
+          display: none;
+        }
+
+        .provider-feature-list {
+          gap: 18px;
+          grid-template-columns: 1fr;
+        }
+
+        .provider-feature-item {
+          background: oklch(100% 0 0 / 0.62);
+          border: 1px solid oklch(48% 0.052 152 / 0.1);
+          border-radius: 22px;
+          gap: 14px;
+          grid-template-columns: 52px 1fr;
+          padding: 16px;
+        }
+
+        .provider-feature-icon {
+          height: 48px;
+          width: 48px;
+        }
+
+        .provider-feature-icon svg {
+          height: 25px;
+          width: 25px;
+        }
+
+        .provider-dashboard-shell {
+          margin: 4px -8px 0;
+        }
+
+        .provider-dashboard-image {
+          border-radius: 24px;
         }
 
         .site-header-logo {
@@ -1638,7 +1828,6 @@
             <article class="advantage-card">
               <div class="advantage-media">
                 <img src="public/images/advantage-clinical-data.png?v=20260620-clean" alt="임상 데이터를 태블릿에 입력하는 의료진" loading="lazy" decoding="async">
-                <span class="advantage-number">01</span>
               </div>
               <div class="advantage-body">
                 <h3 class="advantage-card-title">
@@ -1655,7 +1844,6 @@
             <article class="advantage-card">
               <div class="advantage-media">
                 <img src="public/images/advantage-analytics.png?v=20260620-clean" alt="회복 데이터를 분석하는 대시보드" loading="lazy" decoding="async">
-                <span class="advantage-number">02</span>
               </div>
               <div class="advantage-body">
                 <h3 class="advantage-card-title">
@@ -1672,7 +1860,6 @@
             <article class="advantage-card">
               <div class="advantage-media">
                 <img src="public/images/advantage-expert-review.png?v=20260620-clean" alt="전문가가 태블릿으로 회복 계획을 검토하는 장면" loading="lazy" decoding="async">
-                <span class="advantage-number">03</span>
               </div>
               <div class="advantage-body">
                 <h3 class="advantage-card-title">
@@ -1689,7 +1876,6 @@
             <article class="advantage-card">
               <div class="advantage-media">
                 <img src="public/images/advantage-pharmacy-network.png?v=20260620-clean" alt="약국에서 제품을 확인하는 약사" loading="lazy" decoding="async">
-                <span class="advantage-number">04</span>
               </div>
               <div class="advantage-body">
                 <h3 class="advantage-card-title">
@@ -1722,9 +1908,65 @@
           </div>
         </div>
       </section>
-      <section class="recovery-visual" aria-label="캠브록스 서비스 세 번째 화면">
-        <div class="recovery-visual-frame">
-          <img class="recovery-visual-image" src="public/images/mpllpeon-4.png" alt="캠브록스 서비스의 세 번째 화면" loading="lazy" decoding="async">
+      <section class="provider-platform-section" aria-label="약사를 위한 통합 운영 플랫폼">
+        <div class="provider-platform-inner">
+          <div class="provider-platform-copy">
+            <span class="provider-kicker">FOR PROVIDERS</span>
+            <h2 class="provider-title">
+              약사를 위한<br>
+              통합 운영 플랫폼
+            </h2>
+            <p class="provider-copy">
+              환자 분류부터 상담, 추천, 추적 관리까지<br>
+              회복 여정을 체계적으로 관리할 수 있는<br>
+              전문가 전용 대시보드입니다.
+            </p>
+            <ul class="provider-feature-list" aria-label="제공자 플랫폼 주요 기능">
+              <li class="provider-feature-item">
+                <span class="provider-feature-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M18 23a7 7 0 1 0 0-14 7 7 0 0 0 0 14z"></path>
+                    <path d="M7 39v-3a11 11 0 0 1 11-11h1a11 11 0 0 1 11 11v3"></path>
+                    <path d="M32 24a5 5 0 1 0 0-10"></path>
+                    <path d="M34 27a9 9 0 0 1 7 9v3"></path>
+                  </svg>
+                </span>
+                <span>
+                  <strong class="provider-feature-title">환자 분류 및 위험도 관리</strong>
+                  <span class="provider-feature-copy">임상 데이터와 생활 패턴을 기반으로 환자를 자동 분류하고 우선순위를 설정합니다.</span>
+                </span>
+              </li>
+              <li class="provider-feature-item">
+                <span class="provider-feature-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M15 7h18v34H15z"></path>
+                    <path d="M19 14h10M19 22h10M19 30h6"></path>
+                    <path d="M24 36h.1"></path>
+                  </svg>
+                </span>
+                <span>
+                  <strong class="provider-feature-title">상담 가이드 및 추천 지원</strong>
+                  <span class="provider-feature-copy">개인 맞춤 추천과 근거 기반 가이드를 제공하여 상담의 정확성과 일관성을 높입니다.</span>
+                </span>
+              </li>
+              <li class="provider-feature-item">
+                <span class="provider-feature-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M14 7h17l5 5v29H14z"></path>
+                    <path d="M31 7v6h6"></path>
+                    <path d="M20 23h12M20 30h12M20 36h8"></path>
+                  </svg>
+                </span>
+                <span>
+                  <strong class="provider-feature-title">추적 관리 및 리포트</strong>
+                  <span class="provider-feature-copy">추적 일정 관리와 결과 리포트를 통해 치료 효과를 지속적으로 모니터링합니다.</span>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div class="provider-dashboard-shell">
+            <img class="provider-dashboard-image" src="public/images/provider-dashboard-object.png" alt="KAMBROX 제공자용 통합 운영 대시보드 화면" loading="lazy" decoding="async">
+          </div>
         </div>
       </section>
       <section class="recovery-visual" aria-label="캠브록스 서비스 네 번째 화면">
@@ -1734,7 +1976,6 @@
       </section>
       <section class="recovery-visual" aria-label="캠브록스 서비스 다섯 번째 화면">
         <div class="recovery-visual-frame">
-          <img class="recovery-visual-image" src="public/images/mpllpeou-6.png" alt="캠브록스 서비스의 다섯 번째 화면" loading="lazy" decoding="async">
         </div>
       </section>
       <section class="recovery-visual" id="supplements" aria-label="캠브록스 서비스 여섯 번째 화면">

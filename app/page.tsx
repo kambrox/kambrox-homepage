@@ -51,19 +51,9 @@ const callouts = [
 
 const recoveryVisuals = [
   {
-    label: "캠브록스 서비스 세 번째 화면",
-    src: "/images/mpllpeon-4.png",
-    alt: "캠브록스 서비스의 세 번째 화면"
-  },
-  {
     label: "캠브록스 서비스 네 번째 화면",
     src: "/images/mpllpeor-5.png",
     alt: "캠브록스 서비스의 네 번째 화면"
-  },
-  {
-    label: "캠브록스 서비스 다섯 번째 화면",
-    src: "/images/mpllpeou-6.png",
-    alt: "캠브록스 서비스의 다섯 번째 화면"
   },
   {
     label: "캠브록스 서비스 여섯 번째 화면",
@@ -400,10 +390,9 @@ export default function HomePage() {
             </div>
             <div className="advantage-grid">
               {advantageCards.map((card) => (
-                <article className="advantage-card" key={card.number}>
+                <article className="advantage-card" key={card.title}>
                   <div className="advantage-media">
                     <img src={card.image} alt={card.imageAlt} loading="lazy" decoding="async" />
-                    <span className="advantage-number">{card.number}</span>
                   </div>
                   <div className="advantage-body">
                     <h3 className="advantage-card-title">
@@ -438,6 +427,76 @@ export default function HomePage() {
                 <li>연결성</li>
                 <li>지속성</li>
               </ul>
+            </div>
+          </div>
+        </section>
+        <section className="provider-platform-section" aria-label="약사를 위한 통합 운영 플랫폼">
+          <div className="provider-platform-inner">
+            <div className="provider-platform-copy">
+              <span className="provider-kicker">FOR PROVIDERS</span>
+              <h2 className="provider-title">
+                약사를 위한
+                <br />
+                통합 운영 플랫폼
+              </h2>
+              <p className="provider-copy">
+                환자 분류부터 상담, 추천, 추적 관리까지
+                <br />
+                회복 여정을 체계적으로 관리할 수 있는
+                <br />
+                전문가 전용 대시보드입니다.
+              </p>
+              <ul className="provider-feature-list" aria-label="제공자 플랫폼 주요 기능">
+                <li className="provider-feature-item">
+                  <span className="provider-feature-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                      <path d="M18 23a7 7 0 1 0 0-14 7 7 0 0 0 0 14z" />
+                      <path d="M7 39v-3a11 11 0 0 1 11-11h1a11 11 0 0 1 11 11v3" />
+                      <path d="M32 24a5 5 0 1 0 0-10" />
+                      <path d="M34 27a9 9 0 0 1 7 9v3" />
+                    </svg>
+                  </span>
+                  <span>
+                    <strong className="provider-feature-title">환자 분류 및 위험도 관리</strong>
+                    <span className="provider-feature-copy">임상 데이터와 생활 패턴을 기반으로 환자를 자동 분류하고 우선순위를 설정합니다.</span>
+                  </span>
+                </li>
+                <li className="provider-feature-item">
+                  <span className="provider-feature-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                      <path d="M15 7h18v34H15z" />
+                      <path d="M19 14h10M19 22h10M19 30h6" />
+                      <path d="M24 36h.1" />
+                    </svg>
+                  </span>
+                  <span>
+                    <strong className="provider-feature-title">상담 가이드 및 추천 지원</strong>
+                    <span className="provider-feature-copy">개인 맞춤 추천과 근거 기반 가이드를 제공하여 상담의 정확성과 일관성을 높입니다.</span>
+                  </span>
+                </li>
+                <li className="provider-feature-item">
+                  <span className="provider-feature-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                      <path d="M14 7h17l5 5v29H14z" />
+                      <path d="M31 7v6h6" />
+                      <path d="M20 23h12M20 30h12M20 36h8" />
+                    </svg>
+                  </span>
+                  <span>
+                    <strong className="provider-feature-title">추적 관리 및 리포트</strong>
+                    <span className="provider-feature-copy">추적 일정 관리와 결과 리포트를 통해 치료 효과를 지속적으로 모니터링합니다.</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div className="provider-dashboard-shell">
+              <img
+                className="provider-dashboard-image"
+                src="/images/provider-dashboard-object.png"
+                alt="KAMBROX 제공자용 통합 운영 대시보드 화면"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </section>
