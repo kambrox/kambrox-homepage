@@ -1,14 +1,13 @@
 <!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="mpmrw6xh-favicon.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="mpmrw6xh-favicon.png" />
-    <meta name="apple-mobile-web-app-title" content="KAMBROX" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="theme-color" content="#244536" />
+<html lang="ko"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="mpmrw6xh-favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="mpmrw6xh-favicon.png">
+    <meta name="apple-mobile-web-app-title" content="KAMBROX">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#244536">
     <title>KAMBROX</title>
     <style>
       @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
@@ -524,6 +523,435 @@
         width: 100vw;
       }
 
+      .recovery-problem {
+        background: oklch(96% 0.011 82);
+        box-sizing: border-box;
+        display: grid;
+        min-height: min(887px, 50vw);
+        overflow: hidden;
+      }
+
+      .recovery-visual-frame.recovery-problem {
+        display: grid;
+        line-height: 1;
+        min-height: min(887px, 50vw);
+        position: relative;
+      }
+
+      .recovery-problem-photo {
+        background-image: url("public/images/mpll3696-2.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        inset: 0;
+        position: absolute;
+      }
+
+      .recovery-problem-photo::after {
+        background:
+          linear-gradient(90deg, oklch(96% 0.011 82) 0%, oklch(96% 0.011 82 / 0.98) 35%, oklch(96% 0.011 82 / 0.72) 48%, oklch(96% 0.011 82 / 0) 68%),
+          linear-gradient(180deg, oklch(96% 0.011 82 / 0.14), oklch(96% 0.011 82 / 0.08));
+        content: "";
+        inset: 0;
+        position: absolute;
+      }
+
+      .recovery-problem-content {
+        align-self: center;
+        box-sizing: border-box;
+        max-width: 870px;
+        padding: clamp(70px, 8vw, 130px) clamp(24px, 5.4vw, 96px) clamp(48px, 6vw, 90px);
+        position: relative;
+        z-index: 2;
+      }
+
+      .recovery-problem-kicker {
+        color: oklch(66% 0.087 73);
+        display: block;
+        font-size: clamp(13px, 1.12vw, 21px);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        margin-bottom: clamp(38px, 4.2vw, 78px);
+        text-transform: uppercase;
+      }
+
+      .recovery-problem-title {
+        color: oklch(24% 0.016 170);
+        font-family: "Noto Serif KR", "Iowan Old Style", "Charter", serif;
+        font-size: clamp(38px, 4.15vw, 78px);
+        font-weight: 500;
+        letter-spacing: -0.035em;
+        line-height: 1.36;
+        margin: 0;
+        text-wrap: balance;
+      }
+
+      .recovery-problem-rule {
+        background: oklch(66% 0.087 73);
+        display: block;
+        height: 2px;
+        margin: clamp(30px, 3.2vw, 58px) 0 clamp(28px, 2.9vw, 52px);
+        width: 72px;
+      }
+
+      .recovery-problem-copy {
+        color: oklch(28% 0.009 76);
+        font-size: clamp(15px, 1.08vw, 20px);
+        font-weight: 500;
+        line-height: 1.72;
+        margin: 0;
+        max-width: 610px;
+        word-break: keep-all;
+      }
+
+      .recovery-problem-list {
+        display: grid;
+        gap: 0;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        list-style: none;
+        margin: clamp(44px, 5.2vw, 86px) 0 0;
+        max-width: 760px;
+        padding: 0;
+      }
+
+      .recovery-problem-item {
+        align-items: center;
+        border-left: 1px solid oklch(74% 0.016 76 / 0.62);
+        color: oklch(28% 0.009 76);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        justify-content: flex-start;
+        min-width: 0;
+        padding: 0 16px;
+        text-align: center;
+      }
+
+      .recovery-problem-item:first-child {
+        border-left: 0;
+      }
+
+      .recovery-problem-icon {
+        align-items: center;
+        color: oklch(28% 0.009 76);
+        display: inline-flex;
+        height: 44px;
+        justify-content: center;
+        width: 44px;
+      }
+
+      .recovery-problem-icon svg {
+        display: block;
+        height: 42px;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.8;
+        width: 42px;
+      }
+
+      .recovery-problem-item span:last-child {
+        font-size: clamp(12px, 0.82vw, 15px);
+        font-weight: 700;
+        line-height: 1.55;
+        word-break: keep-all;
+      }
+
+      .recovery-problem-status {
+        display: block;
+        inset: 0;
+        pointer-events: none;
+        position: absolute;
+        z-index: 3;
+      }
+
+      .problem-status-card {
+        align-items: center;
+        background: oklch(22% 0.046 161);
+        border: 1px solid oklch(75% 0.018 156 / 0.2);
+        border-radius: 3px;
+        box-shadow: 0 14px 34px oklch(18% 0.04 120 / 0.2);
+        color: oklch(96% 0.01 100);
+        display: inline-flex;
+        font-size: clamp(10px, 0.72vw, 15px);
+        gap: 22px;
+        height: clamp(34px, 2.52vw, 50px);
+        justify-content: space-between;
+        letter-spacing: -0.01em;
+        padding: 0 clamp(10px, 0.9vw, 18px);
+        position: absolute;
+      }
+
+      .problem-status-card::after {
+        align-items: center;
+        border: 1px solid oklch(96% 0.01 100 / 0.88);
+        border-radius: 999px;
+        content: "×";
+        display: inline-flex;
+        font-size: 18px;
+        height: 24px;
+        justify-content: center;
+        line-height: 1;
+        width: 24px;
+      }
+
+      .problem-status-card[data-status="disconnected"] {
+        left: 60%;
+        top: 26.5%;
+      }
+
+      .problem-status-card[data-status="uncertain"] {
+        left: 70.2%;
+        top: 51.8%;
+      }
+
+      .problem-status-card[data-status="fragmented"] {
+        left: 65.9%;
+        top: 78%;
+      }
+
+      .advantage-section {
+        background:
+          radial-gradient(circle at 12% 8%, oklch(100% 0 0 / 0.72), transparent 32%),
+          linear-gradient(135deg, oklch(97% 0.011 82) 0%, oklch(94% 0.014 76) 100%);
+        box-sizing: border-box;
+        color: oklch(25% 0.017 156);
+        margin: 0 calc(50% - 50vw);
+        overflow: hidden;
+        padding: clamp(58px, 5.5vw, 104px) 0 clamp(46px, 4.8vw, 74px);
+        position: relative;
+        width: 100vw;
+      }
+
+      .advantage-inner {
+        margin: 0 auto;
+        width: min(1760px, calc(100vw - clamp(40px, 8vw, 164px)));
+      }
+
+      .advantage-header {
+        align-items: end;
+        display: grid;
+        gap: clamp(28px, 5vw, 120px);
+        grid-template-columns: minmax(0, 1.12fr) minmax(420px, 0.88fr);
+        margin-bottom: clamp(42px, 4.8vw, 74px);
+      }
+
+      .advantage-kicker {
+        color: oklch(42% 0.009 72);
+        display: block;
+        font-size: clamp(13px, 0.92vw, 18px);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        margin-bottom: clamp(22px, 2.3vw, 40px);
+        text-transform: uppercase;
+      }
+
+      .advantage-title {
+        color: oklch(24% 0.039 158);
+        font-family: "Noto Serif KR", "Iowan Old Style", "Charter", serif;
+        font-size: clamp(39px, 3.72vw, 72px);
+        font-weight: 500;
+        letter-spacing: -0.04em;
+        line-height: 1.32;
+        margin: 0;
+        text-wrap: balance;
+      }
+
+      .advantage-copy {
+        color: oklch(42% 0.006 80);
+        font-size: clamp(16px, 1.12vw, 23px);
+        font-weight: 500;
+        line-height: 1.68;
+        margin: 0 0 clamp(4px, 1vw, 14px);
+        word-break: keep-all;
+      }
+
+      .advantage-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .advantage-card {
+        background: oklch(97% 0.01 82 / 0.78);
+        border-left: 1px solid oklch(78% 0.014 82 / 0.56);
+        box-shadow: inset 0 0 0 1px oklch(100% 0 0 / 0.42);
+        min-width: 0;
+      }
+
+      .advantage-card:first-child {
+        border-left: 0;
+      }
+
+      .advantage-media {
+        aspect-ratio: 1.72 / 1;
+        background: oklch(91% 0.015 78);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .advantage-media img {
+        display: block;
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .advantage-number {
+        align-items: center;
+        background: oklch(27% 0.062 158);
+        border-radius: 999px;
+        box-shadow: 0 14px 26px oklch(24% 0.05 150 / 0.18);
+        color: oklch(98% 0.01 90);
+        display: inline-flex;
+        font-family: "Inter", "Pretendard", sans-serif;
+        font-size: clamp(16px, 1.1vw, 22px);
+        font-weight: 700;
+        height: clamp(48px, 3.4vw, 64px);
+        justify-content: center;
+        left: 50%;
+        letter-spacing: 0.02em;
+        position: absolute;
+        top: 100%;
+        transform: translate(-50%, -50%);
+        width: clamp(48px, 3.4vw, 64px);
+      }
+
+      .advantage-card:nth-child(even) .advantage-number,
+      .advantage-card:nth-child(even) .advantage-rule {
+        background: oklch(62% 0.086 74);
+      }
+
+      .advantage-body {
+        padding: clamp(56px, 4.1vw, 78px) clamp(26px, 2.4vw, 50px) clamp(42px, 4vw, 72px);
+      }
+
+      .advantage-card-title {
+        align-items: center;
+        color: oklch(25% 0.05 156);
+        display: flex;
+        font-size: clamp(17px, 1.1vw, 22px);
+        font-weight: 800;
+        gap: 18px;
+        letter-spacing: 0.02em;
+        margin: 0 0 clamp(22px, 2.2vw, 34px);
+      }
+
+      .advantage-card:nth-child(even) .advantage-card-title,
+      .advantage-card:nth-child(even) .advantage-icon {
+        color: oklch(54% 0.083 75);
+      }
+
+      .advantage-icon {
+        color: oklch(25% 0.05 156);
+        display: inline-flex;
+        flex: 0 0 auto;
+        height: 38px;
+        width: 38px;
+      }
+
+      .advantage-icon svg {
+        display: block;
+        height: 100%;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.8;
+        width: 100%;
+      }
+
+      .advantage-lead {
+        color: oklch(29% 0.023 157);
+        font-size: clamp(15px, 0.98vw, 19px);
+        font-weight: 700;
+        line-height: 1.72;
+        margin: 0;
+        word-break: keep-all;
+      }
+
+      .advantage-rule {
+        background: oklch(27% 0.062 158);
+        display: block;
+        height: 1px;
+        margin: clamp(22px, 2.2vw, 34px) 0;
+        width: 36px;
+      }
+
+      .advantage-detail {
+        color: oklch(41% 0.005 76);
+        font-size: clamp(13px, 0.82vw, 16px);
+        font-weight: 500;
+        line-height: 1.74;
+        margin: 0;
+        word-break: keep-all;
+      }
+
+      .advantage-summary {
+        align-items: center;
+        background: oklch(98% 0.007 82 / 0.78);
+        border: 1px solid oklch(78% 0.014 82 / 0.6);
+        border-radius: 8px;
+        display: grid;
+        gap: clamp(24px, 3vw, 54px);
+        grid-template-columns: auto minmax(0, 1fr) 1px minmax(360px, 0.72fr);
+        margin-top: clamp(24px, 2vw, 34px);
+        padding: clamp(24px, 2.4vw, 38px) clamp(28px, 3.8vw, 66px);
+      }
+
+      .advantage-summary-icon {
+        color: oklch(28% 0.055 156);
+        display: inline-flex;
+        height: 48px;
+        width: 48px;
+      }
+
+      .advantage-summary-icon svg {
+        display: block;
+        height: 100%;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.8;
+        width: 100%;
+      }
+
+      .advantage-summary-copy {
+        color: oklch(36% 0.009 78);
+        font-size: clamp(15px, 1vw, 18px);
+        font-weight: 500;
+        line-height: 1.72;
+        margin: 0;
+        word-break: keep-all;
+      }
+
+      .advantage-summary-copy strong {
+        color: oklch(24% 0.055 156);
+        font-weight: 800;
+      }
+
+      .advantage-divider {
+        background: oklch(78% 0.014 82 / 0.58);
+        height: 42px;
+      }
+
+      .advantage-keywords {
+        color: oklch(42% 0.006 80);
+        display: flex;
+        flex-wrap: wrap;
+        font-size: clamp(14px, 0.95vw, 18px);
+        font-weight: 600;
+        gap: 18px clamp(24px, 2.8vw, 44px);
+        justify-content: space-between;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .advantage-keywords li + li::before {
+        color: oklch(36% 0.009 78);
+        content: "•";
+        margin-right: clamp(24px, 2.8vw, 44px);
+      }
+
       .site-footer {
         background:
           linear-gradient(135deg, oklch(18% 0.045 158) 0%, oklch(25% 0.066 154) 54%, oklch(17% 0.04 150) 100%);
@@ -725,6 +1153,45 @@
         .process {
           width: 100%;
         }
+
+        .advantage-inner {
+          width: calc(100vw - 40px);
+        }
+
+        .advantage-header {
+          align-items: start;
+          grid-template-columns: 1fr;
+          margin-bottom: 34px;
+        }
+
+        .advantage-copy {
+          max-width: 720px;
+        }
+
+        .advantage-grid {
+          gap: 18px;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .advantage-card {
+          border: 1px solid oklch(78% 0.014 82 / 0.56);
+          border-radius: 10px;
+          overflow: hidden;
+        }
+
+        .advantage-summary {
+          align-items: start;
+          grid-template-columns: auto minmax(0, 1fr);
+        }
+
+        .advantage-divider {
+          display: none;
+        }
+
+        .advantage-keywords {
+          grid-column: 1 / -1;
+          justify-content: flex-start;
+        }
       }
 
       @media (max-width: 680px) {
@@ -746,6 +1213,66 @@
           backdrop-filter: blur(18px);
           border-color: oklch(74% 0.024 76 / 0.3);
           box-shadow: 0 16px 42px oklch(25% 0.04 80 / 0.08);
+        }
+
+        .advantage-section {
+          padding: 52px 0 44px;
+        }
+
+        .advantage-title {
+          font-size: clamp(32px, 9.6vw, 42px);
+          letter-spacing: -0.045em;
+          line-height: 1.34;
+        }
+
+        .advantage-copy {
+          font-size: 15px;
+          line-height: 1.72;
+        }
+
+        .advantage-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .advantage-media {
+          aspect-ratio: 1.55 / 1;
+        }
+
+        .advantage-body {
+          padding: 46px 24px 30px;
+        }
+
+        .advantage-card-title {
+          align-items: flex-start;
+          font-size: 16px;
+          gap: 14px;
+        }
+
+        .advantage-icon {
+          height: 34px;
+          width: 34px;
+        }
+
+        .advantage-summary {
+          border-radius: 10px;
+          gap: 14px 18px;
+          padding: 22px 20px;
+        }
+
+        .advantage-summary-icon {
+          height: 38px;
+          width: 38px;
+        }
+
+        .advantage-keywords {
+          display: grid;
+          gap: 8px;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .advantage-keywords li + li::before {
+          content: "";
+          margin: 0;
         }
 
         .site-header-logo {
@@ -777,6 +1304,75 @@
         .recovery-visual-frame {
           border-radius: 0;
           width: 100vw;
+        }
+
+        .recovery-problem {
+          min-height: auto;
+        }
+
+        .recovery-visual-frame.recovery-problem {
+          min-height: auto;
+        }
+
+        .recovery-problem-photo {
+          background-position: 72% top;
+          background-size: auto 100%;
+          height: 260px;
+          inset: 0 0 auto;
+          opacity: 0.52;
+        }
+
+        .recovery-problem-photo::after {
+          background:
+            linear-gradient(180deg, oklch(96% 0.011 82 / 0.04), oklch(96% 0.011 82) 92%),
+            linear-gradient(90deg, oklch(96% 0.011 82 / 0.92), oklch(96% 0.011 82 / 0.2));
+        }
+
+        .recovery-problem-status {
+          display: none;
+        }
+
+        .recovery-problem-content {
+          padding: 96px 20px 54px;
+        }
+
+        .recovery-problem-kicker {
+          font-size: 12px;
+          margin-bottom: 28px;
+        }
+
+        .recovery-problem-title {
+          font-size: clamp(34px, 9.2vw, 46px);
+          line-height: 1.32;
+        }
+
+        .recovery-problem-copy br {
+          display: none;
+        }
+
+        .recovery-problem-list {
+          gap: 18px 0;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          margin-top: 42px;
+        }
+
+        .recovery-problem-item {
+          align-items: flex-start;
+          border-left: 0;
+          border-top: 1px solid oklch(74% 0.016 76 / 0.5);
+          gap: 10px;
+          padding: 18px 14px 0 0;
+          text-align: left;
+        }
+
+        .recovery-problem-icon {
+          height: 36px;
+          width: 36px;
+        }
+
+        .recovery-problem-icon svg {
+          height: 34px;
+          width: 34px;
         }
 
         .hero {
@@ -849,7 +1445,7 @@
   <body>
     <header class="site-header" aria-label="KAMBROX 주요 메뉴">
       <a class="site-header-brand" href="#home" aria-label="KAMBROX 홈">
-        <img class="site-header-logo" src="mplc24vr-logo-transparent.png" alt="KAMBROX" />
+        <img class="site-header-logo" src="mplc24vr-logo-transparent.png" alt="KAMBROX">
       </a>
       <nav class="global-nav" aria-label="주요 메뉴">
         <a href="#home" aria-current="page">홈</a>
@@ -877,44 +1473,44 @@
         <section class="hero" aria-label="KAMBROX hero">
           <div class="hero-copy">
             <a class="brand" href="#" aria-label="KAMBROX home">
-              <img class="brand-logo" src="mplc24vr-logo-transparent.png" alt="KAMBROX" />
+              <img class="brand-logo" src="mplc24vr-logo-transparent.png" alt="KAMBROX">
             </a>
 
             <h1>
-              퇴원 이후의 회복,<br />
+              퇴원 이후의 회복,<br>
               데이터로 연결합니다
             </h1>
 
             <p class="lead">
-              캠브록스는 환자의 임상 데이터와 생활 정보를 기반으로<br />
+              캠브록스는 환자의 임상 데이터와 생활 정보를 기반으로<br>
               병원·약국·가정을 연결하여 개인 맞춤 회복을 돕습니다.
             </p>
 
           <ol class="process" aria-label="회복 관리 흐름">
             <li class="process-item">
               <span class="process-icon">
-                <img src="public/images/mpkyy6ix-icon1.png" alt="" />
+                <img src="public/images/mpkyy6ix-icon1.png" alt="">
               </span>
               <span class="process-label">병원 진단 및 데이터</span>
               <i class="process-arrow" aria-hidden="true"></i>
             </li>
             <li class="process-item">
               <span class="process-icon">
-                <img src="public/images/mpkyy6iz-icon2.png" alt="" />
+                <img src="public/images/mpkyy6iz-icon2.png" alt="">
               </span>
               <span class="process-label">임상 데이터 분석</span>
               <i class="process-arrow" aria-hidden="true"></i>
             </li>
             <li class="process-item">
               <span class="process-icon">
-                <img src="public/images/mpkyy6j0-icon3.png" alt="" />
+                <img src="public/images/mpkyy6j0-icon3.png" alt="">
               </span>
               <span class="process-label">약국 상담 및 관리</span>
               <i class="process-arrow" aria-hidden="true"></i>
             </li>
             <li class="process-item">
               <span class="process-icon">
-                <img src="public/images/mpkyy6j0-icon4.png" alt="" />
+                <img src="public/images/mpkyy6j0-icon4.png" alt="">
               </span>
               <span class="process-label">가정에서의 회복 관리</span>
             </li>
@@ -922,18 +1518,14 @@
         </div>
 
         <div class="network" aria-label="병원, 데이터 분석, 약국, 가정 연결 다이어그램">
-          <img
-            class="network-art"
-            src="mplcegpj-asset2-transparent.png"
-            alt="중앙 KAMBROX 허브와 병원, 데이터 분석, 약국, 가정이 연결된 3D 네트워크"
-          />
+          <img class="network-art" src="mplcegpj-asset2-transparent.png" alt="중앙 KAMBROX 허브와 병원, 데이터 분석, 약국, 가정이 연결된 3D 네트워크">
           <div class="network-callout callout-hospital">
             <strong>병원</strong>
             <span>진단 및 임상 데이터</span>
           </div>
           <div class="network-callout callout-analytics">
             <strong>데이터 분석</strong>
-            <span>임상 데이터 분석 및<br />개인 맞춤 인사이트</span>
+            <span>임상 데이터 분석 및<br>개인 맞춤 인사이트</span>
           </div>
           <div class="network-callout callout-pharmacy">
             <strong>약국</strong>
@@ -941,82 +1533,220 @@
           </div>
           <div class="network-callout callout-home">
             <strong>가정</strong>
-            <span>생활 관리 및<br />회복 지원</span>
+            <span>생활 관리 및<br>회복 지원</span>
           </div>
         </div>
       </section>
       </div>
       <section class="recovery-visual" id="academy" aria-label="캠브록스 회복 관리 서비스 화면">
-        <div class="recovery-visual-frame">
-          <img
-            class="recovery-visual-image"
-            src="public/images/mpll3696-2.png"
-            alt="캠브록스 회복 관리 서비스의 병원, 약국, 가정 연결 화면"
-            loading="lazy"
-            decoding="async"
-          />
+        <div class="recovery-visual-frame recovery-problem">
+          <div class="recovery-problem-photo" aria-hidden="true"></div>
+          <div class="recovery-problem-status" aria-hidden="true">
+            <span class="problem-status-card" data-status="disconnected">Disconnected</span>
+            <span class="problem-status-card" data-status="uncertain">Uncertain</span>
+            <span class="problem-status-card" data-status="fragmented">Fragmented</span>
+          </div>
+          <div class="recovery-problem-content">
+            <span class="recovery-problem-kicker">THE PROBLEM</span>
+            <h2 class="recovery-problem-title">
+              퇴원 이후의 회복,<br>
+              여전히 연결되지 못하고 있습니다
+            </h2>
+            <span class="recovery-problem-rule" aria-hidden="true"></span>
+            <p class="recovery-problem-copy">
+              치료는 병원에서 끝나지만, 회복은 일상에서 시작됩니다.<br>
+              그러나 환자들은 단절된 정보와 불확실한 관리 속에서<br>
+              스스로 길을 찾아야 하는 현실에 놓여 있습니다.
+            </p>
+            <ul class="recovery-problem-list" aria-label="퇴원 이후 회복 관리의 문제">
+              <li class="recovery-problem-item">
+                <span class="recovery-problem-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M10 42V15h10V7h8v8h10v27"></path>
+                    <path d="M7 42h34"></path>
+                    <path d="M20 42V31h8v11"></path>
+                    <path d="M20 14h8M18 23h3M27 23h3M18 28h3M27 28h3"></path>
+                    <path d="M24 10v7M20.5 13.5h7"></path>
+                  </svg>
+                </span>
+                <span>병원 중심의 단절된<br>진료 경험</span>
+              </li>
+              <li class="recovery-problem-item">
+                <span class="recovery-problem-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M14 6h15l7 7v29H14z"></path>
+                    <path d="M29 6v9h7"></path>
+                    <path d="M20 31l5-5 4 3 5-7"></path>
+                    <path d="M20 36h13"></path>
+                  </svg>
+                </span>
+                <span>흩어진 검사 결과와<br>의료 정보</span>
+              </li>
+              <li class="recovery-problem-item">
+                <span class="recovery-problem-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M17 21a7 7 0 1 1 14 0"></path>
+                    <path d="M11 41v-5a8 8 0 0 1 8-8h10a8 8 0 0 1 8 8v5"></path>
+                    <path d="M8 28a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM40 28a5 5 0 1 0 0-10 5 5 0 0 0 0 10"></path>
+                    <path d="M8 32v8M40 32v8"></path>
+                  </svg>
+                </span>
+                <span>지역사회 케어와의<br>느슨한 연결</span>
+              </li>
+              <li class="recovery-problem-item">
+                <span class="recovery-problem-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M16 13h18l-2 9 4 4v16H14V26l4-4z"></path>
+                    <path d="M14 13h22"></path>
+                    <path d="M20 31h10"></path>
+                    <path d="M20 36h7"></path>
+                  </svg>
+                </span>
+                <span>복잡한 영양제·약물<br>선택과 관리</span>
+              </li>
+              <li class="recovery-problem-item">
+                <span class="recovery-problem-icon" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M14 14h20v28H14z"></path>
+                    <path d="M19 14a5 5 0 0 1 10 0"></path>
+                    <path d="M24 29a5 5 0 1 0-5-5"></path>
+                    <path d="M24 35v.5"></path>
+                  </svg>
+                </span>
+                <span>회복 과정에서의<br>불확실성과 불안</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
-      <section class="recovery-visual" aria-label="캠브록스 서비스 후속 화면">
-        <div class="recovery-visual-frame">
-          <img
-            class="recovery-visual-image"
-            src="public/images/mpllpeoj-3.png"
-            alt="캠브록스 서비스의 후속 화면"
-            loading="lazy"
-            decoding="async"
-          />
+      <section class="advantage-section" aria-label="캠브록스 핵심 역량">
+        <div class="advantage-inner">
+          <div class="advantage-header">
+            <div>
+              <span class="advantage-kicker">OUR ADVANTAGE</span>
+              <h2 class="advantage-title">
+                회복 여정의 모든 단계를<br>
+                데이터와 전문가의 힘으로 연결합니다
+              </h2>
+            </div>
+            <p class="advantage-copy">
+              KAMBROX는 임상 데이터부터 지역 약국 네트워크까지<br>
+              유기적으로 연결된 4가지 핵심 역량으로 최적의 회복 경험을 제공합니다.
+            </p>
+          </div>
+          <div class="advantage-grid">
+            <article class="advantage-card">
+              <div class="advantage-media">
+                <img src="public/images/advantage-clinical-data.png?v=20260620-clean" alt="임상 데이터를 태블릿에 입력하는 의료진" loading="lazy" decoding="async">
+                <span class="advantage-number">01</span>
+              </div>
+              <div class="advantage-body">
+                <h3 class="advantage-card-title">
+                  <span class="advantage-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none"><path d="M14 9h20v32H14z"></path><path d="M18 9V6h12v3"></path><path d="M20 20h12M20 27h12M20 34h8"></path><path d="M34 18h4v10h-4"></path></svg>
+                  </span>
+                  CLINICAL DATA
+                </h3>
+                <p class="advantage-lead">정확하고 신뢰도 높은 임상 데이터</p>
+                <span class="advantage-rule" aria-hidden="true"></span>
+                <p class="advantage-detail">병원 진료 기록, 검사 결과, 처방 정보, 생활 습관 등 다양한 임상 데이터를 표준화하여 수집합니다.</p>
+              </div>
+            </article>
+            <article class="advantage-card">
+              <div class="advantage-media">
+                <img src="public/images/advantage-analytics.png?v=20260620-clean" alt="회복 데이터를 분석하는 대시보드" loading="lazy" decoding="async">
+                <span class="advantage-number">02</span>
+              </div>
+              <div class="advantage-body">
+                <h3 class="advantage-card-title">
+                  <span class="advantage-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none"><path d="M8 38h32"></path><path d="M10 36V12"></path><path d="M15 31l7-8 6 5 11-14"></path><path d="M38 14h-8M38 14v8"></path></svg>
+                  </span>
+                  RECOMMENDATION LOGIC
+                </h3>
+                <p class="advantage-lead">근거 기반의 개인 맞춤 추천 로직</p>
+                <span class="advantage-rule" aria-hidden="true"></span>
+                <p class="advantage-detail">의학적 근거와 빅데이터 기반 알고리즘으로 개인에게 최적화된 회복 솔루션을 도출합니다.</p>
+              </div>
+            </article>
+            <article class="advantage-card">
+              <div class="advantage-media">
+                <img src="public/images/advantage-expert-review.png?v=20260620-clean" alt="전문가가 태블릿으로 회복 계획을 검토하는 장면" loading="lazy" decoding="async">
+                <span class="advantage-number">03</span>
+              </div>
+              <div class="advantage-body">
+                <h3 class="advantage-card-title">
+                  <span class="advantage-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none"><path d="M24 25a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path><path d="M10 41v-4a12 12 0 0 1 12-12h4a12 12 0 0 1 12 12v4"></path></svg>
+                  </span>
+                  EXPERT REVIEW
+                </h3>
+                <p class="advantage-lead">전문가의 임상적 검토와 최종 판단</p>
+                <span class="advantage-rule" aria-hidden="true"></span>
+                <p class="advantage-detail">전문의, 약사 전문가가 검토하고 최종 가이드를 제공합니다.</p>
+              </div>
+            </article>
+            <article class="advantage-card">
+              <div class="advantage-media">
+                <img src="public/images/advantage-pharmacy-network.png?v=20260620-clean" alt="약국에서 제품을 확인하는 약사" loading="lazy" decoding="async">
+                <span class="advantage-number">04</span>
+              </div>
+              <div class="advantage-body">
+                <h3 class="advantage-card-title">
+                  <span class="advantage-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none"><path d="M14 17h20v24H14z"></path><path d="M19 17v-6h10v6"></path><path d="M24 24v10M19 29h10"></path><path d="M10 23h4M34 23h4"></path></svg>
+                  </span>
+                  PHARMACY NETWORK
+                </h3>
+                <p class="advantage-lead">전국 약국 네트워크를 통한 실행과 관리</p>
+                <span class="advantage-rule" aria-hidden="true"></span>
+                <p class="advantage-detail">검증된 약국 파트너와의 연계를 통해 처방·상담까지 끊김 없는 회복 여정을 지원합니다.</p>
+              </div>
+            </article>
+          </div>
+          <div class="advantage-summary">
+            <span class="advantage-summary-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M24 5l16 6v11c0 10-6.6 17.5-16 21-9.4-3.5-16-11-16-21V11z"></path><path d="M18 24l4 4 9-10"></path></svg>
+            </span>
+            <p class="advantage-summary-copy">
+              데이터와 전문가, 그리고 지역의 신뢰할 수 있는 약국이 하나의 시스템으로 연결되어<br>
+              <strong>환자 한 분 한 분에게 최적화된 회복 경험을 제공합니다.</strong>
+            </p>
+            <span class="advantage-divider" aria-hidden="true"></span>
+            <ul class="advantage-keywords" aria-label="캠브록스 회복 경험의 핵심 가치">
+              <li>정확성</li>
+              <li>전문성</li>
+              <li>연결성</li>
+              <li>지속성</li>
+            </ul>
+          </div>
         </div>
       </section>
       <section class="recovery-visual" aria-label="캠브록스 서비스 세 번째 화면">
         <div class="recovery-visual-frame">
-          <img
-            class="recovery-visual-image"
-            src="public/images/mpllpeon-4.png"
-            alt="캠브록스 서비스의 세 번째 화면"
-            loading="lazy"
-            decoding="async"
-          />
+          <img class="recovery-visual-image" src="public/images/mpllpeon-4.png" alt="캠브록스 서비스의 세 번째 화면" loading="lazy" decoding="async">
         </div>
       </section>
       <section class="recovery-visual" aria-label="캠브록스 서비스 네 번째 화면">
         <div class="recovery-visual-frame">
-          <img
-            class="recovery-visual-image"
-            src="public/images/mpllpeor-5.png"
-            alt="캠브록스 서비스의 네 번째 화면"
-            loading="lazy"
-            decoding="async"
-          />
+          <img class="recovery-visual-image" src="public/images/mpllpeor-5.png" alt="캠브록스 서비스의 네 번째 화면" loading="lazy" decoding="async">
         </div>
       </section>
       <section class="recovery-visual" aria-label="캠브록스 서비스 다섯 번째 화면">
         <div class="recovery-visual-frame">
-          <img
-            class="recovery-visual-image"
-            src="public/images/mpllpeou-6.png"
-            alt="캠브록스 서비스의 다섯 번째 화면"
-            loading="lazy"
-            decoding="async"
-          />
+          <img class="recovery-visual-image" src="public/images/mpllpeou-6.png" alt="캠브록스 서비스의 다섯 번째 화면" loading="lazy" decoding="async">
         </div>
       </section>
       <section class="recovery-visual" id="supplements" aria-label="캠브록스 서비스 여섯 번째 화면">
         <div class="recovery-visual-frame">
-          <img
-            class="recovery-visual-image"
-            src="public/images/mpllpeoz-7.png"
-            alt="캠브록스 서비스의 여섯 번째 화면"
-            loading="lazy"
-            decoding="async"
-          />
+          <img class="recovery-visual-image" src="public/images/mpllpeoz-7.png" alt="캠브록스 서비스의 여섯 번째 화면" loading="lazy" decoding="async">
         </div>
       </section>
       <footer class="site-footer" aria-label="KAMBROX partnership footer">
         <div class="site-footer-inner">
           <div class="footer-message">
             <p class="footer-title">
-              KAMBROX는 회복의 새로운 표준을<br />
+              KAMBROX는 회복의 새로운 표준을<br>
               만들어갑니다.
             </p>
           </div>
@@ -1058,5 +1788,7 @@
         window.addEventListener('scroll', revealLogo, { passive: true });
       })();
     </script>
-  </body>
-</html>
+
+
+
+</body></html>
