@@ -49,14 +49,6 @@ const callouts = [
   }
 ];
 
-const recoveryVisuals = [
-  {
-    label: "캠브록스 서비스 여섯 번째 화면",
-    src: "/images/mpllpeoz-7.png",
-    alt: "캠브록스 서비스의 여섯 번째 화면"
-  }
-];
-
 const advantageCards = [
   {
     number: "01",
@@ -577,24 +569,87 @@ export default function HomePage() {
             </ul>
           </div>
         </section>
-        {recoveryVisuals.map((visual, index) => (
-          <section
-            className="recovery-visual"
-            id={index === recoveryVisuals.length - 1 ? "supplements" : undefined}
-            aria-label={visual.label}
-            key={visual.src}
-          >
-            <div className="recovery-visual-frame">
-              <img
-                className="recovery-visual-image"
-                src={visual.src}
-                alt={visual.alt}
-                loading="lazy"
-                decoding="async"
-              />
+        <section className="impact-section" id="supplements" aria-label="연결된 회복 경험의 임팩트">
+          <div className="impact-inner">
+            <header className="impact-header">
+              <div>
+                <span className="impact-kicker">OUR IMPACT</span>
+                <h2 className="impact-title">연결된 회복 경험이<br />더 나은 삶의 변화를 만듭니다</h2>
+              </div>
+              <p className="impact-copy">
+                KAMBROX는 데이터와 전문가, 지역의 연결을 통해<br />
+                환자 중심의 회복 생태계를 만들고, 지속 가능한 가치를 만들어갑니다.
+              </p>
+            </header>
+
+            <div className="impact-card-grid" aria-label="캠브록스 회복 경험의 변화">
+              <article className="impact-card">
+                <figure className="impact-media">
+                  <img src="/images/impact-continuity-object.png" alt="의료진이 환자와 회복 데이터를 확인하는 상담 장면" loading="lazy" decoding="async" />
+                </figure>
+                <div className="impact-card-body">
+                  <div>
+                    <div className="impact-card-heading">
+                      <span className="impact-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M24 39s-13-8.1-13-19a7 7 0 0 1 13-3.7A7 7 0 0 1 37 20c0 10.9-13 19-13 19z" /><path d="M17 24h5l3-6 4 10 2-4h4" /></svg></span>
+                      <h3 className="impact-card-title"><span className="impact-number">01</span>지속 가능한 회복 관리</h3>
+                    </div>
+                    <p className="impact-card-copy">치료 이후에도 개인 맞춤 관리와 지속적인 모니터링으로 회복 여정을 안전하게 이어갑니다.</p>
+                  </div>
+                  <span className="impact-card-tag">CONTINUITY</span>
+                </div>
+              </article>
+
+              <article className="impact-card">
+                <figure className="impact-media">
+                  <img src="/images/impact-local-object.png" alt="약사가 환자에게 전문 상담을 제공하는 약국 장면" loading="lazy" decoding="async" />
+                </figure>
+                <div className="impact-card-body">
+                  <div>
+                    <div className="impact-card-heading">
+                      <span className="impact-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M13 42V15h22v27" /><path d="M18 15V9h12v6M20 27h8M24 23v8M11 42h26" /></svg></span>
+                      <h3 className="impact-card-title"><span className="impact-number">02</span>지역 약사의 전문성 강화</h3>
+                    </div>
+                    <p className="impact-card-copy">약사의 전문 판단을 지원하는 데이터와 솔루션으로 지역 약국의 역할을 확장하고 환자 케어의 질을 높입니다.</p>
+                  </div>
+                  <span className="impact-card-tag">LOCAL EMPOWERMENT</span>
+                </div>
+              </article>
+
+              <article className="impact-card">
+                <figure className="impact-media">
+                  <img src="/images/impact-evidence-object.png" alt="데이터 분석 대시보드가 표시된 태블릿" loading="lazy" decoding="async" />
+                </figure>
+                <div className="impact-card-body">
+                  <div>
+                    <div className="impact-card-heading">
+                      <span className="impact-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M13 38V26M23 38V18M33 38V11" /><path d="M9 38h30" /></svg></span>
+                      <h3 className="impact-card-title"><span className="impact-number">03</span>근거 기반의 가치 축적</h3>
+                    </div>
+                    <p className="impact-card-copy">실제 임상 현장에서 생성되는 데이터를 체계적으로 축적하여 더 나은 근거와 인사이트를 만들어갑니다.</p>
+                  </div>
+                  <span className="impact-card-tag">EVIDENCE ACCUMULATION</span>
+                </div>
+              </article>
+
+              <article className="impact-card">
+                <figure className="impact-media">
+                  <img src="/images/impact-community-object.png" alt="보호자와 환자가 태블릿을 보며 케어 정보를 나누는 장면" loading="lazy" decoding="async" />
+                </figure>
+                <div className="impact-card-body">
+                  <div>
+                    <div className="impact-card-heading">
+                      <span className="impact-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M17 22a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM31 23a5 5 0 1 0 0-10 5 5 0 0 0 0 10z" /><path d="M7 39a10 10 0 0 1 20 0M27 31a9 9 0 0 1 14 8" /></svg></span>
+                      <h3 className="impact-card-title"><span className="impact-number">04</span>연결된 케어 커뮤니티</h3>
+                    </div>
+                    <p className="impact-card-copy">의료진, 약사, 환자, 보호자가 연결된 커뮤니티를 통해 정보와 경험을 나누고 함께 회복을 만들어갑니다.</p>
+                  </div>
+                  <span className="impact-card-tag">CONNECTED COMMUNITY</span>
+                </div>
+              </article>
             </div>
-          </section>
-        ))}
+
+          </div>
+        </section>
         <footer className="site-footer" aria-label="KAMBROX partnership footer">
           <div className="site-footer-inner">
             <div className="footer-message">
