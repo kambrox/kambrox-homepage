@@ -332,6 +332,24 @@
   user-select: none;
 }
 
+.main-photo-placeholder {
+  display: none;
+  padding: 24px;
+  color: rgba(29, 47, 40, 0.52);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.main-photo.is-image-error img {
+  display: none;
+}
+
+.main-photo.is-image-error .main-photo-placeholder {
+  display: block;
+}
+
 .main-photo img.slide-from-right {
   animation: gallerySlideFromRight 260ms cubic-bezier(0.2, 0, 0, 1);
 }

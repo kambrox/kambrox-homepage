@@ -329,6 +329,21 @@
       display: block;
       user-select: none;
     }
+    .main-photo-placeholder {
+      display: none;
+      padding: 24px;
+      color: rgba(29, 47, 40, .52);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.4;
+      text-align: center;
+    }
+    .main-photo.is-image-error img {
+      display: none;
+    }
+    .main-photo.is-image-error .main-photo-placeholder {
+      display: block;
+    }
     .main-photo img.slide-from-right {
       animation: gallerySlideFromRight 260ms cubic-bezier(.2, 0, 0, 1);
     }
@@ -1397,20 +1412,8 @@
     <section class="product-hero" data-od-id="product-detail">
       <div class="visual-pane" aria-label="상품 이미지">
         <div class="main-photo" aria-label="선택된 상품 이미지">
-          <button class="gallery-nav prev" type="button" data-gallery-prev aria-label="이전 큰 이미지"></button>
-          <img id="galleryMain" src="product-main-1.jpg" alt="선택된 상품 이미지">
-          <button class="gallery-nav next" type="button" data-gallery-next aria-label="다음 큰 이미지"></button>
-          <span class="photo-count num" id="photoCount">1/2</span>
-        </div>
-        <div class="thumb-row" aria-label="상품 이미지 썸네일">
-          <button class="thumb-nav" type="button" data-gallery-prev aria-label="이전 이미지"></button>
-          <button class="thumb is-active" type="button" data-gallery-thumb data-index="0" aria-label="제품 이미지 선택" aria-current="true">
-            <img src="product-main-1.jpg" alt="">
-          </button>
-          <button class="thumb" type="button" data-gallery-thumb data-index="1" aria-label="특허증 이미지 선택">
-            <img src="product-main-2.jpg" alt="">
-          </button>
-          <button class="thumb-nav" type="button" data-gallery-next aria-label="다음 이미지"></button>
+          <img id="galleryMain" src="public/images/nutrition-myers.png" alt="캠브로씨 마이어스 상품 이미지">
+          <span class="main-photo-placeholder" id="galleryPlaceholder">캠브로씨 마이어스<br>이미지 준비중</span>
         </div>
       </div>
 
@@ -1418,9 +1421,9 @@
 
       <aside class="buy-pane" aria-label="상품 구매 정보">
         <div class="buy-inner">
-          <h1 class="title">건강식</h1>
+          <h1 class="title" id="productTitle">캠브로씨 마이어스</h1>
 
-          <div class="price num">9,900,000<small>원</small></div>
+          <div class="price num"><span id="productPrice">99,000</span><small>원</small></div>
 
           <div class="shipping-summary">
             <svg class="truck" viewBox="0 0 24 18" aria-hidden="true">
@@ -1455,7 +1458,7 @@
           <div class="selected" id="selectedBox">
             <div class="selected-top">
               <span id="selectedName">택배배송</span>
-              <span class="num">9,900,000원</span>
+              <span id="selectedPrice" class="num">99,000원</span>
             </div>
             <div class="qty-row">
               <div class="qty" aria-label="수량 변경">
@@ -1469,7 +1472,7 @@
 
           <div class="total">
             <span>선택 제품의 총액</span>
-            <strong id="totalPrice" class="num">9,900,000 원</strong>
+            <strong id="totalPrice" class="num">99,000 원</strong>
           </div>
 
           <div class="primary-actions">
@@ -1551,7 +1554,55 @@
   </div>
 
   <script>
-    const UNIT_PRICE = 9900000;
+    const PRODUCTS = {
+      myers: {
+        title: '캠브로씨 마이어스',
+        price: 99000,
+        image: 'public/images/nutrition-myers.png'
+      },
+      'liposomal-vitamin-c': {
+        title: '캠브로씨 리포소말 비타민C',
+        price: 99000,
+        image: 'public/images/nutrition-liposomal-vitamin-c.png'
+      },
+      'algal-omega3': {
+        title: '캠브로씨 알갈오메가3',
+        price: 99000,
+        image: 'public/images/nutrition-algal-omega3.png'
+      },
+      immusin: {
+        title: '캠브로씨 이뮤신',
+        price: 99000,
+        image: 'public/images/nutrition-immusin.png'
+      },
+      brc: {
+        title: '캠브로씨 비알씨',
+        price: 99000,
+        image: 'public/images/nutrition-brc.png'
+      },
+      taheebo: {
+        title: '캠브로씨 타히보',
+        price: 99000,
+        image: 'public/images/nutrition-taheebo.png'
+      },
+      qrf: {
+        title: '캠브로씨 큐알에프',
+        price: 99000,
+        image: 'public/images/nutrition-qrf.png'
+      },
+      'vitamin-d': {
+        title: '캠브로씨 비타민D',
+        price: 99000,
+        image: 'public/images/nutrition-vitamin-d.png'
+      },
+      selenium: {
+        title: '캠브로씨 셀레늄',
+        price: 99000,
+        image: 'public/images/nutrition-selenium.png'
+      }
+    };
+    const productSlug = new URLSearchParams(window.location.search).get('product') || 'myers';
+    const selectedProduct = PRODUCTS[productSlug] || PRODUCTS.myers;
     const colorSelect = document.getElementById('colorSelect');
     const selectedBox = document.getElementById('selectedBox');
     const selectedName = document.getElementById('selectedName');
@@ -1561,19 +1612,28 @@
     const cartBtn = document.getElementById('cartBtn');
     const mobileBuy = document.getElementById('mobileBuy');
     const mobileCart = document.getElementById('mobileCart');
-    const galleryImages = [
-      { src: 'product-main-1.jpg', alt: '제품 대표 이미지' },
-      { src: 'product-main-2.jpg', alt: '특허증 상세 이미지' }
-    ];
+    const productTitle = document.getElementById('productTitle');
+    const productPrice = document.getElementById('productPrice');
+    const selectedPrice = document.getElementById('selectedPrice');
     const galleryMain = document.getElementById('galleryMain');
-    const photoCount = document.getElementById('photoCount');
-    const galleryThumbs = Array.from(document.querySelectorAll('[data-gallery-thumb]'));
+    const galleryPhoto = galleryMain.closest('.main-photo');
+    const galleryPlaceholder = document.getElementById('galleryPlaceholder');
     const noticeModal = document.getElementById('noticeModal');
     const noticeText = document.getElementById('noticeText');
     const modalConfirm = document.getElementById('modalConfirm');
     const backButton = document.querySelector('[data-back-button]');
     let qty = 1;
-    let galleryIndex = 0;
+
+    function syncSelectedProduct() {
+      document.title = `${selectedProduct.title} · KAMBROX 건기식`;
+      productTitle.textContent = selectedProduct.title;
+      productPrice.textContent = selectedProduct.price.toLocaleString('ko-KR');
+      selectedPrice.textContent = `${selectedProduct.price.toLocaleString('ko-KR')}원`;
+      galleryPlaceholder.innerHTML = `${selectedProduct.title}<br>이미지 준비중`;
+      galleryPhoto.classList.remove('is-image-error');
+      galleryMain.src = selectedProduct.image;
+      galleryMain.alt = `${selectedProduct.title} 상품 이미지`;
+    }
 
     function formatWon(value) {
       return `${value.toLocaleString('ko-KR')} 원`;
@@ -1587,9 +1647,10 @@
       const hasColor = Boolean(colorSelect.value);
       selectedBox.classList.toggle('show', hasColor);
       qtyOut.textContent = qty;
-      totalPrice.textContent = formatWon(UNIT_PRICE * qty);
+      selectedPrice.textContent = `${(selectedProduct.price * qty).toLocaleString('ko-KR')}원`;
+      totalPrice.textContent = formatWon(selectedProduct.price * qty);
       selectedName.textContent = hasColor ? selectionLabel() : '배송 옵션을 먼저 선택해 주세요';
-      const payload = hasColor ? { option: selectionLabel(), qty, price: UNIT_PRICE * qty } : null;
+      const payload = hasColor ? { option: selectionLabel(), qty, price: selectedProduct.price * qty } : null;
       if (payload) localStorage.setItem('commerceSelection', JSON.stringify(payload));
     }
 
@@ -1622,43 +1683,11 @@
       window.location.href = 'product2.html';
     }
 
-    function setGalleryImage(nextIndex, direction = 'next') {
-      const previousIndex = galleryIndex;
-      galleryIndex = (nextIndex + galleryImages.length) % galleryImages.length;
-      const image = galleryImages[galleryIndex];
-      const changed = previousIndex !== galleryIndex;
-      galleryMain.classList.remove('slide-from-right', 'slide-from-left');
-      galleryMain.src = image.src;
-      galleryMain.alt = image.alt;
-      if (changed) {
-        void galleryMain.offsetWidth;
-        galleryMain.classList.add(direction === 'prev' ? 'slide-from-left' : 'slide-from-right');
-      }
-      photoCount.textContent = `${galleryIndex + 1}/${galleryImages.length}`;
-      galleryThumbs.forEach((thumb, index) => {
-        const active = index === galleryIndex;
-        thumb.classList.toggle('is-active', active);
-        if (active) {
-          thumb.setAttribute('aria-current', 'true');
-        } else {
-          thumb.removeAttribute('aria-current');
-        }
-      });
-    }
-
-    document.querySelectorAll('[data-gallery-prev]').forEach((button) => {
-      button.addEventListener('click', () => setGalleryImage(galleryIndex - 1, 'prev'));
+    galleryMain.addEventListener('error', () => {
+      galleryPhoto.classList.add('is-image-error');
     });
-
-    document.querySelectorAll('[data-gallery-next]').forEach((button) => {
-      button.addEventListener('click', () => setGalleryImage(galleryIndex + 1, 'next'));
-    });
-
-    galleryThumbs.forEach((thumb) => {
-      thumb.addEventListener('click', () => {
-        const nextIndex = Number(thumb.dataset.index);
-        setGalleryImage(nextIndex, nextIndex > galleryIndex ? 'next' : 'prev');
-      });
+    galleryMain.addEventListener('load', () => {
+      galleryPhoto.classList.remove('is-image-error');
     });
 
     colorSelect.addEventListener('change', updateSelection);
@@ -1712,7 +1741,7 @@
     });
 
     updateSelection();
-    setGalleryImage(0);
+    syncSelectedProduct();
   </script>
 </body>
 </html>

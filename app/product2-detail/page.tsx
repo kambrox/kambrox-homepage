@@ -5,12 +5,58 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import "./product-detail.css";
 
-const UNIT_PRICE = 9_900_000;
+const productCatalog = {
+  myers: {
+    title: "캠브로씨 마이어스",
+    price: 99000,
+    image: "/images/nutrition-myers.png"
+  },
+  "liposomal-vitamin-c": {
+    title: "캠브로씨 리포소말 비타민C",
+    price: 99000,
+    image: "/images/nutrition-liposomal-vitamin-c.png"
+  },
+  "algal-omega3": {
+    title: "캠브로씨 알갈오메가3",
+    price: 99000,
+    image: "/images/nutrition-algal-omega3.png"
+  },
+  immusin: {
+    title: "캠브로씨 이뮤신",
+    price: 99000,
+    image: "/images/nutrition-immusin.png"
+  },
+  brc: {
+    title: "캠브로씨 비알씨",
+    price: 99000,
+    image: "/images/nutrition-brc.png"
+  },
+  taheebo: {
+    title: "캠브로씨 타히보",
+    price: 99000,
+    image: "/images/nutrition-taheebo.png"
+  },
+  qrf: {
+    title: "캠브로씨 큐알에프",
+    price: 99000,
+    image: "/images/nutrition-qrf.png"
+  },
+  "vitamin-d": {
+    title: "캠브로씨 비타민D",
+    price: 99000,
+    image: "/images/nutrition-vitamin-d.png"
+  },
+  selenium: {
+    title: "캠브로씨 셀레늄",
+    price: 99000,
+    image: "/images/nutrition-selenium.png"
+  }
+} as const;
 
-const galleryImages = [
-  { src: "/images/product-main-1.jpg", alt: "제품 대표 이미지" },
-  { src: "/images/product-main-2.jpg", alt: "특허증 상세 이미지" }
-] as const;
+type ProductSlug = keyof typeof productCatalog;
+type ProductSummary = (typeof productCatalog)[ProductSlug];
+
+const fallbackProduct = productCatalog.myers;
 
 const detailImages = [
   { src: "/images/mpmldpp1-0.png", alt: "수소가스 흡입기 상품 상세 설명 1" },
@@ -52,10 +98,10 @@ function formatWon(value: number) {
 
 export default function ProductDetailPage() {
   const router = useRouter();
+  const [selectedProduct, setSelectedProduct] = useState<ProductSummary>(fallbackProduct);
   const [qty, setQty] = useState(1);
   const [shippingOption, setShippingOption] = useState("택배배송");
-  const [galleryIndex, setGalleryIndex] = useState(0);
-  const [slideDirection, setSlideDirection] = useState<"next" | "prev" | null>(null);
+  const [isGalleryImageError, setIsGalleryImageError] = useState(false);
   const [activeTab, setActiveTab] = useState<PanelId>("detail");
   const [noticeMessage, setNoticeMessage] = useState<string | null>(null);
 
@@ -68,8 +114,19 @@ export default function ProductDetailPage() {
   }, []);
 
   useEffect(() => {
-    document.title = "건강식 · 스마트스토어형 상품상세";
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("product") as ProductSlug | null;
+    const nextProduct = slug && productCatalog[slug] ? productCatalog[slug] : fallbackProduct;
+    setSelectedProduct(nextProduct);
   }, []);
+
+  useEffect(() => {
+    document.title = `${selectedProduct.title} · KAMBROX 건기식`;
+  }, [selectedProduct]);
+
+  useEffect(() => {
+    setIsGalleryImageError(false);
+  }, [selectedProduct.image]);
 
   useEffect(() => {
     if (!noticeMessage) return;
@@ -79,20 +136,6 @@ export default function ProductDetailPage() {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [noticeMessage, hideNotice]);
-
-  const goToGallery = useCallback(
-    (nextIndex: number, direction: "next" | "prev") => {
-      setGalleryIndex((current) => {
-        const normalized = ((nextIndex % galleryImages.length) + galleryImages.length) % galleryImages.length;
-        if (normalized !== current) setSlideDirection(direction);
-        return normalized;
-      });
-    },
-    []
-  );
-
-  const handlePrev = useCallback(() => goToGallery(galleryIndex - 1, "prev"), [galleryIndex, goToGallery]);
-  const handleNext = useCallback(() => goToGallery(galleryIndex + 1, "next"), [galleryIndex, goToGallery]);
 
   const handleBack = useCallback(() => {
     if (typeof window !== "undefined") {
@@ -109,10 +152,7 @@ export default function ProductDetailPage() {
   const handleBuy = useCallback(() => showNotice(BUY_NOTICE), [showNotice]);
   const handleCart = useCallback(() => showNotice(CART_NOTICE), [showNotice]);
 
-  const total = UNIT_PRICE * qty;
-  const galleryImage = galleryImages[galleryIndex];
-  const slideClass =
-    slideDirection === "next" ? "slide-from-right" : slideDirection === "prev" ? "slide-from-left" : "";
+  const total = selectedProduct.price * qty;
 
   return (
     <div className="page">
@@ -190,59 +230,19 @@ export default function ProductDetailPage() {
 
         <section className="product-hero">
           <div className="visual-pane" aria-label="상품 이미지">
-            <div className="main-photo" aria-label="선택된 상품 이미지">
-              <button
-                className="gallery-nav prev"
-                type="button"
-                aria-label="이전 큰 이미지"
-                onClick={handlePrev}
-              />
+            <div className={`main-photo${isGalleryImageError ? " is-image-error" : ""}`} aria-label="선택된 상품 이미지">
               <img
-                key={galleryImage.src}
-                className={slideClass}
-                src={galleryImage.src}
-                alt={galleryImage.alt}
+                key={selectedProduct.image}
+                src={selectedProduct.image}
+                alt={`${selectedProduct.title} 상품 이미지`}
+                onError={() => setIsGalleryImageError(true)}
+                onLoad={() => setIsGalleryImageError(false)}
               />
-              <button
-                className="gallery-nav next"
-                type="button"
-                aria-label="다음 큰 이미지"
-                onClick={handleNext}
-              />
-              <span className="photo-count num">
-                {galleryIndex + 1}/{galleryImages.length}
+              <span className="main-photo-placeholder">
+                {selectedProduct.title}
+                <br />
+                이미지 준비중
               </span>
-            </div>
-            <div className="thumb-row" aria-label="상품 이미지 썸네일">
-              <button
-                className="thumb-nav thumb-prev"
-                type="button"
-                aria-label="이전 이미지"
-                onClick={handlePrev}
-              />
-              {galleryImages.map((image, index) => {
-                const isActive = index === galleryIndex;
-                return (
-                  <button
-                    key={image.src}
-                    className={`thumb${isActive ? " is-active" : ""}`}
-                    type="button"
-                    aria-label={`${image.alt} 선택`}
-                    aria-current={isActive ? "true" : undefined}
-                    onClick={() =>
-                      goToGallery(index, index > galleryIndex ? "next" : "prev")
-                    }
-                  >
-                    <img src={image.src} alt="" />
-                  </button>
-                );
-              })}
-              <button
-                className="thumb-nav thumb-next"
-                type="button"
-                aria-label="다음 이미지"
-                onClick={handleNext}
-              />
             </div>
           </div>
 
@@ -250,10 +250,10 @@ export default function ProductDetailPage() {
 
           <aside className="buy-pane" aria-label="상품 구매 정보">
             <div className="buy-inner">
-              <h1 className="title">건강식</h1>
+              <h1 className="title">{selectedProduct.title}</h1>
 
               <div className="price num">
-                {UNIT_PRICE.toLocaleString("ko-KR")}
+                {selectedProduct.price.toLocaleString("ko-KR")}
                 <small>원</small>
               </div>
 
