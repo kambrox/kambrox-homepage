@@ -9,7 +9,7 @@ const UNIT_PRICE = 9_900_000;
 
 const galleryImages = [
   { src: "/images/product-main-1.jpg", alt: "제품 대표 이미지" },
-  { src: "/images/product-main-2.jpg", alt: "특허증 상세 이미지" }
+  { src: "/images/product-patent-certificate.jpeg", alt: "특허증 상세 이미지" }
 ] as const;
 
 const detailImages = [

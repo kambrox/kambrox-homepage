@@ -10,55 +10,55 @@ const productCatalog = {
     title: "캠브로씨 마이어스",
     price: 0,
     image: "/images/nutrition-myers.png",
-    detailImages: ["/images/nutrition-detail-myers.png"]
+    detailImages: ["/images/nutrition-detail-common.png"]
   },
   "liposomal-vitamin-c": {
     title: "캠브로씨 리포소말 비타민C",
     price: 0,
     image: "/images/nutrition-liposomal-vitamin-c.png",
-    detailImages: ["/images/nutrition-detail-liposomal-vitamin-c.png"]
+    detailImages: ["/images/nutrition-detail-common.png"]
   },
   "algal-omega3": {
     title: "캠브로씨 알갈오메가3",
     price: 0,
     image: "/images/nutrition-algal-omega3.png",
-    detailImages: ["/images/nutrition-detail-algal-omega3.png"]
+    detailImages: ["/images/nutrition-detail-common.png"]
   },
   immusin: {
     title: "캠브로씨 이뮤신",
     price: 0,
     image: "/images/nutrition-immusin.png",
-    detailImages: ["/images/nutrition-detail-immusin.png"]
+    detailImages: ["/images/nutrition-detail-common.png"]
   },
   brc: {
     title: "캠브로씨 비알씨",
     price: 0,
     image: "/images/nutrition-brc.png",
-    detailImages: ["/images/nutrition-detail-brc.png"]
+    detailImages: ["/images/nutrition-detail-common.png"]
   },
   taheebo: {
     title: "캠브로씨 타히보",
     price: 0,
     image: "/images/nutrition-taheebo.png",
-    detailImages: ["/images/nutrition-detail-taheebo.png"]
+    detailImages: ["/images/nutrition-detail-common.png"]
   },
   qrf: {
     title: "캠브로씨 큐알에프",
     price: 0,
     image: "/images/nutrition-qrf.png",
-    detailImages: ["/images/nutrition-detail-qrf.png"]
+    detailImages: ["/images/nutrition-detail-common.png"]
   },
   "vitamin-d": {
     title: "캠브로씨 비타민D",
     price: 0,
     image: "/images/nutrition-vitamin-d.png",
-    detailImages: ["/images/nutrition-detail-vitamin-d.png"]
+    detailImages: ["/images/nutrition-detail-common.png"]
   },
   selenium: {
     title: "캠브로씨 셀레늄",
     price: 0,
     image: "/images/nutrition-selenium.png",
-    detailImages: ["/images/nutrition-detail-selenium.png"]
+    detailImages: ["/images/nutrition-detail-common.png"]
   }
 } as const;
 
