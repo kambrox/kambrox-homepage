@@ -51,11 +51,6 @@ const callouts = [
 
 const recoveryVisuals = [
   {
-    label: "캠브록스 서비스 네 번째 화면",
-    src: "/images/mpllpeor-5.png",
-    alt: "캠브록스 서비스의 네 번째 화면"
-  },
-  {
     label: "캠브록스 서비스 여섯 번째 화면",
     src: "/images/mpllpeoz-7.png",
     alt: "캠브록스 서비스의 여섯 번째 화면"
@@ -498,6 +493,95 @@ export default function HomePage() {
                 decoding="async"
               />
             </div>
+          </div>
+        </section>
+        <section className="ecosystem-section" aria-label="데이터로 연결된 통합 회복 케어 솔루션">
+          <div className="ecosystem-inner">
+            <div className="ecosystem-header">
+              <div>
+                <span className="ecosystem-kicker">PRODUCT ECOSYSTEM</span>
+                <h2 className="ecosystem-title">데이터로 연결된 통합 회복 케어 솔루션</h2>
+                <p className="ecosystem-copy">
+                  KAMBROX는 데이터 플랫폼을 중심으로
+                  <br />
+                  제품, 디바이스, 케어 서비스를 하나의 흐름으로 제공합니다.
+                </p>
+              </div>
+              <ul className="ecosystem-trust" aria-label="제품 생태계 신뢰 기준">
+                <li>
+                  <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                    <path d="M24 5l16 6v11c0 10-6.6 17.5-16 21-9.4-3.5-16-11-16-21V11z" />
+                    <path d="M18 24l4 4 9-10" />
+                  </svg>
+                  임상 근거 기반
+                </li>
+                <li>전문가 검토</li>
+                <li>안전한 데이터 관리</li>
+              </ul>
+            </div>
+            <div className="ecosystem-map">
+              <article className="ecosystem-card">
+                <div className="ecosystem-card-copy">
+                  <h3 className="ecosystem-card-title">
+                    <span className="ecosystem-card-icon" aria-hidden="true">
+                      <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M17 9l22 22a8 8 0 0 1-11 11L6 20A8 8 0 0 1 17 9z" />
+                        <path d="M16 30l14-14" />
+                      </svg>
+                    </span>
+                    맞춤형 영양 솔루션
+                  </h3>
+                  <p className="ecosystem-card-desc">환자 데이터와 전문가 가이드 기반의 맞춤형 보충제를 제공합니다.</p>
+                </div>
+                <div className="ecosystem-media">
+                  <img src="/images/ecosystem-nutrition-object.png" alt="KAMBROX 맞춤형 영양 솔루션 제품군" loading="lazy" decoding="async" />
+                </div>
+              </article>
+              <article className="ecosystem-card">
+                <div className="ecosystem-card-copy">
+                  <h3 className="ecosystem-card-title">
+                    <span className="ecosystem-card-icon" aria-hidden="true">
+                      <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M10 42V16l14-8 14 8v26" />
+                        <path d="M7 42h34M20 42V30h8v12" />
+                        <path d="M24 16v9M19.5 20.5h9" />
+                      </svg>
+                    </span>
+                    지역 약국 네트워크
+                  </h3>
+                  <p className="ecosystem-card-desc">검증된 약국 네트워크를 통해 제품 제공과 복약 상담, 사후 관리를 연결합니다.</p>
+                </div>
+                <div className="ecosystem-media">
+                  <img src="/images/ecosystem-pharmacy-object.png" alt="지역 약국 네트워크와 상담 약국 제품" loading="lazy" decoding="async" />
+                </div>
+              </article>
+              <div className="ecosystem-platform" aria-label="KAMBROX 데이터 플랫폼">
+                <span>
+                  <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                    <ellipse cx="24" cy="12" rx="10" ry="5" />
+                    <path d="M14 12v18c0 2.8 4.5 5 10 5s10-2.2 10-5V12" />
+                    <path d="M14 21c0 2.8 4.5 5 10 5s10-2.2 10-5" />
+                  </svg>
+                  KAMBROX
+                  <br />
+                  DATA PLATFORM
+                </span>
+              </div>
+              <div className="ecosystem-platform-data" aria-label="통합 관리 데이터">
+                <span><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M15 7h17l5 5v29H15z" /><path d="M32 7v6h6" /><path d="M21 24h12M21 31h12" /></svg>임상 데이터</span>
+                <span><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M15 8h18v32H15z" /><path d="M21 16h6M21 24h6M21 32h6" /></svg>검사 결과</span>
+                <span><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M16 8h16l4 6v28H12V14z" /><path d="M19 25h10M19 32h8" /></svg>복약 기록</span>
+                <span><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 40s14-8 14-21a8 8 0 0 0-14-5 8 8 0 0 0-14 5c0 13 14 21 14 21z" /></svg>생활 습관</span>
+                <span><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M12 12h24v18H18l-6 6z" /><path d="M18 20h12M18 25h8" /></svg>상담 기록</span>
+              </div>
+            </div>
+            <ul className="ecosystem-principles" aria-label="통합 회복 케어 원칙">
+              <li><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 5l16 6v11c0 10-6.6 17.5-16 21-9.4-3.5-16-11-16-21V11z" /><path d="M18 24l4 4 9-10" /></svg><span><strong>근거 기반 설계</strong>임상 근거와 가이드라인을 기반으로 설계된 제품과 서비스를 제공합니다.</span></li>
+              <li><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M14 22V12a10 10 0 0 1 20 0v10" /><path d="M11 22h26v20H11z" /></svg><span><strong>안전한 데이터 관리</strong>암호화된 데이터 관리와 접근 통제로 환자 정보를 안전하게 보호합니다.</span></li>
+              <li><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M17 20a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM31 23a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" /><path d="M6 42v-4a11 11 0 0 1 11-11h1a11 11 0 0 1 11 11v4M31 29a10 10 0 0 1 10 10v3" /></svg><span><strong>전문가 협업</strong>의료진, 약사 등 전문가가 함께 최적의 회복 계획을 만듭니다.</span></li>
+              <li><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M9 39V25M19 39V17M29 39V21M39 39V9" /></svg><span><strong>지속적 모니터링</strong>지속적인 데이터 모니터링으로 회복 경과를 확인하고 케어를 최적화합니다.</span></li>
+              <li><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M15 16a13 13 0 0 1 22 7" /><path d="M37 14v9h-9M33 32a13 13 0 0 1-22-7" /><path d="M11 34v-9h9" /></svg><span><strong>통합적인 회복 경험</strong>제품, 서비스, 네트워크가 유기적으로 연결된 통합 회복 경험을 제공합니다.</span></li>
+            </ul>
           </div>
         </section>
         {recoveryVisuals.map((visual, index) => (
