@@ -23,7 +23,7 @@ const detailNav = [
   { label: "홈", href: "/" },
   { label: "아카데미", href: "/academy", current: true },
   { label: "수소치료기", href: "/product1-detail" },
-  { label: "건강식", href: "/product2-detail" }
+  { label: "건기식", href: "/product2" }
 ];
 
 export default function AcademyPage() {

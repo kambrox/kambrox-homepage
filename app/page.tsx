@@ -107,7 +107,7 @@ const mainNav = [
   { label: "홈", href: "#home", current: true },
   { label: "아카데미", href: "/academy" },
   { label: "수소치료기", href: "/product1-detail" },
-  { label: "건강식", href: "/product2-detail" }
+  { label: "건기식", href: "/product2" }
 ];
 
 function ProblemIcon({ type }: { type: string }) {

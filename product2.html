@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="mpmrw6xh-favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="mpmrw6xh-favicon.png" />
+  <meta name="apple-mobile-web-app-title" content="KAMBROX" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>건기식 · KAMBROX</title>
+  <style>
+    :root {
+      --green: oklch(36% 0.087 154);
+      --green-dark: oklch(28% 0.07 154);
+      --gold: oklch(66% 0.095 78);
+      --motion-fast: 150ms;
+      --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    }
+    * { box-sizing: border-box; }
+    html { background: #fff; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: #fff;
+      color: #111;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      line-height: 1.35;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, select { font: inherit; }
+    button { cursor: pointer; }
+    .sr-only {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+    .page { min-height: 100vh; background: #fff; }
+    .detail-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid rgba(34, 42, 53, .08);
+      backdrop-filter: blur(18px);
+    }
+    .detail-header-inner {
+      width: min(1280px, calc(100% - 48px));
+      min-height: 74px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 18px;
+    }
+    .detail-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+    }
+    .detail-brand-logo {
+      display: block;
+      width: clamp(176px, 22vw, 292px);
+      max-height: 48px;
+      height: auto;
+      object-fit: contain;
+    }
+    .global-nav {
+      justify-self: center;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+    }
+    .global-nav a,
+    .mobile-menu-panel a {
+      border-radius: 999px;
+      color: #27352f;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0;
+      transition:
+        background var(--motion-fast) var(--ease-standard),
+        color var(--motion-fast) var(--ease-standard),
+        transform var(--motion-fast) var(--ease-standard);
+      white-space: nowrap;
+    }
+    .global-nav a { padding: 12px 16px; }
+    .global-nav a:hover {
+      transform: translateY(-1px);
+      background: color-mix(in oklab, var(--green), white 92%);
+      color: var(--green-dark);
+    }
+    .global-nav a[aria-current="page"],
+    .mobile-menu-panel a[aria-current="page"] {
+      background: color-mix(in oklab, var(--green), white 90%);
+      color: var(--green-dark);
+    }
+    .mobile-menu { display: none; justify-self: end; position: relative; }
+    .mobile-menu summary {
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid rgba(34, 42, 53, .12);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--green-dark);
+      user-select: none;
+    }
+    .mobile-menu summary::-webkit-details-marker { display: none; }
+    .hamburger-lines { width: 18px; display: grid; gap: 4px; }
+    .hamburger-lines i {
+      width: 18px;
+      height: 2px;
+      display: block;
+      border-radius: 999px;
+      background: currentColor;
+      transform-origin: center;
+      transition: opacity var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard);
+    }
+    .mobile-menu[open] .hamburger-lines i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .mobile-menu[open] .hamburger-lines i:nth-child(2) { opacity: 0; }
+    .mobile-menu[open] .hamburger-lines i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .mobile-menu-panel {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 12px);
+      display: grid;
+      gap: 4px;
+      min-width: 252px;
+      padding: 10px;
+      border: 1px solid rgba(34, 42, 53, .1);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, .98);
+      box-shadow: 0 18px 44px rgba(20, 28, 24, .18);
+    }
+    .mobile-menu-panel a {
+      display: flex;
+      align-items: center;
+      min-height: 50px;
+      padding: 0 14px;
+      font-size: 16px;
+    }
+    .icon-button {
+      min-width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 0 14px;
+      border: 1px solid rgba(34, 42, 53, .12);
+      border-radius: 999px;
+      background: #fff;
+      color: #1f2d27;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .icon-button svg { width: 20px; height: 20px; }
+    .detail-actions { display: inline-flex; align-items: center; justify-content: flex-end; }
+
+    .nutrition-list-main {
+      width: min(612px, 100%);
+      margin: 0 auto;
+      background: #fff;
+      min-height: 720px;
+      padding: 44px 27px 52px;
+    }
+    .nutrition-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 42px;
+      margin-bottom: 22px;
+    }
+    .nutrition-total {
+      color: #333;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .nutrition-total span { color: #111; font-weight: 800; }
+    .nutrition-sort {
+      position: relative;
+      color: #202020;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .nutrition-sort select {
+      appearance: none;
+      min-width: 90px;
+      min-height: 34px;
+      padding: 0 34px 0 14px;
+      border: 1px solid rgba(17, 17, 17, .12);
+      border-radius: 999px;
+      background: #fff;
+      color: inherit;
+      font: inherit;
+    }
+    .nutrition-sort::after {
+      content: "";
+      position: absolute;
+      right: 1px;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      border-right: 1.8px solid #222;
+      border-bottom: 1.8px solid #222;
+      transform: translate(-14px, -62%) rotate(45deg);
+      pointer-events: none;
+    }
+    .nutrition-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 16px;
+      row-gap: 32px;
+    }
+    .nutrition-card {
+      display: grid;
+      gap: 14px;
+      min-width: 0;
+    }
+    .nutrition-media {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      aspect-ratio: 272 / 292;
+      border-radius: 6px;
+      background: #fff;
+      outline: 1px solid #f7f7f7;
+      outline-offset: -1px;
+    }
+    .nutrition-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 12px;
+    }
+    .nutrition-placeholder {
+      position: absolute;
+      inset: 0;
+      display: none;
+      place-items: center;
+      padding: 18px;
+      color: #8a8a8f;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      text-align: center;
+      background: linear-gradient(135deg, #f8f8f8, #eeeeee);
+    }
+    .nutrition-media.is-image-error .nutrition-image {
+      display: none;
+    }
+    .nutrition-media.is-image-error .nutrition-placeholder {
+      display: grid;
+    }
+    .nutrition-info {
+      display: grid;
+      gap: 7px;
+      min-width: 0;
+    }
+    .nutrition-title {
+      display: -webkit-box;
+      min-height: calc(1.3em * 3);
+      margin: 0;
+      overflow: hidden;
+      color: #1b1b1f;
+      font-size: 21px;
+      font-weight: 400;
+      letter-spacing: -0.045em;
+      line-height: 1.3;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+    .nutrition-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 0;
+    }
+    .nutrition-discount {
+      color: #ff4b4b;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+    }
+    .nutrition-price {
+      color: #171717;
+      font-size: 24px;
+      font-weight: 850;
+      letter-spacing: -0.045em;
+    }
+    .scroll-top {
+      position: fixed;
+      right: 22px;
+      bottom: 26px;
+      width: 62px;
+      height: 62px;
+      border: 1px solid #dfe3e7;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .92);
+      box-shadow: 0 3px 8px rgba(17, 24, 39, .08);
+      color: #5f666d;
+      font-size: 0;
+    }
+    .scroll-top::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 19px;
+      width: 16px;
+      height: 16px;
+      border-top: 3px solid currentColor;
+      border-left: 3px solid currentColor;
+      transform: translateX(-50%) rotate(45deg);
+    }
+    .scroll-top::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 20px;
+      width: 3px;
+      height: 28px;
+      border-radius: 999px;
+      background: currentColor;
+      transform: translateX(-50%);
+    }
+    .site-footer {
+      background:
+        linear-gradient(135deg, oklch(18% 0.045 158) 0%, oklch(25% 0.066 154) 54%, oklch(17% 0.04 150) 100%);
+      color: oklch(94% 0.012 88);
+      margin: 0;
+      overflow: hidden;
+      padding: clamp(56px, 6vw, 92px) 0;
+      position: relative;
+      width: 100%;
+      z-index: 1;
+    }
+    .site-footer::before {
+      background-image:
+        linear-gradient(90deg, oklch(100% 0 0 / 0.035) 1px, transparent 1px),
+        linear-gradient(0deg, oklch(100% 0 0 / 0.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+      content: "";
+      inset: 0;
+      opacity: 0.16;
+      pointer-events: none;
+      position: absolute;
+    }
+    .site-footer::after {
+      background: linear-gradient(180deg, transparent 0%, oklch(12% 0.03 150 / 0.24) 100%);
+      content: "";
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+    .site-footer-inner {
+      align-items: start;
+      display: grid;
+      gap: clamp(36px, 6vw, 86px);
+      grid-template-columns: minmax(0, 1.04fr) minmax(380px, 0.96fr);
+      margin: 0 auto;
+      position: relative;
+      width: min(1180px, calc(100vw - clamp(40px, 10vw, 156px)));
+      z-index: 1;
+    }
+    .footer-title {
+      color: oklch(96% 0.01 86 / 0.92);
+      font-size: clamp(32px, 3.7vw, 58px);
+      font-weight: 650;
+      letter-spacing: -0.045em;
+      line-height: 1.18;
+      margin: 0;
+      max-width: 620px;
+      text-wrap: balance;
+      word-break: keep-all;
+    }
+    .footer-contact {
+      border-left: 1px solid oklch(85% 0.035 92 / 0.24);
+      justify-self: end;
+      padding-left: clamp(32px, 4.2vw, 58px);
+      width: min(460px, 100%);
+    }
+    .footer-company-name {
+      color: var(--gold);
+      font-size: clamp(15px, 1.15vw, 18px);
+      font-weight: 750;
+      letter-spacing: -0.01em;
+      margin: 0 0 20px;
+    }
+    .footer-company-info {
+      color: oklch(96% 0.008 88 / 0.86);
+      display: grid;
+      gap: 0;
+      font-size: clamp(13px, 0.95vw, 14px);
+      line-height: 1.62;
+      margin: 0;
+    }
+    .footer-company-info div {
+      border-top: 1px solid oklch(85% 0.035 92 / 0.18);
+      display: grid;
+      gap: 18px;
+      grid-template-columns: 96px minmax(0, 1fr);
+      padding: 12px 0;
+    }
+    .footer-company-info div:last-child {
+      border-bottom: 1px solid oklch(85% 0.035 92 / 0.18);
+    }
+    .footer-company-info dt {
+      color: oklch(96% 0.008 88 / 0.58);
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: 0.04em;
+    }
+    .footer-company-info dd {
+      margin: 0;
+      word-break: keep-all;
+    }
+    @media (max-width: 980px) {
+      .detail-header-inner {
+        width: 100%;
+        min-height: 66px;
+        padding: 0 14px;
+        grid-template-columns: 44px minmax(0, 1fr) 48px;
+        gap: 12px;
+      }
+      .global-nav, .detail-actions { display: none; }
+      .mobile-menu { display: block; }
+      .detail-brand-logo {
+        width: clamp(142px, 38vw, 196px);
+        max-height: 38px;
+      }
+      .icon-button {
+        min-width: 42px;
+        height: 42px;
+      }
+      .back-button {
+        width: 42px;
+        padding: 0;
+      }
+      .back-button span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .site-footer { padding: 48px 0 118px; }
+      .site-footer-inner {
+        grid-template-columns: 1fr;
+        width: calc(100vw - 40px);
+      }
+      .footer-title { font-size: clamp(25px, 7vw, 34px); }
+      .footer-contact {
+        border-left: 0;
+        border-top: 1px solid oklch(85% 0.035 92 / 0.22);
+        justify-self: stretch;
+        padding-left: 0;
+        padding-top: 30px;
+        width: 100%;
+      }
+      .footer-company-info div {
+        grid-template-columns: 1fr;
+        gap: 2px;
+        padding: 10px 0;
+      }
+      .footer-company-info dd { overflow-wrap: anywhere; }
+    }
+    @media (max-width: 640px) {
+      .nutrition-list-main {
+        width: 100%;
+        padding: 42px 27px 44px;
+      }
+      .nutrition-toolbar { margin-bottom: 22px; }
+      .nutrition-total { font-size: 17px; }
+      .nutrition-sort { font-size: 16px; }
+      .nutrition-grid { column-gap: 16px; row-gap: 32px; }
+      .nutrition-title {
+        min-height: calc(1.3em * 3);
+        font-size: 21px;
+      }
+      .nutrition-discount,
+      .nutrition-price { font-size: 22px; }
+    }
+    @media (max-width: 390px) {
+      .nutrition-list-main { padding-inline: 17px; }
+      .nutrition-grid { column-gap: 14px; row-gap: 28px; }
+      .nutrition-title,
+      .nutrition-discount,
+      .nutrition-price { font-size: 20px; }
+      .scroll-top {
+        right: 18px;
+        width: 56px;
+        height: 56px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="detail-header" data-od-id="product-header">
+      <div class="detail-header-inner">
+        <button class="icon-button back-button" type="button" data-back-button aria-label="뒤로가기">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>뒤로</span>
+        </button>
+
+        <a class="detail-brand" href="index.html" aria-label="KAMBROX 홈으로 이동">
+          <img class="detail-brand-logo" src="mplc24vr-logo-transparent.png" alt="KAMBROX" />
+        </a>
+
+        <nav class="global-nav" aria-label="주요 메뉴">
+          <a href="index.html">홈</a>
+          <a href="academy.html">아카데미</a>
+          <a href="product1-detail.html">수소치료기</a>
+          <a href="product2.html" aria-current="page">건기식</a>
+        </nav>
+
+        <details class="mobile-menu">
+          <summary aria-label="메뉴 열기">
+            <span class="sr-only">메뉴 열기</span>
+            <span class="hamburger-lines" aria-hidden="true"><i></i><i></i><i></i></span>
+          </summary>
+          <nav class="mobile-menu-panel" aria-label="모바일 주요 메뉴">
+            <a href="index.html">홈</a>
+            <a href="academy.html">아카데미</a>
+            <a href="product1-detail.html">수소치료기</a>
+            <a href="product2.html" aria-current="page">건기식</a>
+          </nav>
+        </details>
+
+        <nav class="detail-actions" aria-label="상품 목록 홈 바로가기">
+          <a class="icon-button" href="index.html" aria-label="홈">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 10.7 12 4l8 6.7V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-9.3Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="nutrition-list-main" data-od-id="nutrition-product-list">
+      <div class="nutrition-toolbar">
+        <div class="nutrition-total">총 <span id="visibleCount">9</span>개</div>
+        <label class="nutrition-sort">
+          <span class="sr-only">정렬</span>
+          <select id="sortSelect" aria-label="정렬">
+            <option value="popular">인기순</option>
+            <option value="name">제품명순</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="nutrition-grid" id="productGrid" aria-live="polite">
+        <a class="nutrition-card" href="product2-detail.html" data-price="0" data-popularity="9">
+          <div class="nutrition-media"><img class="nutrition-image" src="public/images/nutrition-myers.png" alt="캠브로씨 마이어스 상품 이미지" onerror="this.parentElement.classList.add('is-image-error')" /><span class="nutrition-placeholder">캠브로씨 마이어스<br>이미지 준비중</span></div>
+          <div class="nutrition-info">
+            <strong class="nutrition-title">캠브로씨 마이어스</strong>
+          </div>
+        </a>
+
+        <a class="nutrition-card" href="product2-detail.html" data-price="0" data-popularity="8">
+          <div class="nutrition-media"><img class="nutrition-image" src="public/images/nutrition-liposomal-vitamin-c.png" alt="캠브로씨 리포소말 비타민C 상품 이미지" onerror="this.parentElement.classList.add('is-image-error')" /><span class="nutrition-placeholder">캠브로씨 리포소말 비타민C<br>이미지 준비중</span></div>
+          <div class="nutrition-info">
+            <strong class="nutrition-title">캠브로씨 리포소말 비타민C</strong>
+          </div>
+        </a>
+
+        <a class="nutrition-card" href="product2-detail.html" data-price="0" data-popularity="7">
+          <div class="nutrition-media"><img class="nutrition-image" src="public/images/nutrition-algal-omega3.png" alt="캠브로씨 알갈오메가3 상품 이미지" onerror="this.parentElement.classList.add('is-image-error')" /><span class="nutrition-placeholder">캠브로씨 알갈오메가3<br>이미지 준비중</span></div>
+          <div class="nutrition-info">
+            <strong class="nutrition-title">캠브로씨 알갈오메가3</strong>
+          </div>
+        </a>
+
+        <a class="nutrition-card" href="product2-detail.html" data-price="0" data-popularity="6">
+          <div class="nutrition-media"><img class="nutrition-image" src="public/images/nutrition-immusin.png" alt="캠브로씨 이뮤신 상품 이미지" onerror="this.parentElement.classList.add('is-image-error')" /><span class="nutrition-placeholder">캠브로씨 이뮤신<br>이미지 준비중</span></div>
+          <div class="nutrition-info">
+            <strong class="nutrition-title">캠브로씨 이뮤신</strong>
+          </div>
+        </a>
+
+        <a class="nutrition-card" href="product2-detail.html" data-price="0" data-popularity="5">
+          <div class="nutrition-media"><img class="nutrition-image" src="public/images/nutrition-brc.png" alt="캠브로씨 비알씨 상품 이미지" onerror="this.parentElement.classList.add('is-image-error')" /><span class="nutrition-placeholder">캠브로씨 비알씨<br>이미지 준비중</span></div>
+          <div class="nutrition-info">
+            <strong class="nutrition-title">캠브로씨 비알씨</strong>
+          </div>
+        </a>
+
+        <a class="nutrition-card" href="product2-detail.html" data-price="0" data-popularity="4">
+          <div class="nutrition-media"><img class="nutrition-image" src="public/images/nutrition-taheebo.png" alt="캠브로씨 타히보 상품 이미지" onerror="this.parentElement.classList.add('is-image-error')" /><span class="nutrition-placeholder">캠브로씨 타히보<br>이미지 준비중</span></div>
+          <div class="nutrition-info">
+            <strong class="nutrition-title">캠브로씨 타히보</strong>
+          </div>
+        </a>
+
+        <a class="nutrition-card" href="product2-detail.html" data-price="0" data-popularity="3">
+          <div class="nutrition-media"><img class="nutrition-image" src="public/images/nutrition-qrf.png" alt="캠브로씨 큐알에프 상품 이미지" onerror="this.parentElement.classList.add('is-image-error')" /><span class="nutrition-placeholder">캠브로씨 큐알에프<br>이미지 준비중</span></div>
+          <div class="nutrition-info">
+            <strong class="nutrition-title">캠브로씨 큐알에프</strong>
+          </div>
+        </a>
+
+        <a class="nutrition-card" href="product2-detail.html" data-price="0" data-popularity="2">
+          <div class="nutrition-media"><img class="nutrition-image" src="public/images/nutrition-vitamin-d.png" alt="캠브로씨 비타민D 상품 이미지" onerror="this.parentElement.classList.add('is-image-error')" /><span class="nutrition-placeholder">캠브로씨 비타민D<br>이미지 준비중</span></div>
+          <div class="nutrition-info">
+            <strong class="nutrition-title">캠브로씨 비타민D</strong>
+          </div>
+        </a>
+
+        <a class="nutrition-card" href="product2-detail.html" data-price="0" data-popularity="1">
+          <div class="nutrition-media"><img class="nutrition-image" src="public/images/nutrition-selenium.png" alt="캠브로씨 셀레늄 상품 이미지" onerror="this.parentElement.classList.add('is-image-error')" /><span class="nutrition-placeholder">캠브로씨 셀레늄<br>이미지 준비중</span></div>
+          <div class="nutrition-info">
+            <strong class="nutrition-title">캠브로씨 셀레늄</strong>
+          </div>
+        </a>
+      </div>
+    </main>
+
+    <button class="scroll-top" type="button" aria-label="상단으로 이동" data-scroll-top>상단으로 이동</button>
+
+    <footer class="site-footer" aria-label="KAMBROX partnership footer">
+      <div class="site-footer-inner">
+        <div class="footer-message">
+          <p class="footer-title">
+            KAMBROX는 회복의 새로운 표준을<br />
+            만들어갑니다.
+          </p>
+        </div>
+
+        <div class="footer-contact" aria-label="회사 정보">
+          <p class="footer-company-name">주식회사 캠브록스 ( KAMBROX Corp.)</p>
+          <dl class="footer-company-info">
+            <div><dt>대표자</dt><dd>문명훈</dd></div>
+            <div><dt>주소</dt><dd>서울시 은평구 통일로71길 2-1, 4층 16호(대조동, 대조빌딩)</dd></div>
+            <div><dt>대표번호</dt><dd>02-6956-1133</dd></div>
+            <div><dt>사업자 등록번호</dt><dd>364-87-03182</dd></div>
+          </dl>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const sortSelect = document.getElementById('sortSelect');
+    const grid = document.getElementById('productGrid');
+    const cards = Array.from(document.querySelectorAll('.nutrition-card'));
+    const backButton = document.querySelector('[data-back-button]');
+    const scrollTopButton = document.querySelector('[data-scroll-top]');
+
+    function applySort() {
+      const mode = sortSelect.value;
+      [...cards].sort((a, b) => {
+        if (mode === 'name') {
+          const aTitle = a.querySelector('.nutrition-title')?.textContent || '';
+          const bTitle = b.querySelector('.nutrition-title')?.textContent || '';
+          return aTitle.localeCompare(bTitle, 'ko');
+        }
+        return Number(b.dataset.popularity) - Number(a.dataset.popularity);
+      }).forEach((card) => grid.appendChild(card));
+    }
+
+    sortSelect.addEventListener('change', applySort);
+    backButton.addEventListener('click', () => {
+      window.location.href = 'index.html';
+    });
+    scrollTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

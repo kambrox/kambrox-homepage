@@ -40,7 +40,7 @@ const detailNav = [
   { label: "홈", href: "/" },
   { label: "아카데미", href: "/academy" },
   { label: "수소치료기", href: "/product1-detail", current: true },
-  { label: "건강식", href: "/product2-detail" }
+  { label: "건기식", href: "/product2" }
 ];
 
 const BUY_NOTICE = "대표번호 02-6956-1133\n로 연락주시면 결제 및 배송상담을 함께\n도움드리겠습니다.";
