@@ -239,9 +239,9 @@ export default function HomePage() {
             </Link>
           ))}
         </nav>
-        <Link className="header-cta" href="/product1-detail">
-          수소치료기 구매하기
-        </Link>
+        <a className="header-cta" href="https://survey.techkambrox.workers.dev/" target="_blank" rel="noopener noreferrer">
+          자가진단
+        </a>
         <details className="mobile-menu">
           <summary aria-label="메뉴 열기">
             <span className="sr-only">메뉴 열기</span>
@@ -257,9 +257,9 @@ export default function HomePage() {
                 {item.label}
               </Link>
             ))}
-            <Link className="mobile-menu-cta" href="/product1-detail">
-              수소치료기 구매하기
-            </Link>
+            <a className="mobile-menu-cta" href="https://survey.techkambrox.workers.dev/" target="_blank" rel="noopener noreferrer">
+              자가진단
+            </a>
           </nav>
         </details>
       </header>
