@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import "./product-detail.css";
 
 const productCatalog = {
@@ -28,7 +28,7 @@ const productCatalog = {
     title: "캠브로씨 이뮤신",
     price: 0,
     image: "/images/nutrition-immusin.png",
-    detailImages: []
+    detailImages: ["/images/nutrition-detail-immusin.png"]
   },
   brc: {
     title: "캠브로씨 비알씨",
@@ -96,14 +96,26 @@ function formatWon(value: number) {
   return `${value.toLocaleString("ko-KR")} 원`;
 }
 
-export default function ProductDetailPage() {
+function ProductDetailContent() {
   const router = useRouter();
-  const [selectedProduct, setSelectedProduct] = useState<ProductSummary>(fallbackProduct);
+  const searchParams = useSearchParams();
   const [qty, setQty] = useState(1);
   const [shippingOption, setShippingOption] = useState("택배배송");
   const [isGalleryImageError, setIsGalleryImageError] = useState(false);
   const [activeTab, setActiveTab] = useState<PanelId>("detail");
   const [noticeMessage, setNoticeMessage] = useState<string | null>(null);
+
+  const selectedProduct = useMemo<ProductSummary>(() => {
+    const querySlug = searchParams.get("product") as ProductSlug | null;
+    if (querySlug && productCatalog[querySlug]) return productCatalog[querySlug];
+
+    if (typeof window !== "undefined") {
+      const storedSlug = sessionStorage.getItem("selectedNutritionProduct") as ProductSlug | null;
+      if (storedSlug && productCatalog[storedSlug]) return productCatalog[storedSlug];
+    }
+
+    return fallbackProduct;
+  }, [searchParams]);
 
   const showNotice = useCallback((message: string) => {
     setNoticeMessage(message);
@@ -114,15 +126,11 @@ export default function ProductDetailPage() {
   }, []);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get("product") as ProductSlug | null;
-    const nextProduct = slug && productCatalog[slug] ? productCatalog[slug] : fallbackProduct;
-    setSelectedProduct(nextProduct);
-  }, []);
-
-  useEffect(() => {
     document.title = `${selectedProduct.title} · KAMBROX 건기식`;
-  }, [selectedProduct]);
+    const querySlug = searchParams.get("product") as ProductSlug | null;
+    const storedSlug = querySlug && productCatalog[querySlug] ? querySlug : null;
+    if (storedSlug) sessionStorage.setItem("selectedNutritionProduct", storedSlug);
+  }, [searchParams, selectedProduct]);
 
   useEffect(() => {
     setIsGalleryImageError(false);
@@ -450,5 +458,13 @@ export default function ProductDetailPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ProductDetailPage() {
+  return (
+    <Suspense fallback={null}>
+      <ProductDetailContent />
+    </Suspense>
   );
 }

@@ -1572,7 +1572,7 @@
         title: '캠브로씨 이뮤신',
         price: 0,
         image: 'public/images/nutrition-immusin.png',
-        detailImages: []
+        detailImages: ['public/images/nutrition-detail-immusin.png']
       },
       brc: {
         title: '캠브로씨 비알씨',
@@ -1605,8 +1605,11 @@
         detailImages: ['public/images/nutrition-detail-selenium.png']
       }
     };
-    const productSlug = new URLSearchParams(window.location.search).get('product') || 'myers';
-    const selectedProduct = PRODUCTS[productSlug] || PRODUCTS.myers;
+    const requestedProductSlug = new URLSearchParams(window.location.search).get('product');
+    const storedProductSlug = sessionStorage.getItem('selectedNutritionProduct');
+    const productSlug = PRODUCTS[requestedProductSlug] ? requestedProductSlug : (PRODUCTS[storedProductSlug] ? storedProductSlug : 'myers');
+    sessionStorage.setItem('selectedNutritionProduct', productSlug);
+    const selectedProduct = PRODUCTS[productSlug];
     const colorSelect = document.getElementById('colorSelect');
     const selectedBox = document.getElementById('selectedBox');
     const selectedName = document.getElementById('selectedName');

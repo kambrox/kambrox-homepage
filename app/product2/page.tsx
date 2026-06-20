@@ -195,7 +195,14 @@ export default function Product2ListPage() {
 
         <div className="nutrition-grid" aria-live="polite">
           {sortedProducts.map((product) => (
-            <Link className="nutrition-card" href={`/product2-detail?product=${product.slug}`} key={product.title}>
+            <Link
+              className="nutrition-card"
+              href={`/product2-detail?product=${product.slug}`}
+              key={product.title}
+              onClick={() => {
+                sessionStorage.setItem("selectedNutritionProduct", product.slug);
+              }}
+            >
               <div className="nutrition-media">
                 <img
                   className="nutrition-image"
