@@ -8,48 +8,57 @@ import "./product-detail.css";
 const productCatalog = {
   myers: {
     title: "캠브로씨 마이어스",
-    price: 99000,
-    image: "/images/nutrition-myers.png"
+    price: 0,
+    image: "/images/nutrition-myers.png",
+    detailImages: ["/images/nutrition-detail-myers.png"]
   },
   "liposomal-vitamin-c": {
     title: "캠브로씨 리포소말 비타민C",
-    price: 99000,
-    image: "/images/nutrition-liposomal-vitamin-c.png"
+    price: 0,
+    image: "/images/nutrition-liposomal-vitamin-c.png",
+    detailImages: ["/images/nutrition-detail-liposomal-vitamin-c.png"]
   },
   "algal-omega3": {
     title: "캠브로씨 알갈오메가3",
-    price: 99000,
-    image: "/images/nutrition-algal-omega3.png"
+    price: 0,
+    image: "/images/nutrition-algal-omega3.png",
+    detailImages: ["/images/nutrition-detail-algal-omega3.png"]
   },
   immusin: {
     title: "캠브로씨 이뮤신",
-    price: 99000,
-    image: "/images/nutrition-immusin.png"
+    price: 0,
+    image: "/images/nutrition-immusin.png",
+    detailImages: []
   },
   brc: {
     title: "캠브로씨 비알씨",
-    price: 99000,
-    image: "/images/nutrition-brc.png"
+    price: 0,
+    image: "/images/nutrition-brc.png",
+    detailImages: ["/images/nutrition-detail-brc.png"]
   },
   taheebo: {
     title: "캠브로씨 타히보",
-    price: 99000,
-    image: "/images/nutrition-taheebo.png"
+    price: 0,
+    image: "/images/nutrition-taheebo.png",
+    detailImages: ["/images/nutrition-detail-taheebo.png"]
   },
   qrf: {
     title: "캠브로씨 큐알에프",
-    price: 99000,
-    image: "/images/nutrition-qrf.png"
+    price: 0,
+    image: "/images/nutrition-qrf.png",
+    detailImages: ["/images/nutrition-detail-qrf.png"]
   },
   "vitamin-d": {
     title: "캠브로씨 비타민D",
-    price: 99000,
-    image: "/images/nutrition-vitamin-d.png"
+    price: 0,
+    image: "/images/nutrition-vitamin-d.png",
+    detailImages: ["/images/nutrition-detail-vitamin-d.png"]
   },
   selenium: {
     title: "캠브로씨 셀레늄",
-    price: 99000,
-    image: "/images/nutrition-selenium.png"
+    price: 0,
+    image: "/images/nutrition-selenium.png",
+    detailImages: ["/images/nutrition-detail-selenium.png"]
   }
 } as const;
 
@@ -57,15 +66,6 @@ type ProductSlug = keyof typeof productCatalog;
 type ProductSummary = (typeof productCatalog)[ProductSlug];
 
 const fallbackProduct = productCatalog.myers;
-
-const detailImages = [
-  { src: "/images/mpmldpp1-0.png", alt: "수소가스 흡입기 상품 상세 설명 1" },
-  { src: "/images/mpmldpp8-1.png", alt: "수소가스 흡입기 상품 상세 설명 2" },
-  { src: "/images/mpmldppi-2.png", alt: "수소가스 흡입기 상품 상세 설명 3" },
-  { src: "/images/mpmldpps-3.png", alt: "수소가스 흡입기 상품 상세 설명 4" },
-  { src: "/images/mpmldpq7-4.png", alt: "수소가스 흡입기 상품 상세 설명 5" },
-  { src: "/images/mpmldpqc-5.png", alt: "수소가스 흡입기 상품 상세 설명 6" }
-] as const;
 
 type PanelId = "detail" | "review" | "qna";
 
@@ -377,9 +377,13 @@ export default function ProductDetailPage() {
             role="tabpanel"
           >
             <div className="detail-image-stack" aria-label="상품 상세 설명 이미지">
-              {detailImages.map((image) => (
-                <img key={image.src} src={image.src} alt={image.alt} />
-              ))}
+              {selectedProduct.detailImages.length ? (
+                selectedProduct.detailImages.map((src, index) => (
+                  <img key={src} src={src} alt={`${selectedProduct.title} 상세정보 ${index + 1}`} />
+                ))
+              ) : (
+                <div className="empty-state">상세 이미지 준비중</div>
+              )}
             </div>
           </article>
           <article

@@ -316,15 +316,15 @@
     .main-photo {
       position: relative;
       width: var(--gallery-w);
-      aspect-ratio: 745 / 744;
+      aspect-ratio: 2 / 3;
       overflow: hidden;
       display: grid;
       place-items: center;
       background: #fff;
     }
     .main-photo img {
-      width: 92%;
-      height: 92%;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
       display: block;
       user-select: none;
@@ -1094,12 +1094,12 @@
       }
       .main-photo {
         width: 100%;
-        height: min(360px, 94vw);
-        aspect-ratio: auto;
+        height: auto;
+        aspect-ratio: 2 / 3;
       }
       .main-photo img {
-        width: 92%;
-        height: 92%;
+        width: 100%;
+        height: 100%;
       }
       .gallery-nav {
         width: 38px;
@@ -1423,7 +1423,7 @@
         <div class="buy-inner">
           <h1 class="title" id="productTitle">캠브로씨 마이어스</h1>
 
-          <div class="price num"><span id="productPrice">99,000</span><small>원</small></div>
+          <div class="price num"><span id="productPrice">0</span><small>원</small></div>
 
           <div class="shipping-summary">
             <svg class="truck" viewBox="0 0 24 18" aria-hidden="true">
@@ -1458,7 +1458,7 @@
           <div class="selected" id="selectedBox">
             <div class="selected-top">
               <span id="selectedName">택배배송</span>
-              <span id="selectedPrice" class="num">99,000원</span>
+              <span id="selectedPrice" class="num">0원</span>
             </div>
             <div class="qty-row">
               <div class="qty" aria-label="수량 변경">
@@ -1472,7 +1472,7 @@
 
           <div class="total">
             <span>선택 제품의 총액</span>
-            <strong id="totalPrice" class="num">99,000 원</strong>
+            <strong id="totalPrice" class="num">0 원</strong>
           </div>
 
           <div class="primary-actions">
@@ -1491,12 +1491,7 @@
       </div>
       <article class="tab-panel active" id="detail" role="tabpanel">
         <div class="detail-image-stack" aria-label="상품 상세 설명 이미지">
-          <img src="mpmldpp1-0.png" alt="수소가스 흡입기 상품 상세 설명 1">
-          <img src="mpmldpp8-1.png" alt="수소가스 흡입기 상품 상세 설명 2">
-          <img src="mpmldppi-2.png" alt="수소가스 흡입기 상품 상세 설명 3">
-          <img src="mpmldpps-3.png" alt="수소가스 흡입기 상품 상세 설명 4">
-          <img src="mpmldpq7-4.png" alt="수소가스 흡입기 상품 상세 설명 5">
-          <img src="mpmldpqc-5.png" alt="수소가스 흡입기 상품 상세 설명 6">
+          <img src="public/images/nutrition-detail-myers.png" alt="캠브로씨 마이어스 상세정보 1">
         </div>
       </article>
       <article class="tab-panel" id="review" role="tabpanel">
@@ -1557,48 +1552,57 @@
     const PRODUCTS = {
       myers: {
         title: '캠브로씨 마이어스',
-        price: 99000,
-        image: 'public/images/nutrition-myers.png'
+        price: 0,
+        image: 'public/images/nutrition-myers.png',
+        detailImages: ['public/images/nutrition-detail-myers.png']
       },
       'liposomal-vitamin-c': {
         title: '캠브로씨 리포소말 비타민C',
-        price: 99000,
-        image: 'public/images/nutrition-liposomal-vitamin-c.png'
+        price: 0,
+        image: 'public/images/nutrition-liposomal-vitamin-c.png',
+        detailImages: ['public/images/nutrition-detail-liposomal-vitamin-c.png']
       },
       'algal-omega3': {
         title: '캠브로씨 알갈오메가3',
-        price: 99000,
-        image: 'public/images/nutrition-algal-omega3.png'
+        price: 0,
+        image: 'public/images/nutrition-algal-omega3.png',
+        detailImages: ['public/images/nutrition-detail-algal-omega3.png']
       },
       immusin: {
         title: '캠브로씨 이뮤신',
-        price: 99000,
-        image: 'public/images/nutrition-immusin.png'
+        price: 0,
+        image: 'public/images/nutrition-immusin.png',
+        detailImages: []
       },
       brc: {
         title: '캠브로씨 비알씨',
-        price: 99000,
-        image: 'public/images/nutrition-brc.png'
+        price: 0,
+        image: 'public/images/nutrition-brc.png',
+        detailImages: ['public/images/nutrition-detail-brc.png']
       },
       taheebo: {
         title: '캠브로씨 타히보',
-        price: 99000,
-        image: 'public/images/nutrition-taheebo.png'
+        price: 0,
+        image: 'public/images/nutrition-taheebo.png',
+        detailImages: ['public/images/nutrition-detail-taheebo.png']
       },
       qrf: {
         title: '캠브로씨 큐알에프',
-        price: 99000,
-        image: 'public/images/nutrition-qrf.png'
+        price: 0,
+        image: 'public/images/nutrition-qrf.png',
+        detailImages: ['public/images/nutrition-detail-qrf.png']
       },
       'vitamin-d': {
         title: '캠브로씨 비타민D',
-        price: 99000,
-        image: 'public/images/nutrition-vitamin-d.png'
+        price: 0,
+        image: 'public/images/nutrition-vitamin-d.png',
+        detailImages: ['public/images/nutrition-detail-vitamin-d.png']
       },
       selenium: {
         title: '캠브로씨 셀레늄',
-        price: 99000,
-        image: 'public/images/nutrition-selenium.png'
+        price: 0,
+        image: 'public/images/nutrition-selenium.png',
+        detailImages: ['public/images/nutrition-detail-selenium.png']
       }
     };
     const productSlug = new URLSearchParams(window.location.search).get('product') || 'myers';
@@ -1618,6 +1622,7 @@
     const galleryMain = document.getElementById('galleryMain');
     const galleryPhoto = galleryMain.closest('.main-photo');
     const galleryPlaceholder = document.getElementById('galleryPlaceholder');
+    const detailImageStack = document.querySelector('.detail-image-stack');
     const noticeModal = document.getElementById('noticeModal');
     const noticeText = document.getElementById('noticeText');
     const modalConfirm = document.getElementById('modalConfirm');
@@ -1633,6 +1638,19 @@
       galleryPhoto.classList.remove('is-image-error');
       galleryMain.src = selectedProduct.image;
       galleryMain.alt = `${selectedProduct.title} 상품 이미지`;
+      renderDetailImages();
+    }
+
+    function renderDetailImages() {
+      if (!detailImageStack) return;
+      if (!selectedProduct.detailImages.length) {
+        detailImageStack.innerHTML = '<div class="empty-state">상세 이미지 준비중</div>';
+        return;
+      }
+
+      detailImageStack.innerHTML = selectedProduct.detailImages
+        .map((src, index) => `<img src="${src}" alt="${selectedProduct.title} 상세정보 ${index + 1}">`)
+        .join('');
     }
 
     function formatWon(value) {

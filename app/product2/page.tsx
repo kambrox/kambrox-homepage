@@ -22,7 +22,7 @@ const products = [
   {
     slug: "myers",
     title: "캠브로씨 마이어스",
-    price: 99000,
+    price: 0,
     popularity: 9,
     image: "/images/nutrition-myers.png",
     imageAlt: "캠브로씨 마이어스 상품 이미지"
@@ -30,7 +30,7 @@ const products = [
   {
     slug: "liposomal-vitamin-c",
     title: "캠브로씨 리포소말 비타민C",
-    price: 99000,
+    price: 0,
     popularity: 8,
     image: "/images/nutrition-liposomal-vitamin-c.png",
     imageAlt: "캠브로씨 리포소말 비타민C 상품 이미지"
@@ -38,7 +38,7 @@ const products = [
   {
     slug: "algal-omega3",
     title: "캠브로씨 알갈오메가3",
-    price: 99000,
+    price: 0,
     popularity: 7,
     image: "/images/nutrition-algal-omega3.png",
     imageAlt: "캠브로씨 알갈오메가3 상품 이미지"
@@ -46,7 +46,7 @@ const products = [
   {
     slug: "immusin",
     title: "캠브로씨 이뮤신",
-    price: 99000,
+    price: 0,
     popularity: 6,
     image: "/images/nutrition-immusin.png",
     imageAlt: "캠브로씨 이뮤신 상품 이미지"
@@ -54,7 +54,7 @@ const products = [
   {
     slug: "brc",
     title: "캠브로씨 비알씨",
-    price: 99000,
+    price: 0,
     popularity: 5,
     image: "/images/nutrition-brc.png",
     imageAlt: "캠브로씨 비알씨 상품 이미지"
@@ -62,7 +62,7 @@ const products = [
   {
     slug: "taheebo",
     title: "캠브로씨 타히보",
-    price: 99000,
+    price: 0,
     popularity: 4,
     image: "/images/nutrition-taheebo.png",
     imageAlt: "캠브로씨 타히보 상품 이미지"
@@ -70,7 +70,7 @@ const products = [
   {
     slug: "qrf",
     title: "캠브로씨 큐알에프",
-    price: 99000,
+    price: 0,
     popularity: 3,
     image: "/images/nutrition-qrf.png",
     imageAlt: "캠브로씨 큐알에프 상품 이미지"
@@ -78,7 +78,7 @@ const products = [
   {
     slug: "vitamin-d",
     title: "캠브로씨 비타민D",
-    price: 99000,
+    price: 0,
     popularity: 2,
     image: "/images/nutrition-vitamin-d.png",
     imageAlt: "캠브로씨 비타민D 상품 이미지"
@@ -86,7 +86,7 @@ const products = [
   {
     slug: "selenium",
     title: "캠브로씨 셀레늄",
-    price: 99000,
+    price: 0,
     popularity: 1,
     image: "/images/nutrition-selenium.png",
     imageAlt: "캠브로씨 셀레늄 상품 이미지"

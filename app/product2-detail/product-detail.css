@@ -317,7 +317,7 @@
 .main-photo {
   position: relative;
   width: var(--gallery-w);
-  aspect-ratio: 745 / 744;
+  aspect-ratio: 2 / 3;
   overflow: hidden;
   display: grid;
   place-items: center;
@@ -325,8 +325,8 @@
 }
 
 .main-photo img {
-  width: 92%;
-  height: 92%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   display: block;
   user-select: none;
@@ -1083,12 +1083,12 @@
   }
   .main-photo {
     width: 100%;
-    height: min(360px, 94vw);
-    aspect-ratio: auto;
+    height: auto;
+    aspect-ratio: 2 / 3;
   }
   .main-photo img {
-    width: 92%;
-    height: 92%;
+    width: 100%;
+    height: 100%;
   }
   .gallery-nav {
     width: 38px;
