@@ -24,3 +24,14 @@ pnpm-debug.log*
 public/.omc/
 *.artifact.json
 .gstack/
+
+# Open Design 캔버스 export 임시 파일 (루트에 자동 생성됨)
+# 정식 에셋은 public/images/ 에 두므로 루트 id-prefix 파일은 제외
+/mp*-*.png
+/mq*-*.png
+/mp*-*.jpg
+/mq*-*.jpg
+/mp*-*.jpeg
+/mq*-*.jpeg
+/mp*-*.html
+/mq*-*.html
